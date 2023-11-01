@@ -91,8 +91,6 @@ function generateInstructionRow(instructionText, size, canWrite) {
 
     var newLabel = document.createElement("label");
     newLabel.textContent = "Instructions:";
-    instructionRow.appendChild(newLabel);
-    instructionRow.appendChild(document.createElement("br"));
 
     var newTextarea = document.createElement("textarea");
     newTextarea.name = "instructions"; // Use name instead of id
