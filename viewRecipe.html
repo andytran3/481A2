@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -27,4 +27,231 @@
 
         <script src="scripts.js"></script>
     </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        /* Container for the bottom 5 buttons*/
+        .bottom-button-container {
+            position: fixed;
+            justify-content: center;
+            display: flex;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #4c4b4b;
+            padding: 1px; 
+            border-top: 3px solid #4c4b4b; 
+        }
+
+        /* Details of the bottom buttons*/
+        .bottom-button {
+            display: inline-block;
+            width: 47px;
+            padding: 10px 14px;
+            background-color: #ccc;
+            text-decoration: none;
+            color: #000;
+            border: 3px solid #4c4b4b;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Details of the back button in the top left*/
+        .back-button {
+            position: absolute;
+            top: 17px;
+            left: 10px; 
+            padding: 10px 17px;
+            background-color: #ccc;
+            text-decoration: none;
+            color: #000;
+            border: 2px solid #4c4b4b;
+            border-radius: 100px;
+        }
+
+        /* Just adding the an arrow before the back button*/
+        .back-button::before {
+            content: "←";
+            margin-right: 5px;
+        }
+
+        /* Container for the title*/
+        .title-container{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 60px;
+            left:0;
+            right:0;
+        }
+
+        /* Container for the rest of the page basically
+        The image, the descriptions, the instructions, recipes*/
+        .food-container{
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+        }
+
+        /* Details for the image of the food*/
+        .food-image{
+            width: 400px;
+            height: auto;
+        }
+
+        /* Details for the title of the recipe*/
+        .food-title{
+            font-size: 35px;
+            margin-right:207px;
+            margin-top: 70px;
+            margin-bottom:1px;
+        }
+
+        /* Deetails for the save button in the top right*/
+        .save-button{
+            position: absolute;
+            right: 10px;
+            top: 10px; 
+            right: 0px;
+            padding: 10px 17px;
+            background-color: #ccc;
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 100px;
+        }
+
+        /* Details for the recipe info*/
+        .food-info {
+        display:flex;
+        justify-content: space-between;
+        }
+
+        /* Details for the recipe info */
+        .info-item {
+        flex: 1;
+        margin-right:30px;
+        white-space:nowrap;
+        }
+        
+        /*Lets you scroll*/
+        .scrollable-content{
+        overflow: auto;
+        position: relative;
+        }
+
+        /* Just for the star icon*/
+        .star {
+        width: 1em; 
+        display: inline-block;
+        margin-top: -17px;
+        }
+
+        /* Details for the instructions subheader*/
+        .instruction-title{
+            font-size: 25px;
+            margin-right:255px;
+            margin-top: 20px;
+            margin-bottom:1px;
+        }
+
+        /* Details for the recipe subheader*/
+        .recipe-title{
+            font-size: 25px;
+            margin-right:310px;
+            margin-top: -1px;
+            margin-bottom:1px;
+        }
+        
+        /*Legit a table lol*/
+        table {
+            border: 1px solid #000; 
+        }x
+
+        td {
+            padding: 100px; 
+            width: 200px;
+            height: 300px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <a href="#" class="back-button">Back</a>
+<title>
+</title>
+<h1> 
+    <center> MealMaster </center>
+    <body bgcolor= f1841d></body>
+  
+</h1>
+    <div cass="scrollable-content">
+
+        <div class="food-container">
+            <h2 class="food-title">Great Bread</h2>
+            <a href="#" class="save-button"> &#9733 Save</a>
+            <img class="food-image" src="https://lilluna.com/wp-content/uploads/2023/02/italian-bread-resize-15.jpg">
+            <div class="food-info">
+                <div class="info-item">
+                    <p><strong>Rating:</strong> <span class="star"> &#9733</span>4.5 </p></div>
+                <div class="info-item">
+                    <p><strong>Time:</strong> 45 Minutes </p></div>
+                <div class="info-item">
+                    <p><strong>Ingredients:</strong> 10</p></div>
+            </div>
+            <h2 class="recipe-title">Recipes</h2>
+            
+            <table>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Ingredients</label>
+                            <button id="addIngredientButton">Add Ingredient</button>
+                        </div>
+                
+                        <div id="ingredientsContainer">
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <h2 class="instruction-title">Instructions</h2>
+            <table>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Ingredients</label>
+                            <button id="addInstructionButton">Add Ingredient</button>
+                        </div>
+                
+                        <div id="instructionsContainer">
+                            
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+    </div>
+    <div class="bottom-button-container">
+        <a href="#" class="bottom-button">Home</a>
+        <a href="#" class="bottom-button">My Recipes</a>
+        <a href="#" class="bottom-button">Search</a>
+        <a href="#" class="bottom-button">Meal Plan</a>
+        <a href="#" class="bottom-button">My Account</a>
+    </div>
+    <script src="scripts.js"></script>
+</body>
 </html>
