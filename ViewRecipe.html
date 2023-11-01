@@ -3,6 +3,7 @@
 <head>
     <style>
 
+        /* Container for the bottom 5 buttons*/
         .bottom-button-container {
             position: fixed;
             justify-content: center;
@@ -10,11 +11,12 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: #4c4b4b; /* Optionally, you can add a background color for the footer */
-            padding: 1px; /* Add padding to the footer (adjust as needed) */
-            border-top: 3px solid #4c4b4b; /* Optionally, you can add a border at the top of the footer */
+            background-color: #4c4b4b;
+            padding: 1px; 
+            border-top: 3px solid #4c4b4b; 
         }
 
+        /* Details of the bottom buttons*/
         .bottom-button {
             display: inline-block;
             width: 47px;
@@ -27,6 +29,7 @@
             text-align: center;
         }
 
+        /* Details of the back button in the top left*/
         .back-button {
             position: absolute;
             top: 17px;
@@ -38,11 +41,14 @@
             border: 2px solid #4c4b4b;
             border-radius: 100px;
         }
+
+        /* Just adding the an arrow before the back button*/
         .back-button::before {
             content: "←";
             margin-right: 5px;
         }
 
+        /* Container for the title*/
         .title-container{
             display:flex;
             justify-content: center;
@@ -53,7 +59,8 @@
             right:0;
         }
 
-
+        /* Container for the rest of the page basically
+        The image, the descriptions, the instructions, recipes*/
         .food-container{
             position: absolute;
             top: 10px;
@@ -63,10 +70,14 @@
             flex-direction: column;
             align-items:center;
         }
+
+        /* Details for the image of the food*/
         .food-image{
             width: 400px;
             height: auto;
         }
+
+        /* Details for the title of the recipe*/
         .food-title{
             font-size: 35px;
             margin-right:207px;
@@ -74,10 +85,11 @@
             margin-bottom:1px;
         }
 
+        /* Deetails for the save button in the top right*/
         .save-button{
             position: absolute;
             right: 10px;
-            top: 10px; /* Adjust the top position as needed */
+            top: 10px; 
             right: 0px;
             padding: 10px 17px;
             background-color: #ccc;
@@ -87,29 +99,33 @@
             border-radius: 100px;
         }
 
+        /* Details for the recipe info*/
         .food-info {
         display:flex;
         justify-content: space-between;
         }
 
+        /* Details for the recipe info */
         .info-item {
         flex: 1;
         margin-right:30px;
         white-space:nowrap;
         }
         
+        /*Lets you scroll*/
         .scrollable-content{
         overflow: auto;
         position: relative;
-    
-    
         }
+
+        /* Just for the star icon*/
         .star {
         width: 1em; 
         display: inline-block;
         margin-top: -17px;
         }
 
+        /* Details for the instructions subheader*/
         .instruction-title{
             font-size: 25px;
             margin-right:255px;
@@ -117,6 +133,7 @@
             margin-bottom:1px;
         }
 
+        /* Details for the recipe subheader*/
         .recipe-title{
             font-size: 25px;
             margin-right:310px;
@@ -124,13 +141,13 @@
             margin-bottom:1px;
         }
         
-
+        /*Legit a table lol*/
         table {
-            border: 1px solid #000; /* Add a border around the table */
-        }
+            border: 1px solid #000; 
+        }x
 
         td {
-            padding: 100px; /* Add padding to the cell */
+            padding: 100px; 
             width: 200px;
             height: 300px;
         }
