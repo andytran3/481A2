@@ -26,23 +26,22 @@ document.addEventListener("DOMContentLoaded", function() {
     var addInstructionButton = document.getElementById("addInstructionButton");
 
     addInstructionButton.addEventListener("click", function () {
-        generateIngredientRow();
+        generateInstructionRow();
     });
 
-    generateInstructionRow(step1, 10);
-    generateInstructionRow(step2, 10);
-    generateInstructionRow(step3, 10);
-    generateInstructionRow(step4, 10);
-    generateInstructionRow(step5, 10);
-    generateInstructionRow(step6, 10);
-    generateInstructionRow(step7, 10);
-    generateInstructionRow(step8, 10);
+    generateInstructionRow(step1, 8);
+    generateInstructionRow(step2, 6);
+    generateInstructionRow(step3, 5);
+    generateInstructionRow(step4, 4);
+    generateInstructionRow(step5, 2);
+    generateInstructionRow(step6, 2);
+    generateInstructionRow(step7, 4);
+    generateInstructionRow(step8, 4);
 
 });
 
 function generateIngredientRow(ingredientText, canWrite) {
     var ingredientContainer = document.getElementById("ingredientsContainer");
-
     var ingredientRow = document.createElement("div");
 
     var newLabel = document.createElement("label");
@@ -51,7 +50,7 @@ function generateIngredientRow(ingredientText, canWrite) {
     var newTextarea = document.createElement("textarea");
     newTextarea.name = "ingredients"; // Use name instead of id
     newTextarea.rows = 1;
-    newTextarea.cols = 33;
+    newTextarea.cols = 50;
     newTextarea.value = ingredientText || "";
     if (canWrite == true) {
         newTextarea.readOnly = false;
@@ -95,7 +94,7 @@ function generateInstructionRow(instructionText, size, canWrite) {
     var newTextarea = document.createElement("textarea");
     newTextarea.name = "instructions"; // Use name instead of id
     newTextarea.rows = size || 1;
-    newTextarea.cols = 33;
+    newTextarea.cols = 50;
     newTextarea.value = instructionText || "";
     if (canWrite == true) {
         newTextarea.readOnly = false;
