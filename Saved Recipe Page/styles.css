@@ -78,8 +78,8 @@ a {
     justify-content: center;
     align-items: center;
     position: relative;
-    font-size:25px;
-
+    top: 40px;
+    font-size: 35px;
 }
 
 /* Container for the rest of the page basically
