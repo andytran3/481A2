@@ -1,0 +1,150 @@
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+.search-container {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    gap: 1.2em;
+    padding-bottom: 40px;
+    padding-top: 20px;
+  
+  }
+  .search-container input {
+    font-size: 1em;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #202030;
+  }
+  .search-container button {
+    font-size: 1em;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3em;
+  }
+
+/* Container for the bottom 5 buttons*/
+.bottom-button-container {
+    position: fixed;
+    justify-content: center;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #4c4b4b;
+    padding: 1px; 
+    border-top: 1px solid #4c4b4b; 
+}
+
+/* Details of the bottom buttons*/
+.bottom-button {
+    display: inline-block;
+    width: 47px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: #000;
+    border: 3px solid #4c4b4b;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ccc;  
+
+}
+
+/* Details of the back button in the top left*/
+.back-button {
+    position: absolute;
+    top: 17px;
+    left: 10px; 
+    padding: 10px 17px;
+    text-decoration: none;
+    color: #000;
+    border: 2px solid #4c4b4b;
+    border-radius: 100px;
+    
+}
+
+
+
+/* Container for the title*/
+.title-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 40px;
+    font-size: 35px;
+}
+
+/* Container for the rest of the page basically
+The image, the descriptions, the instructions, recipes*/
+.food-container{
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding-bottom: 60px;
+}
+
+/* Details for the image of the food*/
+.food-image{
+    width: 350px;
+    height: auto;
+}
+
+/* Details for the title of the recipe*/
+.food-title{
+    font-size: 25px;
+    margin-right:207px;
+    margin-top: 20px;
+    margin-bottom:1px;
+}
+
+
+/* Details for the recipe info*/
+.food-info {
+display:flex;
+justify-content: space-between;
+}
+
+/* Details for the recipe info */
+.info-item {
+flex: 1;
+margin-right:20px;
+white-space:nowrap;
+margin-top: -10px;
+}
+
+/* More details for recipe info */
+.info-item2 {
+flex: 1;
+margin-right:20px;
+white-space:nowrap;
+margin-top: -20px;
+
+}
+
+/*Lets you scroll*/
+.scrollable-content{
+overflow: auto;
+position: relative;
+}
+
+/* Just for the star icon*/
+.star {
+width: 1em; 
+display: inline-block;
+margin-top: -17px;
+}
+
+
+
+td { 
+    width: 350px;
+    height: 100px;
+}
