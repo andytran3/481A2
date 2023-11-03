@@ -74,7 +74,7 @@ a {
 
 /* Container for the title*/
 .title-container{
-    display:flex;
+    display:block;
     justify-content: center;
     align-items: center;
     position: absolute;
