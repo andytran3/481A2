@@ -63,7 +63,7 @@
     text-align: center;
   }
   td:hover {
-        background-color: #7ca2d3;
+        background-color: #6c66a0;
     }
 
     th:first-child {
@@ -72,6 +72,45 @@
 
     td:first-child {
         background-color: #938de6; 
+    }
+    td a {
+        text-decoration: none;
+        color: black;
+        display: block; 
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
     }
   @media (max-width: 600px) {
     th, td {
@@ -110,47 +149,85 @@
   </tr>
   <tr>
     <td>Monday</td>
-    <td>Oatmeal</td>
-    <td>Salad</td>
-    <td>Chicken</td>
+    <td onclick="openModal('Oatmeal')">Oatmeal</td>
+    <td onclick="openModal('Salad')">Salad</td>
+    <td onclick="openModal('Chicken')">Chicken</td>
+  </tr>
   </tr>
   <tr>
     <td>Tuesday</td>
-    <td>Toast</td>
-    <td>Sandwich</td>
-    <td>Beef Stew</td>
+    <td onclick="openModal('Toast')">Toast</td>
+    <td onclick="openModal('Sandwich')">Sandwich</td>
+    <td onclick="openModal('Beef Stew')">Beef Stew</td>
   </tr>
   <tr>
     <td>Wednesday</td>
-    <td>Yogurt</td>
-    <td>Stir Fry</td>
-    <td>Fish</td>
+    <td onclick="openModal('Yogurt')">Yogurt</td>
+    <td onclick="openModal('Stir Fry')">Stir Fry</td>
+    <td onclick="openModal('Fish')">Fish</td>
   </tr>
   <tr>
     <td>Thursday</td>
-    <td>Pancakes</td>
-    <td>Pizza</td>
-    <td>Tacos</td>
+    <td onclick="openModal('Pancakes')">Pancakes</td>
+    <td onclick="openModal('Pizza')">Pizza</td>
+    <td onclick="openModal('Tacos')">Tacos</td>
   </tr>
   <tr>
     <td>Friday</td>
-    <td>Cereal</td>
-    <td>Burger</td>
-    <td>Steak</td>
+    <td onclick="openModal('Cereal')">Cereal</td>
+    <td onclick="openModal('Burger')">Burger</td>
+    <td onclick="openModal('Steak')">Steak</td>
   </tr>
   <tr>
     <td>Saturday</td>
-    <td>Fruit Salad</td>
-    <td>Sushi</td>
-    <td>Curry</td>
+    <td onclick="openModal('Fruit Salad')">Fruit Salad</td>
+    <td onclick="openModal('Sushi')">Sushi</td>
+    <td onclick="openModal('Curry')">Curry</td>
   </tr>
   <tr>
     <td>Sunday</td>
-    <td>Eggs</td>
-    <td>Pasta</td>
-    <td>BBQ</td>
+    <td onclick="openModal('Eggs')">Eggs</td>
+    <td onclick="openModal('Pasta')">Pasta</td>
+    <td onclick="openModal('BBQ')">BBQ</td>
+
   </tr>
 </table>
+<!-- where the recipe save -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p id="modalText">Selected Recipe: </p> <!-- Selected Recipe -->
+      
+      <h3>Unselected Recipes:</h3>
+        <ul>
+            <li>Recipe 1</li>
+            <li>Recipe 2</li>
+            <li>Recipe 3</li>
+            <li>Recipe 4</li>
+        </ul>
+        
+    </div>
+  </div>
+
+
+<script>
+    function openModal(recipe) {
+        document.getElementById('modalText').innerHTML = "Selected Recipe: " + recipe;
+        document.getElementById('myModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        var modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
 
 </body>
 </html>
