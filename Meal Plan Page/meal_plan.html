@@ -1,96 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekly Meal Schedule</title>
-<style>
-    th:first-child {
-    background-color: #d3ddd3; /* 例如，这里设置表头第一列的背景色为深绿色 */
-    }
-
-    td:first-child {
-    background-color: #938de6; /* 例如，这里设置表格第一列的背景色为浅绿色 */
-    }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-  }
-  .navbar {
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .navbar a {
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    background-color: #f44336; /* Red */
-    border-radius: 4px;
-  }
-  .navbar h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  table {
-    width: 50%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 50px;
-    text-align: left;
-  }
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
-  td {
-    background-color: #fff;
-  }
-  th:first-child, td:first-child {
-    text-align: center;
-  }
-  @media (max-width: 600px) {
-    th, td {
-      padding: 15px;
-      font-size: 14px;
-    }
-    th:first-child, td:first-child {
-      padding-left: 16px;
-    }
-    table {
-      width: 95%;
-    }
-    .navbar a {
-      padding: 5px;
-    }
-    .navbar h1 {
-      font-size: 20px;
-    }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Meal Schedule</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
 <div class="navbar">
-  <a href="javascript:history.back()">Back</a>
+  <a href="javascript:history.back()">← Back</a>
   <h1>MealMaster</h1>
-  <div></div> 
+  <div>
+    <button id="addColumn">Add Column</button>
+    <button id="removeColumn">Remove Column</button>
+  </div>
 </div>
 
-<table>
+<table id="mealTable">
   <tr>
     <th> </th>
     <th>Breakfast</th>
@@ -140,6 +67,6 @@
     <td>BBQ</td>
   </tr>
 </table>
-
+<script src="scripts.js"></script>
 </body>
 </html>
