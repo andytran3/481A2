@@ -21,11 +21,12 @@ th:first-child {
     color: white;
     padding: 10px 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
   .navbar a {
-    position: absolute;
+    position: relative;
+    display: block;
     top: 17px;
     left: 10px; 
     padding: 10px 17px;
