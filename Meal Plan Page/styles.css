@@ -25,11 +25,15 @@ th:first-child {
     align-items: center;
   }
   .navbar a {
-    color: white;
+    position: absolute;
+    top: 17px;
+    left: 10px; 
+    padding: 10px 17px;
+    background-color: #ccc;
     text-decoration: none;
-    padding: 5px 10px;
-    background-color: #f44336; /* Red */
-    border-radius: 4px;
+    color: #000;
+    border: 2px solid #4c4b4b;
+    border-radius: 100px;
   }
   .navbar h1 {
     margin: 0;
