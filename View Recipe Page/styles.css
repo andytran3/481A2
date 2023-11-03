@@ -30,18 +30,13 @@
             top: 17px;
             left: 10px; 
             padding: 10px 17px;
-            background-color: #ccc;
             text-decoration: none;
             color: #000;
             border: 2px solid #4c4b4b;
             border-radius: 100px;
         }
 
-        /* Just adding the an arrow before the back button*/
-        .back-button::before {
-            content: "←";
-            margin-right: 5px;
-        }
+     
 
         /* Container for the title*/
         .title-container{
@@ -88,7 +83,6 @@
             top: 10px; 
             right: 0px;
             padding: 10px 17px;
-            background-color: #ccc;
             text-decoration: none;
             color: #000;
             border: 1px solid #000;
