@@ -19,7 +19,7 @@ th:first-child {
     width: 100%;
     background-color: #333;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,11 +36,11 @@ th:first-child {
     border-radius: 100px;
   }
 
-  
   .navbar h1 {
     margin: 0;
     font-size: 24px;
   }
+
   table {
     width: 50%;
     border-collapse: collapse;
