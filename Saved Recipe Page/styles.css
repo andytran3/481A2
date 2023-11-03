@@ -3,29 +3,28 @@ a {
     text-decoration: inherit; /* no underline */
 }
 
-/* Container for Search Bar*/
 .search-container {
-    display: flex;
-    border: 3px solid #4c4b4b;
-    color: #000;
-    border-radius: 100px; /* Set the border radius for rounded edges */
-    overflow: hidden;
-    width: 350px;
-    margin-top: 70px;
-}
-
-/* Search input*/
-.search-input {
+    width: 20%;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    gap: 1.2em;
+    padding-bottom: 40px;
+    padding-top: 20px;
+  
+  }
+  .search-container input {
+    font-size: 1em;
+    padding: 0.6em;
     border: none;
     outline: none;
-    padding: 10px 14px;
-    flex-grow: 1;
-    background-color: #ccc;  
-}
-
-.search-input::placeholder{
-    color: #000;
-}
+    border-bottom: 2px solid #202030;
+  }
+  .search-container button {
+    font-size: 1em;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3em;
+  }
 
 /* Container for the bottom 5 buttons*/
 .bottom-button-container {
@@ -45,12 +44,13 @@ a {
     display: inline-block;
     width: 47px;
     padding: 10px 14px;
-    background-color: #ccc;
     text-decoration: none;
     color: #000;
     border: 3px solid #4c4b4b;
     border-radius: 10px;
     text-align: center;
+    background-color: #ccc;  
+
 }
 
 /* Details of the back button in the top left*/
@@ -59,35 +59,30 @@ a {
     top: 17px;
     left: 10px; 
     padding: 10px 17px;
-    background-color: #ccc;
     text-decoration: none;
     color: #000;
     border: 2px solid #4c4b4b;
     border-radius: 100px;
+    
 }
 
-/* Just adding the an arrow before the back button*/
-.back-button::before {
-    content: "←";
-    margin-right: 5px;
-}
+
 
 /* Container for the title*/
 .title-container{
     display:flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 60px;
-    left:0;
-    right:0;
+    position: relative;
+    top: 40px;
+    font-size: 35px;
 }
 
 /* Container for the rest of the page basically
 The image, the descriptions, the instructions, recipes*/
 .food-container{
     position: absolute;
-    top: 10px;
+    top: 0px;
     left: 0;
     right: 0;
     display: flex;
@@ -147,10 +142,7 @@ display: inline-block;
 margin-top: -17px;
 }
 
-/*Legit a table lol*/
-table {
-    border: 4px solid #000; 
-}
+
 
 td { 
     width: 350px;
