@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        /* Container for the bottom 5 buttons*/
+        .bottom-button-container {
+            position: fixed;
+            justify-content: center;
+            display: flex;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #4c4b4b;
+            padding: 1px; 
+            border-top: 3px solid #4c4b4b; 
+        }
+
+        /* Details of the bottom buttons*/
+        .bottom-button {
+            display: inline-block;
+            width: 47px;
+            padding: 10px 14px;
+            background-color: #ccc;
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #4c4b4b;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Details of the back button in the top left*/
+        .back-button {
+            position: absolute;
+            top: 17px;
+            left: 10px; 
+            padding: 10px 17px;
+            background-color: #ccc;
+            text-decoration: none;
+            color: #000;
+            border: 2px solid #4c4b4b;
+            border-radius: 100px;
+        }
+
+        /* Just adding the an arrow before the back button*/
+        .back-button::before {
+            content: "←";
+            margin-right: 5px;
+        }
+
+        /* Container for the title*/
+        .title-container{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 60px;
+            left:0;
+            right:0;
+        }
+
+        /* Container for the rest of the page basically*/
+        .container{
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            padding-bottom: 60px;
+        }
+
+        
+        /* Details for the title of the recipe*/
+        .title{
+            font-size: 35px;
+            margin-right:0px;
+            margin-top: 70px;
+            margin-bottom:1px;
+        }
+
+        /* General deatails for the buttons*/
+        .general-button{
+            text-align: center;
+            padding: 10px 17px;
+            background-color: #ccc;
+            text-decoration: none;
+            width: 300px;
+            height: 20px;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 100px;
+            margin: 8px 0; 
+            display: block;    
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <a href="#" class="back-button">Back</a>
+<title>
+</title>
+<h1> 
+    <center> MealMaster </center>
+    <body bgcolor= f1841d></body>
+  
+</h1>
+    <div cass="scrollable-content">
+
+        <div class="container">
+            <h2 class="title">My Account</h2>
+            
+            <a href="#" class="general-button">User Info</a>
+            <a href="#" class="general-button">History</a>
+            <a href="#" class="general-button">Help and Support</a>
+            <a href="#" class="general-button">Frequently Asked Questions</a>
+            <a href="#" class="general-button">About</a>
+            <a href="#" class="general-button">Settings</a>
+
+           
+           
+        </div>
+    </div>
+    <div class="bottom-button-container">
+        <a href="#" class="bottom-button">Home</a>
+        <a href="#" class="bottom-button">My Recipes</a>
+        <a href="#" class="bottom-button">Search</a>
+        <a href="#" class="bottom-button">Meal Plan</a>
+        <a href="#" class="bottom-button">My Account</a>
+    </div>
+
+
+
+</body>
+</html>
