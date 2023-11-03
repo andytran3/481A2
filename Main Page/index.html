@@ -1,41 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe App</title>
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-        rel="stylesheet"
-    />
-    <!-- Link to the external stylesheet -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="style2.css">
+    <title>MealMaster</title>
 </head>
 <body>
- <!-- ... (previous HTML content) ... -->
-<div class="title">
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <button class="top-button" id="home-button">Home</button>
-            <button class="top-button" id="my-recipe-button">My Recipe</button>
-        </div>
-        <h1>Meal Master</h1>
-        <div class="top-bar-right">
-            <button class="top-button" id="history-button">History</button>
-            <button class="top-button" id="profile-button">&#9776;</button>
-            <div class="profile-menu">
-                <ul>
-                    <li>Profile</li>
-                    <li>Settings</li>
-                    <li>Logout</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ... (rest of your HTML content) ... -->
-
-
+    <h1>
+        <center>MealMaster</center>
+    </h1>
     <div class="container">
         <div class="search-container">
             <input
@@ -46,29 +18,37 @@
             <button id="search-btn">Search</button>
         </div>
         <div id="result"></div>
-    </div>
-
-    <div class="container1">
-        <div class="scrollmenu">
-            <!-- First Set of Buttons -->
-            <button class="button">Button 1</button>
-            <button class="button">Button 2</button>
-            <button class="button">Button 3</button>
-            <button class="button">Button 4</button>
-        </div>
-        <!-- New Set of Buttons (Directly Under the First Set) -->
-        <div class="scrollmenu">
-            <button class="button">New Button 1</button>
-            <button class="button">New Button 2</button>
-            <button class="button">New Button 3</button>
-        </div>
-
-        <!-- Recipe Card Section -->
         <div class="recipe-card">
-            <h2>Recipe Name</h2>
-            <p>Ingredients: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Instructions: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="content">
+                <div class="image-box">
+                    <img src="French-Bread-Recipe-8.jpg" alt="Recipe Image" width="200" height="200">
+                </div>
+                <div class="text-box">
+                    <h2>Recipe Name</h2>
+                    <p>Ingredients: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>Instructions: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
         </div>
+        
+    <div class="recipe-card">
+        <h2>Recipe Name</h2>
+        <p>Ingredients: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Instructions: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
+    <div class="recipe-card">
+        <h2>Recipe Name</h2>
+        <p>Ingredients: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Instructions: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="bottom-button-container">
+        <a href="#" class="bottom-button">Home</a>
+        <a href="#" class="bottom-button">My Recipes</a>
+        <a href="#" class="bottom-button">Search</a>
+        <a href="#" class="bottom-button">Meal Plan</a>
+        <a href="#" class="bottom-button">My Account</a>
+    </div>
+</div>
+
 </body>
 </html>
