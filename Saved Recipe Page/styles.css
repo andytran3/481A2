@@ -11,7 +11,7 @@ a {
     border-radius: 100px; /* Set the border radius for rounded edges */
     overflow: hidden;
     width: 350px;
-    margin-top: 70px;
+    margin-top: 25px;
 }
 
 /* Search input*/
@@ -77,17 +77,16 @@ a {
     display:flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 60px;
-    left:0;
-    right:0;
+    position: relative;
+    top: 40px;
+    font-size: 35px;
 }
 
 /* Container for the rest of the page basically
 The image, the descriptions, the instructions, recipes*/
 .food-container{
     position: absolute;
-    top: 10px;
+    top: 0px;
     left: 0;
     right: 0;
     display: flex;
