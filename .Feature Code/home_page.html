@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="search_style.css">
+    </head>
+    <body>
+        <h1>Hello Haroon</h1>
+        <p>What are you cooking today?</p>
+        <input type="text" placeholder="Search.."> 
+        <button onclick="window.location.href = '#';">Search</button>
+        <br><br>
+        <button onclick="window.location.href = '#';">Popular</button>
+        <button onclick="window.location.href = '#';">Time</button>
+        <button onclick="window.location.href = '#';">Ingredients</button>
+        <button onclick="show_popular_div()">Ratings</button>
+        <br><br>
+        <p><b>Recommended</b></p>
+        <p>Item Card Here | Item Card Here | Scroll for more Item Cards</p>
+        <br>
+        <p><b>New Recipes</b></p>
+        <p>Item Card Here | Item Card Here | Scroll for more Item Cards</p>
+        <br><br>
+        <div id="filter-ratings" style="display: none;">
+            <p><b>Filter By Ratings</b></p>
+            <p>Minimum</p>
+            <form class="rating">
+                <label>
+                    <input type="radio" name="stars" value="1" />
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="2" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="3" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>   
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="4" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="5" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </form>
+
+            <p>Maximum</p>
+            <form class="rating">
+                <label>
+                    <input type="radio" name="stars" value="1" />
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="2" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="3" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>   
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="4" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="5" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </form>
+        </div>
+        <br><br>
+        <button onclick="window.location.href = 'home_page.html';">Home</button>
+        <button onclick="window.location.href = 'search_page.html';">Search</button>
+        <button onclick="window.location.href = 'saved_recipes_page.html';">Saved</button>
+        <button onclick="window.location.href = 'meal_plan_page.html';">Meal Plan</button>
+        <button onclick="window.location.href = '#';">My Account</button>
+        <br><br>
+
+        <script>
+            function show_popular_div() {
+                var x = document.getElementById("filter-ratings");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                }
+            }
+        </script>
+    </body>
+</html>
