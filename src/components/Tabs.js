@@ -1,9 +1,10 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomePage from '../pages/HomePage';
 import SearchPage from '../pages/SearchPage';
 import SavedRecipesPage from '../pages/SavedRecipesPage';
 import MealPlanPage from '../pages/MealPlanPage';
 import MyAccountPage from '../pages/MyAccountPage';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +15,7 @@ export default function Tabs () {
             <Tab.Screen name='Search' component={SearchPage}/>
             <Tab.Screen name='Saved Recipes' component={SavedRecipesPage}/>
             <Tab.Screen name='Meal Plan' component={MealPlanPage}/>
-            <Tab.Screen name='My Account' component={MyAccountPage}/>
+            {/* <Tab.Screen name='My Account' component={MyAccountPage}/> */}
         </Tab.Navigator>
     )
 }

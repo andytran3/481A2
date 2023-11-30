@@ -1,9 +1,9 @@
 import {Text, TextInput, View, StyleSheet, TouchableHighlight, ScrollView} from "react-native";
-
 import React from "react";
+import Tabs from "../components/Tabs";
 
 
-export default function HomePage () {
+export default function HomePage ({ navigation }) {
     const [text, onChangeText] = React.useState('');
 
     return (
@@ -12,7 +12,7 @@ export default function HomePage () {
                 <Text>
                     Hello Haroon!
                 </Text>
-                <View style={styles.row}>
+                {/* <View style={styles.row}>
                     <TextInput
                         style={styles.inputContainer}
                         placeholder="Search"
@@ -22,7 +22,7 @@ export default function HomePage () {
                     <TouchableHighlight underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
                         <Text style={styles.customButtonText}>Search</Text>
                     </TouchableHighlight>
-                </View>
+                </View> */}
 
                 <View style={styles.buttonRow}>
                     <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
@@ -42,42 +42,42 @@ export default function HomePage () {
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>Recommended</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
+                        </TouchableHighlight>
                     </ScrollView>
                 </View>
 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>New Recipes</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </View>
+                        </TouchableHighlight>
                     </ScrollView>
                 </View>
             </View>

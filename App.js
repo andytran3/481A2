@@ -1,12 +1,13 @@
 import Tabs from './src/components/Tabs';
-import HomePage from './src/pages/HomePage';
+import NavigationStack from './src/components/NavigationStack';
 
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tabs/>
+      <NavigationStack/>
+      {/* <Tabs/> */}
     </NavigationContainer>
   );
 }
