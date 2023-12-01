@@ -2,14 +2,13 @@ import {Text, View, StyleSheet, TouchableOpacity, ScrollView, Image} from "react
 
 import StarRating from 'react-native-star-rating-widget';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import {React, useState} from "react";
+import { React, useState } from "react";
 
 
-export default function HomePage () {
+export default function HomePage ({ navigation }) {
     const [rating, setRating] = useState(0);
     const [heartPressed, setHeartPressed] = useState(false);
     const [editPressed, setEditPressed] = useState(false);
@@ -22,6 +21,13 @@ export default function HomePage () {
                         source={require('../res/bread2.png')}
                         style={{resizeMode: 'contain', width: 450, height: 300}}
                     />
+                </View>
+                <View>
+                    <TouchableOpacity underlayColor={'#f3f3f3'} onPress={() => {navigation.goBack()}}>
+                        <View>
+                            <Icon name="chevron-back-outline" size={25} color="#000000" style={styles.backButton} />
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.fancyBox}>
                     <Text style={textStyles.nameHeader}>English White Bread</Text>
@@ -58,7 +64,7 @@ export default function HomePage () {
                         </View>
                     </View>
                     <View style={cardStyles.descriptionBox}>
-                        <Text style={textStyles.header}>Desription</Text>
+                        <Text style={textStyles.header}>Description</Text>
                         <Text style={textStyles.paragraphs}>This simple white bread is perfect for both the bread novice and pro baker. It's tender, delicious, and SO easy!</Text>
                     </View>
                     
@@ -181,7 +187,14 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15,
         borderRadius: 5
-      },
+    },
+
+    backButton: {
+        position: 'absolute',
+        // backgroundColor: 'blue',
+        top: 50,
+        left: 30,
+    },
 
     rowButtonContainer: {
         flexDirection: 'row',
