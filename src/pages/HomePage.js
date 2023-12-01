@@ -89,7 +89,8 @@ const cardStyles = StyleSheet.create({
     headingText: {
         fontSize: 24,
         fontWeight: 'bold',
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
+        fontFamily: 'serif',
     },
 
     container: {

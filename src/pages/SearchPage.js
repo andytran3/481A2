@@ -7,7 +7,11 @@ export default function SearchPage () {
 
     return (
             <View style={styles.container}>
-                <Text>
+                <Text style={{alignSelf: 'center',
+        fontSize: 25,
+        fontWeight: 'bold',
+        fontFamily: 'serif',
+        alignSelf: 'center'}}>
                     What are you Cooking Today?
                 </Text>
                 <View style={styles.row}>
@@ -88,7 +92,8 @@ const cardStyles = StyleSheet.create({
     headingText: {
         fontSize: 24,
         fontWeight: 'bold',
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
+        fontFamily: 'serif',
     },
 
     container: {
@@ -148,7 +153,7 @@ const styles = StyleSheet.create({
 
     customButtonText: {
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
     },
 
     inputContainer: {
