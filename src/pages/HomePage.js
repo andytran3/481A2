@@ -1,83 +1,82 @@
-import {Text, TextInput, View, StyleSheet, TouchableHighlight, ScrollView} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
 import React from "react";
-import Tabs from "../components/Tabs";
-
 
 export default function HomePage ({ navigation }) {
-    const [text, onChangeText] = React.useState('');
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text>
+                {/*<Text>
                     Hello Haroon!
                 </Text>
-                {/* <View style={styles.row}>
+                 <View style={styles.row}>
                     <TextInput
                         style={styles.inputContainer}
                         placeholder="Search"
                         onChangeText={onChangeText}
                         value={text}
                     />
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
                         <Text style={styles.customButtonText}>Search</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View> */}
 
                 <View style={styles.buttonRow}>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
-                        <Text style={styles.customButtonText}>Popular</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                        <View>
+                            <Text style={styles.customButtonText}>Popular</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Time</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ingredients</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ratings</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
                 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>Recommended</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                     </ScrollView>
                 </View>
 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>New Recipes</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
                             <Text>Press Here</Text>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                     </ScrollView>
                 </View>
             </View>
@@ -109,8 +108,6 @@ const cardStyles = StyleSheet.create({
     cardElevated: {
         backgroundColor: 'green',
     },
-
-
 })
 
 const styles = StyleSheet.create({
