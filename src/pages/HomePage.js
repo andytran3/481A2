@@ -64,7 +64,7 @@ export default function HomePage ({ navigation }) {
                             <Text style={cardStyles.itemText}>Canadian White Bread</Text>
                         </View>
                         <View>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe3')} style={[cardStyles.card, cardStyles.cardElevated]}>
                                 <View style={cardStyles.backgroundImage}>
                                     <Image
                                         source={require('../res/bread3.jpeg')}

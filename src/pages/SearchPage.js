@@ -1,8 +1,8 @@
-import {Text, TextInput, View, StyleSheet, TouchableHighlight, ScrollView} from "react-native";
+import {Text, TextInput, View, StyleSheet, TouchableOpacity, ScrollView, Image} from "react-native";
 
 import React from "react";
 
-export default function SearchPage () {
+export default function SearchPage ({ navigation }) {
     const [text, onChangeText] = React.useState('');
 
     return (
@@ -21,44 +21,73 @@ export default function SearchPage () {
                         onChangeText={onChangeText}
                         value={text}
                     />
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
                         <Text style={styles.customButtonText}>Search</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.buttonRow}>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Popular</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Time</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ingredients</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ratings</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
                 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>Recent Searches</Text>
                     <ScrollView showsVerticalScrollIndicator={false} style={cardStyles.scrollContainer}>
                         <View style={cardStyles.container}>
-                            <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
+                            <View>
+                                <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                    <View style={cardStyles.backgroundImage}>
+                                        <Image
+                                            source={require('../res/bread2.png')}
+                                            style={{resizeMode: 'cover', width: 187, height: 200}}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                                <Text style={cardStyles.itemText}>English White Bread </Text>
                             </View>
-                            <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
+                            <View>
+                                <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                    <View style={cardStyles.backgroundImage}>
+                                        <Image
+                                            source={require('../res/bread1.jpg')}
+                                            style={{resizeMode: 'cover', width: 187, height: 200}}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                                <Text style={cardStyles.itemText}>Canadian White Bread</Text>
                             </View>
-                            <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
+                            <View>
+                                <TouchableOpacity onPress={() => navigation.navigate('TestRecipe3')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                    <View style={cardStyles.backgroundImage}>
+                                        <Image
+                                            source={require('../res/bread3.jpeg')}
+                                            style={{resizeMode: 'cover', width: 187, height: 200}}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                                <Text style={cardStyles.itemText}>Italian Garlic Bread</Text>
                             </View>
-                            <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
-                            </View>
-                            <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
+                            <View>
+                                <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                    <View style={cardStyles.backgroundImage}>
+                                        <Image
+                                            source={require('../res/bread2.png')}
+                                            style={{resizeMode: 'cover', width: 187, height: 200}}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                                <Text style={cardStyles.itemText}>English White Bread </Text>
                             </View>
                             <View style={[cardStyles.card, cardStyles.cardElevated]}>
                                 <Text>Press Here</Text>

@@ -18,7 +18,7 @@ export default function HomePage ({ navigation }) {
             <ScrollView>
                 <View style={cardStyles.backgroundImage}>
                     <Image
-                        source={require('../../res/bread1.jpg')}
+                        source={require('../../res/bread3.jpeg')}
                         style={{resizeMode: 'cover', width: 450, height: 300}}
                     />
                 </View>
@@ -37,7 +37,7 @@ export default function HomePage ({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.fancyBox}>
-                    <Text style={textStyles.nameHeader}>Canadian White Bread</Text>
+                    <Text style={textStyles.nameHeader}>Italian Garlic Bread</Text>
                     <View style={cardStyles.underName}>
                         <TouchableOpacity underlayColor={'#f3f3f3'} onPress={() => {setEditPressed(editPressed => !editPressed), navigation.navigate('TestEditRecipe')}}>
                             <View>
@@ -59,15 +59,15 @@ export default function HomePage ({ navigation }) {
                     <View style={styles.buttonRow}>
                         <View style={[styles.rowButtonContainer, {width: '35%'}]} >
                             <Icon name="timer-outline" size={25} color="#ffffff" style={{top: 1.5}} />
-                            <Text style={styles.customButtonText}>1 Hour</Text>
+                            <Text style={styles.customButtonText}>2 Hours</Text>
                         </View>
                         <View style={[styles.rowButtonContainer, {width: '25%'}]} >
                             <Icon name="star-outline" size={25} color="#ffffff" />
-                            <Text style={styles.customButtonText}>4.2</Text>
+                            <Text style={styles.customButtonText}>4.5</Text>
                         </View>
-                        <View style={[styles.rowButtonContainer, {width: '35%', backgroundColor: 'orange'}]} >
+                        <View style={[styles.rowButtonContainer, {width: '30%', backgroundColor: 'red'}]} >
                             <MaterialIcon name="gauge-low" size={25} color="#ffffff" />
-                            <Text style={styles.customButtonText}>Medium</Text>
+                            <Text style={styles.customButtonText}>Hard</Text>
                         </View>
                     </View>
                     <View style={cardStyles.descriptionBox}>
@@ -113,15 +113,15 @@ export default function HomePage ({ navigation }) {
                             <Text style={cardStyles.itemText}>English White Bread</Text>
                         </View>
                         <View>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe3')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                 <View style={cardStyles.backgroundImage}>
                                     <Image
-                                        source={require('../../res/bread3.jpeg')}
+                                        source={require('../../res/bread1.jpg')}
                                         style={{resizeMode: 'cover', width: 250, height: 300}}
                                     />
                                 </View>
                             </TouchableOpacity>
-                            <Text style={cardStyles.itemText}>Italian Garlic Bread</Text>
+                            <Text style={cardStyles.itemText}>Canadian White Bread</Text>
                         </View>
                             <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                 <Text>Press Here</Text>

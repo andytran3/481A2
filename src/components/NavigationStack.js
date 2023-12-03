@@ -4,6 +4,7 @@ import MealPlanPage from '../pages/MealPlanPage';
 import MyAccountPage from '../pages/MyAccountPage';
 import TestRecipePage from '../pages/recipePages/TestRecipePage';
 import TestRecipePage2 from '../pages/recipePages/TestRecipePage2';
+import TestRecipePage3 from '../pages/recipePages/TestRecipePage3';
 import TestEditRecipePage from '../pages/recipePages/TestEditRecipePage';
 import LoginPage from '../pages/LoginPage';
 
@@ -19,6 +20,7 @@ export default function NavigationStack() {
             <Stack.Screen name='NavBar' component={Tabs} options={{ headerShown: false }}/>
             <Stack.Screen name='TestRecipe' component={TestRecipePage} options={{ headerShown: false }}/>
             <Stack.Screen name='TestRecipe2' component={TestRecipePage2} options={{ headerShown: false }}/>
+            <Stack.Screen name='TestRecipe3' component={TestRecipePage3} options={{ headerShown: false }}/>
             <Stack.Screen name='TestEditRecipe' component={TestEditRecipePage} options={{ headerShown: false }}/>
             <Stack.Screen name='Search' component={SearchPage}/>
             <Stack.Screen name='SavedRecipes' component={SavedRecipesPage}/>

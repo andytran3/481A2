@@ -112,9 +112,17 @@ export default function HomePage ({ navigation }) {
                             </TouchableOpacity>
                             <Text style={cardStyles.itemText}>Canadian White Bread</Text>
                         </View>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe3')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../../res/bread3.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
                             </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Italian Garlic Bread</Text>
+                        </View>
                             <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                 <Text>Press Here</Text>
                             </TouchableOpacity>
