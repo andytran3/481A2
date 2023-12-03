@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity, ScrollView, Image} from "react-native";
 import React from "react";
 
 export default function HomePage ({ navigation }) {
@@ -41,42 +41,124 @@ export default function HomePage ({ navigation }) {
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>Recommended</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/bread2.png')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>English White Bread </Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/bread1.jpg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Canadian White Bread</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/bread3.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Italian Garlic Bread</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/cupcake1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Gala Cupcakes</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/cookie1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Chuncky Cookies</Text>
+                        </View>
+                        
                     </ScrollView>
                 </View>
 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>New Recipes</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/donuts1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Professional Glazed Donut</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/macaroons2.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Simple Macaroons</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/macaroons1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Cookie Monster Macaroon</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/tart1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Mixed Berry Tart</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../res/donuts2.jpeg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Sprinkled Mini Donut</Text>
+                        </View>
+                        
                     </ScrollView>
                 </View>
             </View>
@@ -93,6 +175,13 @@ const cardStyles = StyleSheet.create({
         fontFamily: 'serif',
     },
 
+    itemText: {
+        fontSize: 20,
+        paddingHorizontal: 8,
+        fontFamily: 'serif',
+        alignSelf: 'center',
+    },
+
     container: {
         padding: 8,
     },
@@ -107,7 +196,12 @@ const cardStyles = StyleSheet.create({
     },
 
     cardElevated: {
-        backgroundColor: 'green',
+        backgroundColor: 'white',
+    },
+
+    backgroundImage: {
+        width: '100%',
+        height: 'auto',
     },
 })
 

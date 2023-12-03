@@ -18,7 +18,7 @@ export default function HomePage ({ navigation }) {
             <ScrollView>
                 <View style={cardStyles.backgroundImage}>
                     <Image
-                        source={require('../res/bread2.png')}
+                        source={require('../../res/bread2.png')}
                         style={{resizeMode: 'contain', width: 450, height: 300}}
                     />
                 </View>
@@ -94,9 +94,17 @@ export default function HomePage ({ navigation }) {
                     <LinearGradient colors={['#ffffff', '#d6faff', '#b0f4ff']} style={styles.linearGradient}>
                         <Text style={textStyles.header}>Fans Of This Recipe Also Liked:</Text>
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
+                                <View style={cardStyles.backgroundImage}>
+                                    <Image
+                                        source={require('../../res/bread1.jpg')}
+                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                    />
+                                </View>
                             </TouchableOpacity>
+                            <Text style={cardStyles.itemText}>Canadian White Bread</Text>
+                        </View>
                             <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                 <Text>Press Here</Text>
                             </TouchableOpacity>
@@ -122,6 +130,13 @@ export default function HomePage ({ navigation }) {
 }
 
 const cardStyles = StyleSheet.create({
+    itemText: {
+        fontSize: 20,
+        paddingHorizontal: 8,
+        fontFamily: 'serif',
+        alignSelf: 'center',
+    },
+    
     underName: {
         flex: 1,
         flexDirection: 'row',
@@ -188,7 +203,12 @@ const styles = StyleSheet.create({
 
     backButton: {
         position: 'absolute',
-        // backgroundColor: 'blue',
+        backgroundColor: '#d9d9d9',
+        justifyContent: 'center',
+        opacity: 0.7,
+        width: 27,
+        height: 27,
+        borderRadius: 27/2,
         top: 50,
         left: 30,
     },
