@@ -28,6 +28,13 @@ export default function HomePage ({ navigation }) {
                             <Icon name="chevron-back-outline" size={25} color="#000000" style={styles.backButton} />
                         </View>
                     </TouchableOpacity>
+
+                    <TouchableOpacity underlayColor={'#f3f3f3'} onPress={() => navigation.navigate('MyAccount')}>
+                            <View style={{ position: 'absolute', paddingRight: 20, top: 35, alignItems: 'center', alignSelf: 'flex-end'}}>
+                                <MaterialIcon name="account-circle" size={25} color="#000000" />
+                                <Text style={{fontSize: 12.5}}>Account</Text>
+                            </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.fancyBox}>
                     <Text style={textStyles.nameHeader}>English White Bread</Text>
