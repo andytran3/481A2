@@ -1,8 +1,11 @@
 import { ScrollView, StyleSheet, TouchableHighlight, Text } from "react-native";
 
-export default function MyAccountPage () {
+export default function MyAccountPage ({navigation}) {
     return (
         <ScrollView>
+            <TouchableHighlight underlayColor={'#3b50f3'} onPress={navigation.navigate('LoginPage')} style={styles.customButtonContainer} >
+                <Text style={styles.customButtonText}>Settings</Text>
+            </TouchableHighlight>
             <TouchableHighlight underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
                 <Text style={styles.customButtonText}>Settings</Text>
             </TouchableHighlight>

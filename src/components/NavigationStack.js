@@ -5,6 +5,7 @@ import MyAccountPage from '../pages/MyAccountPage';
 import TestRecipePage from '../pages/recipePages/TestRecipePage';
 import TestRecipePage2 from '../pages/recipePages/TestRecipePage2';
 import TestEditRecipePage from '../pages/recipePages/TestEditRecipePage';
+import LoginPage from '../pages/LoginPage';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Tabs from './Tabs';
@@ -14,6 +15,7 @@ const Stack = createNativeStackNavigator();
 export default function NavigationStack() {
     return (
         <Stack.Navigator>
+            <Stack.Screen name='Login' component={LoginPage}/>
             <Stack.Screen name='NavBar' component={Tabs} options={{ headerShown: false }}/>
             <Stack.Screen name='TestRecipe' component={TestRecipePage} options={{ headerShown: false }}/>
             <Stack.Screen name='TestRecipe2' component={TestRecipePage2} options={{ headerShown: false }}/>
