@@ -46,6 +46,7 @@ export default function MealPlanPage() {
                 [selectedDate]: updatedMeals
             });
             setCurrentMeal(null);
+            // window.location.reload(false);
         }
     };
 

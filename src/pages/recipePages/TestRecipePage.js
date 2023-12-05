@@ -32,7 +32,7 @@ export default function HomePage ({ navigation }) {
                 <View style={cardStyles.backgroundImage}>
                     <Image
                         source={require('../../res/bread2.png')}
-                        style={{resizeMode: 'contain', width: 450, height: 300}}
+                        style={{resizeMode: 'cover', width: 450, height: 300}}
                     />
                 </View>
                 <View>
@@ -42,7 +42,6 @@ export default function HomePage ({ navigation }) {
                         </View>
                     </TouchableOpacity>
                     
-
                     <TouchableOpacity underlayColor={'#f3f3f3'} onPress={() => navigation.navigate('MyAccount')}>
                             <View style={{ position: 'absolute', paddingRight: 20, top: 35, alignItems: 'center', alignSelf: 'flex-end'}}>
                                 <MaterialIcon name="account-circle" size={25} color="#000000" />
