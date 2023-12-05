@@ -1,4 +1,4 @@
-import { View, Modal, StyleSheet, Text, Alert, TouchableOpacity } from "react-native";
+import { View, Modal, StyleSheet, Text, TextInput, Alert, TouchableOpacity } from "react-native";
 import { React, useState} from 'react';
 import RollPickerNative from 'roll-picker-native'
 //https://github.com/ale-vncs/roll-picker-native
@@ -35,11 +35,14 @@ export default function CustomModal({
   setIngredientsModalVisible,
   ingredientsModalVisible,
   setIngredients3ModalVisible,
-  ingredients3ModalVisible
+  ingredients3ModalVisible,
+  setIngredients1ModalVisible,
+  ingredients1ModalVisible
 }) {
     
     //const [ingredientsModalVisible, setIngredientModalVisible] = useState(false);
     const [editPressed, setEditPressed] = useState(false);
+    const [text, onChangeText] = useState('');
 
     const handleStarOneChange = (rating) => {
         // Ensure that starOneRating is not less than starTwoRating
@@ -275,11 +278,18 @@ export default function CustomModal({
                       selected={selectedOption === 'Amount of Ingredients'}
                       onPress={() => setSelectedOption('Amount of Ingredients')}
                     />
-                    <TouchableOpacity style={styles.applyButton} onPress={() => 
-                    {if (selectedOption === 'Amount of Ingredients') {
-                    setIngredientsModalVisible(!ingredientsModalVisible); setIngredients3ModalVisible(!ingredients3ModalVisible)}
-                    if (selectedOption === 'Inclusion') {setIngredientsModalVisible(!ingredientsModalVisible)}
-                    if (selectedOption === 'Exclusion') {setIngredientsModalVisible(!ingredientsModalVisible)}}}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => {
+                    if (selectedOption === 'Amount of Ingredients') {
+                      setIngredientsModalVisible(!ingredientsModalVisible);
+                      setIngredients3ModalVisible(!ingredients3ModalVisible);
+                    } else if (selectedOption === 'Inclusion') {
+                      setIngredientsModalVisible(!ingredientsModalVisible);
+                      setIngredients1ModalVisible(!ingredients1ModalVisible);
+                    } else if (selectedOption === 'Exclusion') {
+                      setIngredientsModalVisible(!ingredientsModalVisible);
+                    }
+                  }}
+                >
                               <Text style={styles.applyButtonText} >
                                   Apply
                               </Text>
@@ -300,7 +310,7 @@ export default function CustomModal({
                 visible={ingredients3ModalVisible}
                 onRequestClose={() => {
                 Alert.alert('Modal has been closed.');
-                setIngredientsModalVisible(!ingredients3ModalVisible);}}>
+                setIngredients3ModalVisible(!ingredients3ModalVisible);}}>
 
                   <View style={styles.popularContainer}>
                   <View style={styles.ratingContentBackground}>
@@ -343,6 +353,48 @@ export default function CustomModal({
                 </View>
 
             </Modal>
+
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={ingredients1ModalVisible}
+                onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setIngredients1ModalVisible(!ingredients1ModalVisible);}}>
+
+                  <View style={styles.popularContainer}>
+                    <View style={styles.ingredients1ContentBackground}>
+                      <View style={styles.ingredients1Content}>
+
+                      <View style={styles.row}>
+                    <TextInput
+                        style={styles.inputContainer}
+                        placeholder="Search"
+                        onChangeText={onChangeText}
+                        value={text}
+                    />
+                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                        <Text style={styles.customButtonText}>Search</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+
+
+
+                      </View>
+                    </View>
+
+
+
+
+
+                  </View>
+
+
+
+                </Modal>
 
 
 
@@ -416,6 +468,26 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 
+
+  ingredients1Content: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    padding: 20,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#3c434d',
+    
+  },
+
+  ingredients1ContentBackground: {
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingTop: '5%',
+    width: '100%',
+    height: '95%',
+    backgroundColor: '#22242e'
+  },
+
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -466,4 +538,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
   },
+
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    width: '90%',
+  },
+
+
 });

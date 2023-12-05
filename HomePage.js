@@ -9,6 +9,7 @@ export default function HomePage ({ navigation }) {
     const [popularModalVisible, setPopularModalVisible] = useState(false);
     const [timeModalVisible, setTimeModalVisible] = useState(false);
     const [ingredientsModalVisible, setIngredientsModalVisible] = useState(false);
+    const [ingredients1ModalVisible, setIngredients1ModalVisible] = useState(false);
     const [ingredients3ModalVisible, setIngredients3ModalVisible] = useState(false);
     const [ratingOneModalVisible, setRatingOneModalVisible] = useState(false);
     const [ratingTwoModalVisible, setRatingTwoModalVisible] = useState(false);
@@ -36,6 +37,8 @@ export default function HomePage ({ navigation }) {
                     setTimeModalVisible={setTimeModalVisible}
                     ingredientsModalVisible={ingredientsModalVisible}
                     setIngredientsModalVisible={setIngredientsModalVisible}
+                    ingredients1ModalVisible={ingredients1ModalVisible}
+                    setIngredients1ModalVisible={setIngredients1ModalVisible}
                     ingredients3ModalVisible={ingredients3ModalVisible}
                     setIngredients3ModalVisible={setIngredients3ModalVisible}
 
