@@ -3,32 +3,26 @@ import { ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
 export default function MyAccountPage ({navigation}) {
     return (
         <ScrollView>
+            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                <Text style={styles.customButtonText}>Settings</Text>
+            </TouchableOpacity>
+            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                <Text style={styles.customButtonText}>Profile Information</Text>
+            </TouchableOpacity>
+            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                <Text style={styles.customButtonText}>Privacy & Security</Text>
+            </TouchableOpacity>
+            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                <Text style={styles.customButtonText}>Help & Support</Text>
+            </TouchableOpacity>
+            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                <Text style={styles.customButtonText}>Preferences</Text>
+            </TouchableOpacity>
+            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
+                <Text style={styles.customButtonText}>Feedback</Text>
+            </TouchableOpacity>
             <TouchableOpacity underlayColor={'#3b50f3'}  onPress={() => {navigation.navigate('Login')}} style={styles.customButtonContainer} >
                 <Text style={styles.customButtonText}>Log Out</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                <Text style={styles.customButtonText}>Settings</Text>
             </TouchableOpacity>
         </ScrollView>
     );

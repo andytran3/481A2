@@ -32,8 +32,6 @@ export default function SearchPage ({ navigation }) {
         );
     };
 
-    
-
     return (
             <View style={styles.container}>
                 <Text style={{alignSelf: 'center',
