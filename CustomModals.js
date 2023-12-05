@@ -94,6 +94,11 @@ export default function CustomModal ({
                                   Apply
                               </Text>
                             </TouchableOpacity>
+                            <TouchableOpacity style={styles.applyButton} onPress={() => setPopularModalVisible(!popularModalVisible)}>
+                              <Text style={styles.applyButtonText} >
+                                  Cancel
+                              </Text>
+                            </TouchableOpacity>
                       </View>
                     </View>
                 </View>
@@ -132,7 +137,11 @@ export default function CustomModal ({
                               <Text style={styles.applyButtonText} >
                                   Apply
                               </Text>
-                            </TouchableOpacity>     
+                    </TouchableOpacity>     
+                    <TouchableOpacity style={styles.applyButton}>
+                                <Text style={styles.applyButtonText} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
+                                    Cancel</Text>
+                    </TouchableOpacity>  
                   
                     </View>
                   </View>
@@ -153,14 +162,16 @@ export default function CustomModal ({
                     <View style={styles.ratingTwoContent}>
                     <Text style ={styles.modalTitle}> Sort Rating By Range From</Text>
                     <StarRating
-
+                    starSize={45}
                     rating={starOneRating}
                     onChange={handleStarOneChange}
                     />
                 <Text style ={styles.modalTitle}> To </Text>
                 <StarRating
+                    starSize={45}
                     rating={starTwoRating}
                     onChange={handleStarTwoChange}
+                  
                     />
 
                     <TouchableOpacity style={styles.applyButton}>
@@ -221,7 +232,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     paddingTop: '5%',
     width: '100%',
-    height: '40%',
+    height: '42%',
     backgroundColor: '#22242e'
   },
 
@@ -257,7 +268,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     borderRadius: 8,
-    marginTop: 20,
+    marginTop: 10,
     width: '100%'
   },
   
