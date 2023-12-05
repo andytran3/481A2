@@ -108,27 +108,37 @@ export default function CustomModal ({
                 setRatingOneModalVisible(!ratingOneModalVisible);}}>
 
                 <View style={styles.popularContainer}>
-                  <View style={styles.popularContentBackground}>
+                  <View style={styles.ratingContentBackground}>
                     <View style={styles.ratingContent}>
-                    <TouchableOpacity style={styles.applyButton} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
-                                    <Text style={styles.applyButtonText} >
-                                        Highest to Lowest Rated
-                                    </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.applyButton} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
-                                    <Text style={styles.applyButtonText} >
-                                        Lowest to Highest Rated
-                                    </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.applyButton} onPress={() => {setRatingTwoModalVisible(!ratingTwoModalVisible); setRatingOneModalVisible(!ratingOneModalVisible);}}>
-                                    <Text style={styles.applyButtonText} >
-                                        Set Range
-                                    </Text>
-                        </TouchableOpacity>
+                    <Text style={styles.modalTitle}>Sort Ratings By:</Text>
+                    <RadioButton
+                              label="Highest to Lowest Rated"
+                              selected={selectedOption === 'Highest to Lowest Rated'}
+                              onPress={() => setSelectedOption('Highest to Lowest Rated')}
+                            /> 
+                    <RadioButton
+                      label="Lowest to Highest Rated"
+                      selected={selectedOption === 'Lowest to Highest Rated'}
+                      onPress={() => setSelectedOption('Lowest to Highest Rated')}
+                    />
+                    <RadioButton
+                      label="Set Range"
+                      selected={selectedOption === 'Set Range'}
+                      onPress={() => setSelectedOption('Set Range')}
+                    />
+                    <TouchableOpacity style={styles.applyButton} onPress={() => 
+                    {if (selectedOption === 'Set Range') {
+                    setRatingTwoModalVisible(!ratingTwoModalVisible); setRatingOneModalVisible(!ratingOneModalVisible)}}}>
+                              <Text style={styles.applyButtonText} >
+                                  Apply
+                              </Text>
+                            </TouchableOpacity>     
+                  
                     </View>
                   </View>
                 </View>
-            </Modal>  
+            </Modal>
+
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -139,7 +149,8 @@ export default function CustomModal ({
                 }}>
 
                 <View style={styles.popularContainer}>
-                    <View style={styles.ratingContent}>
+                    <View style={styles.ratingContentBackground}>
+                    <View style={styles.ratingTwoContent}>
                     <Text style ={styles.modalTitle}> Sort Rating By Range From</Text>
                     <StarRating
 
@@ -160,6 +171,7 @@ export default function CustomModal ({
                                 <Text style={styles.applyButtonText} onPress={() => setRatingTwoModalVisible(!ratingTwoModalVisible)}>
                                     Cancel</Text>
                     </TouchableOpacity>
+                    </View>
                     </View>
                 </View>
             </Modal>
@@ -201,7 +213,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#3c434d',
-    alignItems: 'center',
+    
   },
 
   ratingContentBackground: {
@@ -209,8 +221,28 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     paddingTop: '5%',
     width: '100%',
-    height: '50%',
+    height: '40%',
     backgroundColor: '#22242e'
+  },
+
+  ratingTwoContent: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    padding: 20,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#3c434d',
+    alignItems: 'center',
+    
+  },
+
+  ratingButton: {
+    backgroundColor: 'white',
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 8,
+    marginTop: 25,
+    width: '100%',
   },
 
   modalTitle: {
@@ -221,15 +253,16 @@ const styles = StyleSheet.create({
   },
 
   applyButton: {
-    backgroundColor: '#3B71F3',
+    backgroundColor: 'white',
     padding: 10,
     alignItems: 'center',
     borderRadius: 8,
     marginTop: 20,
+    width: '100%'
   },
   
   applyButtonText: {
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
   },
 
