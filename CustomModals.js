@@ -1,4 +1,4 @@
-import { View, Modal, StyleSheet, Text, TextInput, Alert, TouchableOpacity } from "react-native";
+import { View, Modal, StyleSheet, Text, TextInput, Alert, TouchableOpacity, FlatList} from "react-native";
 import { React, useState} from 'react';
 import RollPickerNative from 'roll-picker-native'
 //https://github.com/ale-vncs/roll-picker-native
@@ -40,12 +40,12 @@ export default function CustomModal({
   ingredients1ModalVisible
 }) {
     
-    //const [ingredientsModalVisible, setIngredientModalVisible] = useState(false);
-    const [editPressed, setEditPressed] = useState(false);
-    const [text, onChangeText] = useState('');
+
+    const [text, setText] = useState('');
+    const [searchSuggestions, setSearchSuggestions] = useState([]);
+    
 
     const handleStarOneChange = (rating) => {
-        // Ensure that starOneRating is not less than starTwoRating
         if (rating >= starTwoRating) {
             setStarOneRating(starTwoRating);
         } else {
@@ -54,12 +54,35 @@ export default function CustomModal({
       };
   
     const handleStarTwoChange = (rating) => {
-        // Ensure that starTwoRating is not less than starOneRating
         if (rating <= starOneRating) {
             setStarTwoRating(starOneRating);
         } else {
             setStarTwoRating(rating);
         }
+    };
+
+
+    const onChangeText = (newText) => {
+      setText(newText);
+      const suggestions = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig'];
+      const filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion.toLowerCase().includes(newText.toLowerCase())
+      );
+      setSearchSuggestions(filteredSuggestions);
+    };
+
+  
+    const renderSearchSuggestion = ({ item }) => (
+      <TouchableOpacity style={styles.suggestionItem} onPress={() => handleSuggestionPress(item)}>
+        <Text>{item}</Text>
+      </TouchableOpacity>
+    );
+  
+    const handleSuggestionPress = (suggestion) => {
+
+      setText(suggestion);
+      setSearchSuggestions([]);
+      
     };
 
     return (
@@ -362,39 +385,49 @@ export default function CustomModal({
                 onRequestClose={() => {
                 Alert.alert('Modal has been closed.');
                 setIngredients1ModalVisible(!ingredients1ModalVisible);}}>
-
                   <View style={styles.popularContainer}>
                     <View style={styles.ingredients1ContentBackground}>
                       <View style={styles.ingredients1Content}>
+                        <View style={styles.row}>
+                          <TextInput
+                            style={styles.inputContainer}
+                            placeholder="Search"
+                            onChangeText={onChangeText}
+                            value={text}
+                          />
+                          <TouchableOpacity
+                            style={styles.customButtonContainer}
+                            underlayColor={'#3b50f3'}
+            
+                          >
+                            <Text style={styles.customButtonText}>Add</Text>
+                          </TouchableOpacity>
+                        </View>
+                        {searchSuggestions.length > 0 && (
+                          <FlatList
+                            style={styles.suggestionsList}
+                            data={searchSuggestions}
+                            renderItem={renderSearchSuggestion}
+                            keyExtractor={(item) => item}
+                            maxHeight={190}
+                          />
+                        )}
 
-                      <View style={styles.row}>
-                    <TextInput
-                        style={styles.inputContainer}
-                        placeholder="Search"
-                        onChangeText={onChangeText}
-                        value={text}
-                    />
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                        <Text style={styles.customButtonText}>Search</Text>
+                    <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.applyButton}>
+                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(!ingredients1ModalVisible)}>
+                                    Apply</Text>
                     </TouchableOpacity>
-                </View>
-
-
-
-
-
+                    <TouchableOpacity style={styles.applyButton}>
+                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(!ingredients1ModalVisible)}>
+                                    Cancel</Text>
+                    </TouchableOpacity>
+                    </View>
                       </View>
                     </View>
-
-
-
-
-
                   </View>
-
-
-
-                </Modal>
+  
+    </Modal>
 
 
 
@@ -501,7 +534,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8,
     marginTop: 10,
-    width: '100%'
+    width: '100%',
+  },
+
+  buttonContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    bottom: 10,
+    left: 10,
+    width: '105%'
   },
   
   applyButtonText: {
@@ -543,8 +584,51 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    width: '90%',
+    width: '100%',
+    
   },
+
+  customButtonContainer: {
+    width: '20%',
+    marginVertical: 5,
+    padding: 10,
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'green',
+    borderRadius: 20,
+},
+
+customButtonText: {
+  fontWeight: 'bold',
+  color: 'white',
+},
+
+inputContainer: {
+  flex: 1,
+  padding: 8,
+  marginRight: 8,
+  backgroundColor: 'white',
+  borderTopLeftRadius: 20,
+  borderTopRightRadius: 20,
+  width: '100%'
+},
+
+suggestionsList: {
+  marginTop: -15,
+  width: '77.79%',
+  backgroundColor: 'white',
+  borderRadius: 20,
+  height: 50,
+  padding: 10,
+},
+suggestionItem: {
+  padding: 6,
+  marginBottom: 3,
+  borderBottomWidth: 0,
+  backgroundColor: '#f3f3f3',
+  borderRadius: 10,
+  
+},
 
 
 });
