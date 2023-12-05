@@ -1,6 +1,6 @@
 import { View, Modal, StyleSheet, Text, Alert, TouchableOpacity } from "react-native";
-import { React, useState } from 'react';
-
+import { React, useState} from 'react';
+import RollPickerNative from 'roll-picker-native'
 import StarRating from 'react-native-star-rating-widget';
 
 const RadioButton = ({ label, selected, onPress }) => {
@@ -14,7 +14,9 @@ const RadioButton = ({ label, selected, onPress }) => {
   );
 };
 
-export default function CustomModal ({
+
+
+export default function CustomModal({
   popularModalVisible,
   setPopularModalVisible,
   ratingOneModalVisible,
@@ -27,8 +29,14 @@ export default function CustomModal ({
   setStarOneRating,
   starTwoRating,
   setStarTwoRating,
+  timeModalVisible,
+  setTimeModalVisible,
+  setIngredientsModalVisible,
+  ingredientsModalVisible,
+  setIngredients3ModalVisible,
+  ingredients3ModalVisible
 }) {
-    //const [timeModalVisible, setTimeModalVisible] = useState(false);
+    
     //const [ingredientsModalVisible, setIngredientModalVisible] = useState(false);
     const [editPressed, setEditPressed] = useState(false);
 
@@ -94,6 +102,11 @@ export default function CustomModal ({
                                   Apply
                               </Text>
                             </TouchableOpacity>
+                            <TouchableOpacity style={styles.applyButton} onPress={() => setPopularModalVisible(!popularModalVisible)}>
+                              <Text style={styles.applyButtonText} >
+                                  Cancel
+                              </Text>
+                            </TouchableOpacity>
                       </View>
                     </View>
                 </View>
@@ -127,25 +140,16 @@ export default function CustomModal ({
                       onPress={() => setSelectedOption('Set Range')}
                     />
                     <TouchableOpacity style={styles.applyButton} onPress={() => 
-                    {
-                      if (selectedOption === 'Set Range') {
-                        setRatingTwoModalVisible(!ratingTwoModalVisible);
-                        setRatingOneModalVisible(!ratingOneModalVisible);
-                      } else {
-                        setRatingOneModalVisible(false);
-                      }
-                    }}>
+                    {if (selectedOption === 'Set Range') {
+                    setRatingTwoModalVisible(!ratingTwoModalVisible); setRatingOneModalVisible(!ratingOneModalVisible)}}}>
                               <Text style={styles.applyButtonText} >
                                   Apply
                               </Text>
-                            </TouchableOpacity>     
-                    
-                    <TouchableOpacity style={styles.applyButton} onPress={() => 
-                      {setSelectedOption(''), setRatingOneModalVisible(false)}}>
-                      <Text style={styles.applyButtonText} >
-                          Clear
-                      </Text>
-                    </TouchableOpacity> 
+                    </TouchableOpacity>     
+                    <TouchableOpacity style={styles.applyButton}>
+                                <Text style={styles.applyButtonText} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
+                                    Cancel</Text>
+                    </TouchableOpacity>  
                   
                     </View>
                   </View>
@@ -166,14 +170,16 @@ export default function CustomModal ({
                     <View style={styles.ratingTwoContent}>
                     <Text style ={styles.modalTitle}> Sort Rating By Range From</Text>
                     <StarRating
-
+                    starSize={45}
                     rating={starOneRating}
                     onChange={handleStarOneChange}
                     />
                 <Text style ={styles.modalTitle}> To </Text>
                 <StarRating
+                    starSize={45}
                     rating={starTwoRating}
                     onChange={handleStarTwoChange}
+                  
                     />
 
                     <TouchableOpacity style={styles.applyButton}>
@@ -188,6 +194,157 @@ export default function CustomModal ({
                     </View>
                 </View>
             </Modal>
+
+          <Modal
+          animationType="slide"
+          transparent={true}
+          visible={timeModalVisible}
+          onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setTimeModalVisible(!timeModalVisible);
+          }}>
+
+          <View style={styles.popularContainer}>
+                  <View style={styles.ratingContentBackground}>
+                    <View style={styles.ratingContent}>
+                    <Text style={styles.modalTitle}>Display Recipes Under:</Text>
+                    <View style={{width:'100%', flexDirection: 'row'}}>
+                    <RollPickerNative
+                    items={['', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+                    containerHeight={130}
+                    itemStyle={{padding: 2}}
+                    
+                    />
+                    <RollPickerNative
+                    items={['', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+                    containerHeight={130}
+                    itemStyle={{padding: 2}}
+                  
+                    />
+                    <RollPickerNative
+                    items={['', 'Seconds', 'Minutes', 'Hours', 'Days']}
+                    containerHeight={130}
+                    itemStyle={{padding: 2}}
+                    
+                    
+                    />
+                    </View>
+        
+                    <TouchableOpacity style={styles.applyButton} onPress={() => 
+                     setTimeModalVisible(!timeModalVisible)}>
+                              <Text style={styles.applyButtonText} >
+                                  Apply
+                              </Text>
+                    </TouchableOpacity>     
+                    <TouchableOpacity style={styles.applyButton}>
+                                <Text style={styles.applyButtonText} onPress={() => setTimeModalVisible(!timeModalVisible)}>
+                                    Cancel</Text>
+                    </TouchableOpacity>  
+                  
+                    </View>
+                  </View>
+                </View>
+
+            </Modal>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={ingredientsModalVisible}
+                onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setIngredientsModalVisible(!ingredientsModalVisible);}}>
+
+                <View style={styles.popularContainer}>
+                  <View style={styles.ratingContentBackground}>
+                    <View style={styles.ratingContent}>
+                    <Text style={styles.modalTitle}>Sort Ingredients By:</Text>
+                    <RadioButton
+                              label="Inclusion"
+                              selected={selectedOption === 'Inclusion'}
+                              onPress={() => setSelectedOption('Inclusion')}
+                            /> 
+                    <RadioButton
+                      label="Exclusion"
+                      selected={selectedOption === 'Exclusion'}
+                      onPress={() => setSelectedOption('Exclusion')}
+                    />
+                    <RadioButton
+                      label="Amount of Ingredients"
+                      selected={selectedOption === 'Amount of Ingredients'}
+                      onPress={() => setSelectedOption('Amount of Ingredients')}
+                    />
+                    <TouchableOpacity style={styles.applyButton} onPress={() => 
+                    {if (selectedOption === 'Amount of Ingredients') {
+                    setIngredientsModalVisible(!ingredientsModalVisible); setIngredients3ModalVisible(!ingredients3ModalVisible)}
+                    if (selectedOption === 'Inclusion') {setIngredientsModalVisible(!ingredientsModalVisible)}
+                    if (selectedOption === 'Exclusion') {setIngredientsModalVisible(!ingredientsModalVisible)}}}>
+                              <Text style={styles.applyButtonText} >
+                                  Apply
+                              </Text>
+                    </TouchableOpacity>     
+                    <TouchableOpacity style={styles.applyButton}>
+                                <Text style={styles.applyButtonText} onPress={() => setIngredientsModalVisible(!ingredientsModalVisible)}>
+                                    Cancel</Text>
+                    </TouchableOpacity>  
+                  
+                    </View>
+                  </View>
+                </View>
+            </Modal>
+            
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={ingredients3ModalVisible}
+                onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setIngredientsModalVisible(!ingredients3ModalVisible);}}>
+
+                  <View style={styles.popularContainer}>
+                  <View style={styles.ratingContentBackground}>
+                    <View style={styles.ratingContent}>
+                    <Text style={styles.modalTitle}>Display Recipes With Less Or More Than:</Text>
+                    <View style={{width:'100%', flexDirection: 'row'}}>
+                    <RollPickerNative
+                    items={['', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+                    containerHeight={130}
+                    itemStyle={{padding: 2}}
+                    
+                    />
+                    <RollPickerNative
+                    items={['', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+                    containerHeight={130}
+                    itemStyle={{padding: 2}}
+                  
+                    />
+                    <RollPickerNative
+                    items={['Ingredients']}
+                    containerHeight={130}
+                    itemStyle={{padding: 2}}
+                   
+                    />
+                    </View>
+        
+                    <TouchableOpacity style={styles.applyButton} onPress={() => 
+                     setIngredients3ModalVisible(!ingredients3ModalVisible)}>
+                              <Text style={styles.applyButtonText} >
+                                  Apply
+                              </Text>
+                    </TouchableOpacity>     
+                    <TouchableOpacity style={styles.applyButton}>
+                                <Text style={styles.applyButtonText} onPress={() => setIngredients3ModalVisible(!ingredients3ModalVisible)}>
+                                    Cancel</Text>
+                    </TouchableOpacity>  
+                  
+                    </View>
+                  </View>
+                </View>
+
+            </Modal>
+
+
+
         </View>
     );
 }
@@ -234,7 +391,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     paddingTop: '5%',
     width: '100%',
-    height: '40%',
+    height: '42%',
     backgroundColor: '#22242e'
   },
 
@@ -270,7 +427,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     borderRadius: 8,
-    marginTop: 20,
+    marginTop: 10,
     width: '100%'
   },
   

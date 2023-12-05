@@ -7,8 +7,9 @@ export default function SearchPage ({ navigation }) {
     const [text, setText] = useState('');
     const [searched, setSearched] = useState(false);
     const [popularModalVisible, setPopularModalVisible] = useState(false);
-    //const [timeModalVisible, setTimeModalVisible] = useState(false);
-    //const [ingredientsModalVisible, setIngredientModalVisible] = useState(false);
+    const [timeModalVisible, setTimeModalVisible] = useState(false);
+    const [ingredientsModalVisible, setIngredientsModalVisible] = useState(false);
+    const [ingredients3ModalVisible, setIngredients3ModalVisible] = useState(false);
     const [ratingOneModalVisible, setRatingOneModalVisible] = useState(false);
     const [ratingTwoModalVisible, setRatingTwoModalVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
@@ -66,7 +67,12 @@ export default function SearchPage ({ navigation }) {
                     setStarOneRating={setStarOneRating}
                     starTwoRating={starTwoRating}
                     setStarTwoRating={setStarTwoRating}
-
+                    timeModalVisible={timeModalVisible}
+                    setTimeModalVisible={setTimeModalVisible}
+                    ingredientsModalVisible={ingredientsModalVisible}
+                    setIngredientsModalVisible={setIngredientsModalVisible}
+                    ingredients3ModalVisible={ingredients3ModalVisible}
+                    setIngredients3ModalVisible={setIngredients3ModalVisible}
                 />
                 <View style={styles.buttonRow}>
                     <TouchableOpacity
@@ -77,15 +83,21 @@ export default function SearchPage ({ navigation }) {
                             <Text style={styles.customButtonText}>Popular</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    <TouchableOpacity 
+                    onPress={() => setTimeModalVisible(true)} 
+                    underlayColor={'#3b50f3'} 
+                    style={styles.rowButtonContainer}>
                         <Text style={styles.customButtonText}>Time</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    <TouchableOpacity 
+                    onPress={() => setIngredientsModalVisible(true)}
+                    underlayColor={'#3b50f3'} 
+                    style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ingredients</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
-                        onPress={() => setRatingOneModalVisible(true)}
-                        underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    onPress={() => setRatingOneModalVisible(true)}
+                    underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ratings</Text>
                     </TouchableOpacity>
                 </View>

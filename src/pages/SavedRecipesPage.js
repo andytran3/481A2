@@ -15,10 +15,10 @@ export default function SavedRecipesPage ({ navigation }) {
         setHeartPressed(updatedHearts);
     };
 
-    const renderRecipeItem = (index, imageSource, title, rating, time, difficulty) => (
+    const renderRecipeItem = (navigateTo, index, imageSource, title, rating, time, difficulty) => (
         <TouchableOpacity
           key={index}
-          onPress={() => navigation.navigate(`TestRecipe${index + 1}`)}
+          onPress={() => navigation.navigate(navigateTo)}
           style={cardStyles.fullCardContainer}
         >
           <Image
@@ -74,9 +74,9 @@ export default function SavedRecipesPage ({ navigation }) {
           <View style={styles.container}>
             <View style={{ width: '100%' }}>
               <ScrollView>
-                {renderRecipeItem(0, require('../res/bread2.png'), 'English White Bread', rating[0], 30, 'Easy')}
-                {renderRecipeItem(1, require('../res/bread1.jpg'), 'Canadian White Bread', rating[1], 30, 'Easy')}
-                {renderRecipeItem(2, require('../res/bread3.jpeg'), 'Italian Garlic Bread', rating[2], 30, 'Easy')}
+                {renderRecipeItem('TestRecipe', 0, require('../res/bread2.png'), 'English White Bread', rating[0], 30, 'Easy')}
+                {renderRecipeItem('TestRecipe2', 1, require('../res/bread1.jpg'), 'Canadian White Bread', rating[1], 30, 'Med')}
+                {renderRecipeItem('TestRecipe3', 2, require('../res/bread3.jpeg'), 'Italian Garlic Bread', rating[2], 30, 'Hard')}
                 {/* {renderRecipeItem(3, require('../res/bread2.png'), 'English White Bread', 4.6, 30, 'Easy')}
                 {renderRecipeItem(4, require('../res/bread2.png'), 'English White Bread')}
                 {renderRecipeItem(5, require('../res/bread2.png'), 'English White Bread')}

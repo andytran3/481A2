@@ -35,8 +35,9 @@ const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, 
 
 export default function HomePage ({ navigation }) {
     const [popularModalVisible, setPopularModalVisible] = useState(false);
-    //const [timeModalVisible, setTimeModalVisible] = useState(false);
-    //const [ingredientsModalVisible, setIngredientModalVisible] = useState(false);
+    const [timeModalVisible, setTimeModalVisible] = useState(false);
+    const [ingredientsModalVisible, setIngredientsModalVisible] = useState(false);
+    const [ingredients3ModalVisible, setIngredients3ModalVisible] = useState(false);
     const [ratingOneModalVisible, setRatingOneModalVisible] = useState(false);
     const [ratingTwoModalVisible, setRatingTwoModalVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
@@ -59,7 +60,12 @@ export default function HomePage ({ navigation }) {
                     setStarOneRating={setStarOneRating}
                     starTwoRating={starTwoRating}
                     setStarTwoRating={setStarTwoRating}
-
+                    timeModalVisible={timeModalVisible}
+                    setTimeModalVisible={setTimeModalVisible}
+                    ingredientsModalVisible={ingredientsModalVisible}
+                    setIngredientsModalVisible={setIngredientsModalVisible}
+                    ingredients3ModalVisible={ingredients3ModalVisible}
+                    setIngredients3ModalVisible={setIngredients3ModalVisible}
                 />
                 <View style={styles.buttonRow}>
                     <TouchableOpacity
@@ -70,10 +76,16 @@ export default function HomePage ({ navigation }) {
                             <Text style={styles.customButtonText}>Popular</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    <TouchableOpacity 
+                    onPress={() => setTimeModalVisible(true)} 
+                    underlayColor={'#3b50f3'} 
+                    style={styles.rowButtonContainer}>
                         <Text style={styles.customButtonText}>Time</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    <TouchableOpacity 
+                    onPress={() => setIngredientsModalVisible(true)}
+                    underlayColor={'#3b50f3'} 
+                    style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ingredients</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
@@ -89,16 +101,16 @@ export default function HomePage ({ navigation }) {
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
                                 <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} />
                                 <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={30} difficulty={'Easy'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} />
                                 <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'} />
                             </ScrollView>
                             : <>
                             {selectedOption === 'Lowest to Highest Rated' ?
                                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
                                     <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={30} difficulty={'Easy'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={30} difficulty={'Easy'} />
+                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} />
+                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} />
                                     <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'} />
                                     <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} />
                                 </ScrollView>
@@ -107,8 +119,8 @@ export default function HomePage ({ navigation }) {
                                     <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'} />
                                     <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'} />
                                     <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={30} difficulty={'Easy'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={30} difficulty={'Easy'} />
+                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} />
+                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} />
                                 </ScrollView>
                             }</>
                         }
@@ -119,28 +131,28 @@ export default function HomePage ({ navigation }) {
                     <Text style={cardStyles.headingText}>New Recipes</Text>
                     {selectedOption === 'Highest to Lowest Rated' ?
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                            <RecipeCard navigation={navigation} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={30} difficulty={'Easy'} />
-                            <RecipeCard navigation={navigation} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={30} difficulty={'Easy'} />
-                            <RecipeCard navigation={navigation} imageSource={require('../res/donuts2.jpeg')} title="Sprinkled Mini Donut" rating={4} time={30} difficulty={'Easy'} />
-                            <RecipeCard navigation={navigation} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaroon" rating={3.8} time={30} difficulty={'Easy'} />
-                            <RecipeCard navigation={navigation} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macaroons" rating={3.5} time={30} difficulty={'Easy'} />
+                            <RecipeCard navigation={navigation} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} imageSource={require('../res/donuts2.jpeg')} title="Sprinkled Mini Donut" rating={4} time={'4 Hours'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaroon" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macaroons" rating={3.5} time={'1 Hour'} difficulty={'Hard'} />
                         </ScrollView>
                         : <>
                         {selectedOption === 'Lowest to Highest Rated' ?
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macaroons" rating={3.5} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaroon" rating={3.8} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts2.jpeg')} title="Sprinkled Mini Donut" rating={4} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={30} difficulty={'Easy'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macaroons" rating={3.5} time={'1 Hour'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaroon" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts2.jpeg')} title="Sprinkled Mini Donut" rating={4} time={'4 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'} />
                             </ScrollView>
                             :
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macaroons" rating={3.5} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaroon" rating={3.8} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={30} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts2.jpeg')} title="Sprinkled Mini Donut" rating={4} time={30} difficulty={'Easy'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macaroons" rating={3.5} time={'1 Hour'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaroon" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} imageSource={require('../res/donuts2.jpeg')} title="Sprinkled Mini Donut" rating={4} time={'4 Hours'} difficulty={'Hard'} />
                             </ScrollView>
                         }</>
                     }
