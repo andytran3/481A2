@@ -1,9 +1,18 @@
 import {Text, TextInput, View, StyleSheet, TouchableOpacity, ScrollView, Image} from "react-native";
 
-import React from "react";
+import { React, useState } from "react";
+import CustomModal from "../components/CustomModals";
 
 export default function SearchPage ({ navigation }) {
-    const [text, onChangeText] = React.useState('');
+    const [text, onChangeText] = useState('');
+    const [popularModalVisible, setPopularModalVisible] = useState(false);
+    //const [timeModalVisible, setTimeModalVisible] = useState(false);
+    //const [ingredientsModalVisible, setIngredientModalVisible] = useState(false);
+    const [ratingOneModalVisible, setRatingOneModalVisible] = useState(false);
+    const [ratingTwoModalVisible, setRatingTwoModalVisible] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('');
+    const [starOneRating, setStarOneRating] = useState(0);
+    const [starTwoRating, setStarTwoRating] = useState(0);
 
     return (
             <View style={styles.container}>
@@ -25,10 +34,29 @@ export default function SearchPage ({ navigation }) {
                         <Text style={styles.customButtonText}>Search</Text>
                     </TouchableOpacity>
                 </View>
+                <CustomModal
+                    popularModalVisible={popularModalVisible}
+                    setPopularModalVisible={setPopularModalVisible}
+                    ratingOneModalVisible={ratingOneModalVisible}
+                    setRatingOneModalVisible={setRatingOneModalVisible}
+                    ratingTwoModalVisible={ratingTwoModalVisible}
+                    setRatingTwoModalVisible={setRatingTwoModalVisible}
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                    starOneRating={starOneRating}
+                    setStarOneRating={setStarOneRating}
+                    starTwoRating={starTwoRating}
+                    setStarTwoRating={setStarTwoRating}
 
+                />
                 <View style={styles.buttonRow}>
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
-                        <Text style={styles.customButtonText}>Popular</Text>
+                    <TouchableOpacity
+                        onPress={() => setPopularModalVisible(true)} 
+                        underlayColor={'#3b50f3'}
+                        style={styles.rowButtonContainer} >
+                        <View>
+                            <Text style={styles.customButtonText}>Popular</Text>
+                        </View>
                     </TouchableOpacity>
                     <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Time</Text>
@@ -36,7 +64,9 @@ export default function SearchPage ({ navigation }) {
                     <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ingredients</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
+                    <TouchableOpacity 
+                    onPress={() => setRatingOneModalVisible(true)}
+                    underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
                         <Text style={styles.customButtonText}>Ratings</Text>
                     </TouchableOpacity>
                 </View>
