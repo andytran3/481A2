@@ -31,7 +31,7 @@ const RecipeCard = ({ navigation, imageSource, title, rating, time, difficulty }
         </View>
       </TouchableOpacity>
     );
-  };
+};
 
 export default function HomePage ({ navigation }) {
     const [popularModalVisible, setPopularModalVisible] = useState(false);

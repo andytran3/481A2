@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, ScrollView, TouchableOpacity, Image } from "rea
 import { React, useState } from "react";
 
 import Icon from 'react-native-vector-icons/Ionicons';
-import StarRating from 'react-native-star-rating-widget';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function SavedRecipesPage ({ navigation }) {
@@ -92,14 +91,6 @@ export default function SavedRecipesPage ({ navigation }) {
     }
 
 const cardStyles = StyleSheet.create({
-    card: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 100,
-        flexBasis: 'auto',
-    },
-
     cardInfo: {
         flex: 1,
         backgroundColor: 'white',
@@ -117,20 +108,6 @@ const cardStyles = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
-    starsAndRating: {
-        width: '100%',
-        flexDirection: 'row',
-        paddingLeft: 5,
-    },
-
-    fullCard: {
-        flex: 1,
-        flexDirection: 'row',
-        height: 112,
-        marginBottom: 8,
-        marginLeft: 8,
-    },
-
     fullCardContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -138,10 +115,6 @@ const cardStyles = StyleSheet.create({
         width: '90%',
         margin: 10,
         alignSelf: 'center',
-    },
-
-    cardElevated: {
-        backgroundColor: 'green',
     },
 
     itemText: {
@@ -157,7 +130,6 @@ const cardStyles = StyleSheet.create({
         padding: 7,
         marginVertical: 5,
         alignItems: 'center',
-
         borderRadius: 15,
     },
 
@@ -186,4 +158,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-  });
+});

@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet, TouchableOpacity, ScrollView, Image} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity, ScrollView, Image, Button} from "react-native";
 
 import StarRating from 'react-native-star-rating-widget';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -12,6 +12,19 @@ export default function HomePage ({ navigation }) {
     const [rating, setRating] = useState(0);
     const [heartPressed, setHeartPressed] = useState(false);
     const [editPressed, setEditPressed] = useState(false);
+    const [unit, setUnit] = useState('imperial'); // Initial unit is imperial
+    const [ingredients, setIngredients] = useState([
+        { name: 'warm water', quantity: 480, unit: 'ml', imperialQuantity: 2, imperialUnit: 'cups' },
+        { name: 'active dry yeast', quantity: 18.93, unit: 'g', imperialQuantity: 1, imperialUnit: 'tablespoons' },
+        { name: 'honey or sugar', quantity: 85, unit: 'g', imperialQuantity: 0.25, imperialUnit: 'cups' },
+        { name: 'salt', quantity: 12, unit: 'g', imperialQuantity: 2, imperialUnit: 'teaspoons' },
+        { name: 'canola or vegetable oil', quantity: 30, unit: 'ml', imperialQuantity: 2, imperialUnit: 'tablespoons' },
+        { name: 'flour', quantity: 480, unit: 'g', imperialQuantity: 4, imperialUnit: 'cups' },
+    ]);
+
+    const toggleUnit = () => {
+        setUnit(unit === 'imperial' ? 'metric' : 'imperial');
+      };
     
     return (
         <View style={{width: '100%'}}>
@@ -28,6 +41,7 @@ export default function HomePage ({ navigation }) {
                             <Icon name="chevron-back-outline" size={25} color="#000000" style={styles.backButton} />
                         </View>
                     </TouchableOpacity>
+                    
 
                     <TouchableOpacity underlayColor={'#f3f3f3'} onPress={() => navigation.navigate('MyAccount')}>
                             <View style={{ position: 'absolute', paddingRight: 20, top: 35, alignItems: 'center', alignSelf: 'flex-end'}}>
@@ -76,14 +90,42 @@ export default function HomePage ({ navigation }) {
                     </View>
                     
                     <View style={cardStyles.ingredientsBox}>
+                        
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Text style={textStyles.header}>Ingredients</Text>
+                            <TouchableOpacity onPress={toggleUnit} style={{alignSelf: 'center', backgroundColor: '#3B71F3', margin: 5, padding: 5, width: 'auto', height: 'auto'}}>
+                                <View>
+                                    <Text style={{color: 'white', fontWeight: 'bold'}}>{`Switch to ${unit === 'imperial' ? 'Metric' : 'Imperial'}`}</Text>
+                                </View>
+                            </TouchableOpacity>
+                            {/* <Button title={`Switch to ${unit === 'imperial' ? 'Metric' : 'Imperial'}`} onPress={toggleUnit} /> */}
+                        </View>
+                        {ingredients.map((ingredient, index) => (
+                            <View key={index} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: 5 }}>
+                                <Text>{ingredient.name}</Text>
+                                <Text>
+                                    {unit === 'imperial' ? `${ingredient.imperialQuantity} ${ingredient.imperialUnit}` : `${ingredient.quantity} ${ingredient.unit}`}
+                                </Text>
+                            </View>
+                        ))}
+                        {/* <Text style={textStyles.paragraphs}>1. Warm water: (105-115 degrees)- to activate the yeast.</Text>
+                        <Text style={textStyles.paragraphs}>2. Active Dry yeast: Instant or rapid rise yeast can be substituted, following my adaption notes in the recipe card.</Text>
+                        <Text style={textStyles.paragraphs}>3. Granulated sugar or honey: the sugar is used to “feed” the yeast and tenderize the bread.</Text>
+                        <Text style={textStyles.paragraphs}>4. Salt: to enhance flavor</Text>
+                        <Text style={textStyles.paragraphs}>5. Oil: Vegetable or canola oil, or melted butter could be substituted</Text>
+                        <Text style={textStyles.paragraphs}>6. Flour: Bread Flour or All-Purpose Flour can both be used with no changes to the recipe. The exact amount of flour used will vary depending on different factors (altitude/humidity etc.). What matters is the texture of the dough. It should be smooth and pull away from the sides of the bowl. It’s important not to add too much flour or your bread will be dense. The dough should be just slightly sticky when touched with a clean finger.</Text> */}
+                    </View>
+
+                    {/* <View style={cardStyles.ingredientsBox}>
                         <Text style={textStyles.header}>Ingredients</Text>
-                        <Text style={textStyles.paragraphs}>1. Warm water: (105-115 degrees)- to activate the yeast.</Text>
+                        <Text style={textStyles.paragraphs}>2 Cups Warm Water</Text>
                         <Text style={textStyles.paragraphs}>2. Active Dry yeast: Instant or rapid rise yeast can be substituted, following my adaption notes in the recipe card.</Text>
                         <Text style={textStyles.paragraphs}>3. Granulated sugar or honey: the sugar is used to “feed” the yeast and tenderize the bread.</Text>
                         <Text style={textStyles.paragraphs}>4. Salt: to enhance flavor</Text>
                         <Text style={textStyles.paragraphs}>5. Oil: Vegetable or canola oil, or melted butter could be substituted</Text>
                         <Text style={textStyles.paragraphs}>6. Flour: Bread Flour or All-Purpose Flour can both be used with no changes to the recipe. The exact amount of flour used will vary depending on different factors (altitude/humidity etc.). What matters is the texture of the dough. It should be smooth and pull away from the sides of the bowl. It’s important not to add too much flour or your bread will be dense. The dough should be just slightly sticky when touched with a clean finger.</Text>
-                    </View>
+                    </View> */}
+
                     <View style={cardStyles.instructionsBox}>
                         <Text style={textStyles.header}>Instructions</Text>
                         <Text style={textStyles.paragraphs}>1. Proof the yeast: In a large bowl or stand mixer add the yeast, water and a pinch of the sugar or honey. Allow to rest for 5-10 minutes until foaming and bubbly. (This is called “proofing” the yeast, to make sure it is active. If it doesn’t foam, the yeast is no good, and you need to start over with fresh yeast).</Text>
