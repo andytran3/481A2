@@ -127,12 +127,25 @@ export default function CustomModal ({
                       onPress={() => setSelectedOption('Set Range')}
                     />
                     <TouchableOpacity style={styles.applyButton} onPress={() => 
-                    {if (selectedOption === 'Set Range') {
-                    setRatingTwoModalVisible(!ratingTwoModalVisible); setRatingOneModalVisible(!ratingOneModalVisible)}}}>
+                    {
+                      if (selectedOption === 'Set Range') {
+                        setRatingTwoModalVisible(!ratingTwoModalVisible);
+                        setRatingOneModalVisible(!ratingOneModalVisible);
+                      } else {
+                        setRatingOneModalVisible(false);
+                      }
+                    }}>
                               <Text style={styles.applyButtonText} >
                                   Apply
                               </Text>
                             </TouchableOpacity>     
+                    
+                    <TouchableOpacity style={styles.applyButton} onPress={() => 
+                      {setSelectedOption(''), setRatingOneModalVisible(false)}}>
+                      <Text style={styles.applyButtonText} >
+                          Clear
+                      </Text>
+                    </TouchableOpacity> 
                   
                     </View>
                   </View>
