@@ -1,23 +1,11 @@
-import {Alert, Modal, Text, View, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
-import React, {useState} from 'react';
+import {Text, View, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
+import { React, useState } from "react";
+import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { LinearGradient } from 'expo-linear-gradient';
-import StarRating from 'react-native-star-rating-widget';
 
+import CustomModal from "../components/CustomModals";
 
-const RadioButton = ({ label, selected, onPress }) => {
-    return (
-      <TouchableOpacity onPress={onPress} style={styles.radioButton}>
-        <View style={styles.radioCircle}>
-          {selected && <View style={styles.selectedRb} />}
-        </View>
-        <Text style={styles.radioText}>{label}</Text>
-      </TouchableOpacity>
-    );
-  };
-
-
-const HomePage = ({ navigation }) => {
+export default function HomePage ({ navigation }) {
     const [popularModalVisible, setPopularModalVisible] = useState(false);
     //const [timeModalVisible, setTimeModalVisible] = useState(false);
     //const [ingredientsModalVisible, setIngredientModalVisible] = useState(false);
@@ -26,163 +14,25 @@ const HomePage = ({ navigation }) => {
     const [selectedOption, setSelectedOption] = useState('');
     const [starOneRating, setStarOneRating] = useState(0);
     const [starTwoRating, setStarTwoRating] = useState(0);
-    const [editPressed, setEditPressed] = useState(false);
-
-
-    const handleStarOneChange = (rating) => {
-      // Ensure that starOneRating is not less than starTwoRating
-      if (rating >= starTwoRating) {
-        setStarOneRating(starTwoRating);
-      } else {
-        setStarOneRating(rating);
-      }
-    };
-
-    const handleStarTwoChange = (rating) => {
-      // Ensure that starTwoRating is not less than starOneRating
-      if (rating <= starOneRating) {
-        setStarTwoRating(starOneRating);
-      } else {
-        setStarTwoRating(rating);
-      }
-    };
-  
-
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                {/*<Text>
-                    Hello Haroon!
-                </Text>
-                 <View style={styles.row}>
-                    <TextInput
-                        style={styles.inputContainer}
-                        placeholder="Search"
-                        onChangeText={onChangeText}
-                        value={text}
-                    />
-                    <TouchableOpacity underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                        <Text style={styles.customButtonText}>Search</Text>
-                    </TouchableOpacity>
-                </View> */}
+                <CustomModal
+                    popularModalVisible={popularModalVisible}
+                    setPopularModalVisible={setPopularModalVisible}
+                    ratingOneModalVisible={ratingOneModalVisible}
+                    setRatingOneModalVisible={setRatingOneModalVisible}
+                    ratingTwoModalVisible={ratingTwoModalVisible}
+                    setRatingTwoModalVisible={setRatingTwoModalVisible}
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                    starOneRating={starOneRating}
+                    setStarOneRating={setStarOneRating}
+                    starTwoRating={starTwoRating}
+                    setStarTwoRating={setStarTwoRating}
 
-              <Modal
-              animationType="slide"
-              transparent={true}
-              visible={popularModalVisible}
-              onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-              setPopularModalVisible(!popularModalVisible);
-              }}>
-                <View style={styles.popularContainer}>
-                    <View style={styles.popularContent}>
-                      <Text style={styles.modalTitle}>Sort Popularity By:</Text>
-                          <RadioButton
-                            label="Today"
-                            selected={selectedOption === 'Today'}
-                            onPress={() => setSelectedOption('Today')}
-                          />
-                          <RadioButton
-                            label="Past Week"
-                            selected={selectedOption === 'Past Week'}
-                            onPress={() => setSelectedOption('Past Week')}
-                          />
-                          <RadioButton
-                            label="Past Month"
-                            selected={selectedOption === 'Past Month'}
-                            onPress={() => setSelectedOption('Past Month')}
-                          />
-                          <RadioButton
-                            label="Past Year"
-                            selected={selectedOption === 'Past Year'}
-                            onPress={() => setSelectedOption('Past Year')}
-                          />
-                          <RadioButton
-                            label="All Time"
-                            selected={selectedOption === 'All Time'}
-                            onPress={() => setSelectedOption('All Time')}
-                          />
-                          <TouchableOpacity style={styles.applyButton}>
-                            <Text style={styles.applyButtonText} onPress={() => setPopularModalVisible(!popularModalVisible)}>
-                                Apply</Text>
-                          </TouchableOpacity>
-                          
-                    </View>
-                </View>
-              </Modal>
-
-              <Modal
-            animationType="slide"
-            transparent={true}
-            visible={ratingOneModalVisible}
-            onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setRatingOneModalVisible(!ratingOneModalVisible);}}>
-
-            <View style={styles.popularContainer}>
-              <View style={styles.ratingContent}>
-
-              <TouchableOpacity style={styles.applyButton}>
-                            <Text style={styles.applyButtonText} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
-                                Highest to Lowest Rated </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.applyButton}>
-                            <Text style={styles.applyButtonText} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
-                                Lowest to Highest Rated</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.applyButton}>
-                            <Text style={styles.applyButtonText} onPress={() => {setRatingTwoModalVisible(!ratingTwoModalVisible); 
-                            setRatingOneModalVisible(!ratingOneModalVisible);}}>
-                                Set Range</Text>
-                </TouchableOpacity>
-                
-              </View>
-            </View>
-            
-            
-          </Modal>  
-
-            <Modal
-            animationType="slide"
-            transparent={true}
-            visible={ratingTwoModalVisible}
-            onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setRatingTwoModalVisible(!ratingTwoModalVisible);
-            }}>
-
-              <View style={styles.popularContainer}>
-                <View style={styles.ratingContent}>
-                  <Text style ={styles.modalTitle}> Sort Rating By Range From</Text>
-                <StarRating
-
-                  rating={starOneRating}
-                  onChange={handleStarOneChange}
                 />
-              <Text style ={styles.modalTitle}> To </Text>
-              <StarRating
-                  rating={starTwoRating}
-                  onChange={handleStarTwoChange}
-                />
-
-                <TouchableOpacity style={styles.applyButton}>
-                            <Text style={styles.applyButtonText} onPress={() => setRatingTwoModalVisible(!ratingTwoModalVisible)}>
-                                Apply</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.applyButton}>
-                            <Text style={styles.applyButtonText} onPress={() => setRatingTwoModalVisible(!ratingTwoModalVisible)}>
-                                Cancel</Text>
-                </TouchableOpacity>
-                </View>
-              </View>
-
-
-            </Modal>
-            
-            
-            
-                
                 <View style={styles.buttonRow}>
                     <TouchableOpacity
                         onPress={() => setPopularModalVisible(true)} 
@@ -208,55 +58,300 @@ const HomePage = ({ navigation }) => {
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>Recommended</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/bread2.png')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                        <Text style={cardStyles.itemText}>English White Bread </Text>
+                                            <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                             </View>
+                                            </View>                               
+                            </TouchableOpacity>                            
+                        </View>
+
+
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/bread1.jpg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft:2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Canadian White Bread</Text>
+                                            <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>                                  
+                            </TouchableOpacity>
+                            
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe3')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/bread3.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Italian Garlic Bread</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+                                
+                            </TouchableOpacity>
+            
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/cupcake1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Gala Cupcakes</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+                            
+                            </TouchableOpacity>
+                            
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/cookie1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Chunky Cookies</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+
+                            </TouchableOpacity>
+                            
+                        </View>
+                        
                     </ScrollView>
                 </View>
 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
                     <Text style={cardStyles.headingText}>New Recipes</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </TouchableOpacity>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/donuts1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Glazed Donuts</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+                            </TouchableOpacity>
+                            
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/macaroons2.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Simple Macaroons</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+                            </TouchableOpacity>
+                            
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/macaroons1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Monster Macaroon</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+                            </TouchableOpacity>
+                            
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/tart1.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Mixed Berry Tart</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+                            </TouchableOpacity>
+                            
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.card, cardStyles.cardElevated]}>
+                                <View style={{flex : 1}}>
+                                    <Image
+                                        source={require('../res/donuts2.jpeg')}
+                                        style={{resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20}}
+                                    />
+                                    <Text style={cardStyles.itemText}>Sprinkled Mini Donut</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                                <View style={[cardStyles.iconContainer, {width: '25%'}]} >
+                                                    <Icon name="star" size={25} color="#FFEA00" />
+                                                    <Text style={cardStyles.customButtonText}>4.6</Text>
+                                                </View>
+                                                <View style={[cardStyles.iconContainer, {width: '35%'}]} >
+                                                    <Icon name="timer-outline" size={25} color="black" style={{top: 1.5}} />
+                                                    <Text style={cardStyles.customButtonText}>30 Min</Text>
+                                                 </View>
+                                                <View style={[cardStyles.iconContainer, {width: '30%'}]} >
+                                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                                    <Text style={cardStyles.customButtonText}>Easy</Text>
+                                                </View>
+                                            </View>
+                                </View>
+                                
+                            </TouchableOpacity>
+                        </View>
+                        
                     </ScrollView>
                 </View>
             </View>
         </ScrollView>
-
+        
     );
-};
+}
 
 const cardStyles = StyleSheet.create({
     headingText: {
         fontSize: 24,
         fontWeight: 'bold',
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
+        fontFamily: 'serif',
+    },
+
+    itemText: {
+        marginTop: 10,
+        fontSize: 20,
+        fontFamily: 'serif',
+        alignSelf: 'center',
+        fontWeight: 'bold'
     },
 
     container: {
@@ -273,7 +368,44 @@ const cardStyles = StyleSheet.create({
     },
 
     cardElevated: {
-        backgroundColor: 'green',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        borderColor: '#E0E0E0',
+        borderWidth: 2,
+        
+    },
+
+    backgroundImage: {
+        width: '100%',
+        height: 'auto',
+    },
+
+    iconContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: 10,
+        padding: 7,
+        marginVertical: 5,
+        alignItems: 'center',
+
+        borderRadius: 15,
+    },
+
+    customButtonText: {
+        fontWeight: 'bold',
+        color: 'black',
+        fontSize: 14,
+        marginLeft: 10,
+        fontFamily: 'serif',
+    },
+
+    iconButtonRow: {
+        marginTop: -5,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        alignSelf: 'center'
     },
 })
 
@@ -296,18 +428,19 @@ const styles = StyleSheet.create({
 
     rowButtonContainer: {
         width: '24%',
-        padding: 6,
+        padding: 5,
         marginVertical: 8,
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: '#3B71F3',
-        borderRadius: 70,
+        backgroundColor: 'white',
+        borderRadius: 50,
+        borderColor: '#708090',
+        borderWidth: 1,
 
     },
 
     customButtonText: {
-        fontWeight: 'bold',
-        color: 'white'
+        color: 'black',
     },
 
     inputContainer: {
@@ -334,76 +467,5 @@ const styles = StyleSheet.create({
         width: '90%',
       },
 
-      popularContainer: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        
-      },
-
-      popularContent: {
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
-        padding: 20,
-        width: '100%',
-        height: '50%',
-        backgroundColor: 'grey'
-      },
-
-      ratingContent: {
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
-        padding: 20,
-        width: '100%',
-        height: '50%',
-        backgroundColor: 'grey',
-        alignItems: 'center',
-
-      },
-
-      modalTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 10,
-      },
-
-      applyButton: {
-        backgroundColor: '#3B71F3',
-        padding: 10,
-        alignItems: 'center',
-        borderRadius: 8,
-        marginTop: 20,
-      },
-      applyButtonText: {
-        color: 'white',
-        fontWeight: 'bold',
-      },
-      // Add the RadioButton styles here
-      radioButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 8,
-      },
-      radioCircle: {
-        height: 24,
-        width: 24,
-        borderRadius: 12,
-        borderWidth: 2,
-        borderColor: '#3498db',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      selectedRb: {
-        width: 14,
-        height: 14,
-        borderRadius: 7,
-        backgroundColor: '#3498db',
-      },
-      radioText: {
-        marginLeft: 8,
-        fontSize: 16,
-      },
-
-
+      
   });
-  export default HomePage;
