@@ -48,11 +48,14 @@ export default function ForgotPasswordPage({ navigation }) {
   return (
     <View style={MainContainerStyle.container}>
       <Text style={MainContainerStyle.title}>Password Recovery</Text>
-      <CustomInput
-        placeholder='Email'
-        value={email}
-        setValue={setEmail}
-      />
+      <View style={CustomTextInputStyle.container}>
+          <TextInput
+              style={CustomTextInputStyle.input}
+              placeholder='Email'
+              value={email}
+              onChangeText={setEmail}
+          />
+        </View>
       <CustomButton
         title='Request Password'
         onPress={_handlePressRequestPassword}

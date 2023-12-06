@@ -52,17 +52,23 @@ export default function Login({ navigation }) {
       <Image 
       style={styles.logo}
       source={require('../res/mealmaster.png')}/>
-        <CustomInput
-            placeholder='Email'
-            value={email}
-            setValue={setEmail}
-        />
-        <CustomInput
-            placeholder='Password'
-            value={password}
-            setValue={setPassword}
-            secureTextEntry={true}
-        />
+        <View style={CustomTextInputStyle.container}>
+          <TextInput
+              style={CustomTextInputStyle.input}
+              placeholder='Email'
+              value={email}
+              onChangeText={setEmail}
+          />
+        </View>
+        <View style={CustomTextInputStyle.container}>
+          <TextInput
+              style={CustomTextInputStyle.input}
+              placeholder='Password'
+              secureTextEntry={true}
+              value={password}
+              onChangeText={setPassword}
+          />
+        </View>
         <CustomButton
             title='Login'
             onPress={_handlePressLogin}
