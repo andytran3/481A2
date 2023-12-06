@@ -34,4 +34,4 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-src/pages/recipePages/TestCreateRecipePage.js
+./src/pages/recipePages/TestCreateRecipePage.js
