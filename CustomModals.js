@@ -1,4 +1,4 @@
-import { View, Modal, StyleSheet, Text, TextInput, Alert, TouchableOpacity, FlatList} from "react-native";
+import { View, Modal, StyleSheet, Text, TextInput, Alert, TouchableOpacity, FlatList, ScrollView} from "react-native";
 import { React, useState} from 'react';
 import RollPickerNative from 'roll-picker-native'
 //https://github.com/ale-vncs/roll-picker-native
@@ -41,8 +41,11 @@ export default function CustomModal({
 }) {
     
 
-    const [text, setText] = useState('');
+
     const [searchSuggestions, setSearchSuggestions] = useState([]);
+    const [inputText, setInputText] = useState('');
+    const [includeButtons, setIncludeButtons] = useState([]);
+    const [excludeButtons, setExcludeButtons] = useState([]);
     
 
     const handleStarOneChange = (rating) => {
@@ -83,6 +86,31 @@ export default function CustomModal({
       setText(suggestion);
       setSearchSuggestions([]);
       
+    };
+
+    
+    const handleIncludeButtonPress = () => {
+      if (inputText.trim() !== '') {
+        setIncludeButtons(prevButtons => [...prevButtons, inputText]);
+        setInputText('');
+      }
+    };
+  
+    const handleExcludeButtonPress = () => {
+      if (inputText.trim() !== '') {
+        setExcludeButtons(prevButtons => [...prevButtons, inputText]);
+        setInputText('');
+      }
+    };
+  
+    const handleButtonPress = (category, index) => {
+      if (category === 'include') {
+        const updatedButtons = [...includeButtons.slice(0, index), ...includeButtons.slice(index + 1)];
+        setIncludeButtons(updatedButtons);
+      } else if (category === 'exclude') {
+        const updatedButtons = [...excludeButtons.slice(0, index), ...excludeButtons.slice(index + 1)];
+        setExcludeButtons(updatedButtons);
+      }
     };
 
     return (
@@ -287,15 +315,11 @@ export default function CustomModal({
                     <View style={styles.ratingContent}>
                     <Text style={styles.modalTitle}>Sort Ingredients By:</Text>
                     <RadioButton
-                              label="Inclusion"
-                              selected={selectedOption === 'Inclusion'}
-                              onPress={() => setSelectedOption('Inclusion')}
-                            /> 
-                    <RadioButton
-                      label="Exclusion"
-                      selected={selectedOption === 'Exclusion'}
-                      onPress={() => setSelectedOption('Exclusion')}
-                    />
+                      label="Inclusion and Exclusion"
+                      selected={selectedOption === 'Inclusion and Exclusion'}
+                      onPress={() => setSelectedOption('Inclusion and Exclusion')}
+                    /> 
+                  
                     <RadioButton
                       label="Amount of Ingredients"
                       selected={selectedOption === 'Amount of Ingredients'}
@@ -305,11 +329,9 @@ export default function CustomModal({
                     if (selectedOption === 'Amount of Ingredients') {
                       setIngredientsModalVisible(!ingredientsModalVisible);
                       setIngredients3ModalVisible(!ingredients3ModalVisible);
-                    } else if (selectedOption === 'Inclusion') {
+                    } else if (selectedOption === 'Inclusion and Exclusion') {
                       setIngredientsModalVisible(!ingredientsModalVisible);
                       setIngredients1ModalVisible(!ingredients1ModalVisible);
-                    } else if (selectedOption === 'Exclusion') {
-                      setIngredientsModalVisible(!ingredientsModalVisible);
                     }
                   }}
                 >
@@ -385,23 +407,36 @@ export default function CustomModal({
                 onRequestClose={() => {
                 Alert.alert('Modal has been closed.');
                 setIngredients1ModalVisible(!ingredients1ModalVisible);}}>
+                 
                   <View style={styles.popularContainer}>
                     <View style={styles.ingredients1ContentBackground}>
+                    
                       <View style={styles.ingredients1Content}>
                         <View style={styles.row}>
                           <TextInput
                             style={styles.inputContainer}
-                            placeholder="Search"
-                            onChangeText={onChangeText}
-                            value={text}
+                            placeholder="  Search"
+                            value={inputText}
+                            onChangeText={(text) => setInputText(text)}
                           />
                           <TouchableOpacity
                             style={styles.customButtonContainer}
                             underlayColor={'#3b50f3'}
-            
-                          >
-                            <Text style={styles.customButtonText}>Add</Text>
+                            onPress={handleIncludeButtonPress}
+
+                          > 
+                          <Text style={styles.customButtonText}>Include</Text> 
                           </TouchableOpacity>
+                          <TouchableOpacity
+                            style={styles.custom2ButtonContainer}
+                            underlayColor={'#3b50f3'}
+                            onPress={handleExcludeButtonPress}
+
+                          > 
+                          <Text style={styles.customButtonText}>Exclude</Text> 
+                          </TouchableOpacity>
+                        
+                          
                         </View>
                         {searchSuggestions.length > 0 && (
                           <FlatList
@@ -409,23 +444,63 @@ export default function CustomModal({
                             data={searchSuggestions}
                             renderItem={renderSearchSuggestion}
                             keyExtractor={(item) => item}
-                            maxHeight={190}
+                            maxHeight={147}
                           />
                         )}
+                    
+                    <Text style={{fontSize: 18,
+                    fontWeight: 'bold',
+                    marginBottom: 10,
+                    color: 'white',
+                    marginTop: 10,
+                    marginLeft: 5}}>Include:</Text>
+                    <View style={styles.box}>
+
+                    <View style={styles.foodRow}>
+                    {includeButtons.map((buttonText, index) => (
+                      <TouchableOpacity key={index} onPress={() => handleButtonPress('include', index)}>
+                        <View style={styles.foodButtons}>
+                          <Text style={{ color: 'white', textAlign: 'center' }}> + {buttonText}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                    </View>
+
+                    </View>
+                    <Text style={{fontSize: 18,
+                    fontWeight: 'bold',
+                    marginBottom: 10,
+                    color: 'white',
+                    marginTop: 10,
+                    marginLeft: 5}}>Exclude:</Text>
+
+                    <View style={styles.box}> 
+                    <View style={styles.foodRow}>
+                    {excludeButtons.map((buttonText, index) => (
+                      <TouchableOpacity key={index} onPress={() => handleButtonPress('exclude', index)}>
+                        <View style={styles.foodButtons2}>
+                          <Text style={{ color: 'white', textAlign: 'center'}}> - {buttonText}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                    </View>
+                    </View>
+                   
 
                     <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(!ingredients1ModalVisible)}>
+                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(false)}>
                                     Apply</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(!ingredients1ModalVisible)}>
+                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(false)}>
                                     Cancel</Text>
                     </TouchableOpacity>
                     </View>
                       </View>
                     </View>
                   </View>
+                  
   
     </Modal>
 
@@ -458,7 +533,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     paddingTop: '5%',
     width: '100%',
-    height: '50%',
+    height: '55%',
     backgroundColor: '#22242e'
   },
 
@@ -477,7 +552,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     paddingTop: '5%',
     width: '100%',
-    height: '42%',
+    height: '45%',
     backgroundColor: '#22242e'
   },
 
@@ -588,6 +663,13 @@ const styles = StyleSheet.create({
     
   },
 
+  foodRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '100%',
+    
+  },
+
   customButtonContainer: {
     width: '20%',
     marginVertical: 5,
@@ -596,6 +678,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'green',
     borderRadius: 20,
+},
+
+custom2ButtonContainer: {
+  width: '20%',
+  marginVertical: 5,
+  padding: 10,
+  alignItems: 'center',
+  alignSelf: 'center',
+  backgroundColor: '#bf3b32',
+  borderRadius: 20,
+  marginLeft: 5,
 },
 
 customButtonText: {
@@ -610,16 +703,19 @@ inputContainer: {
   backgroundColor: 'white',
   borderTopLeftRadius: 20,
   borderTopRightRadius: 20,
-  width: '100%'
+  width: '100%',
+  borderRadius: 20,
+  
 },
 
 suggestionsList: {
-  marginTop: -15,
-  width: '77.79%',
+  marginTop: -17,
+  width: '56.5%',
   backgroundColor: 'white',
-  borderRadius: 20,
+  borderBottomRightRadius: 20,
+  borderBottomLeftRadius: 20,
   height: 50,
-  padding: 10,
+  padding: 12,
 },
 suggestionItem: {
   padding: 6,
@@ -628,6 +724,29 @@ suggestionItem: {
   backgroundColor: '#f3f3f3',
   borderRadius: 10,
   
+},
+
+box: {
+  borderRadius: 20,
+  width: '100%',
+  backgroundColor: '#f3f3f3',
+  height: 175,
+},
+
+foodButtons: {
+  backgroundColor: 'green', 
+  padding: 10, 
+  borderRadius: 30, 
+  margin: 3 
+
+},
+
+foodButtons2: {
+  backgroundColor: '#bf3b32', 
+  padding: 10, 
+  borderRadius: 30, 
+  margin: 3
+
 },
 
 
