@@ -8,7 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { React, useState } from "react";
 
 
-export default function HomePage ({ navigation }) {
+export default function TestEditRecipePage ({ navigation }) {
     const [rating, setRating] = useState(0);
     const [heartPressed, setHeartPressed] = useState(false);
     const [editPressed, setEditPressed] = useState(false);

@@ -10,6 +10,7 @@ import LoginPage from '../pages/LoginPage';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Tabs from './Tabs';
+import TestCreateRecipePage from '../pages/recipePages/TestCreateRecipePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function NavigationStack() {
             <Stack.Screen name='SavedRecipes' component={SavedRecipesPage}/>
             <Stack.Screen name='MealPlan' component={MealPlanPage}/>
             <Stack.Screen name='MyAccount' component={MyAccountPage}/>
+            <Stack.Screen name='TestCreateRecipe' component={TestCreateRecipePage}/>
         </Stack.Navigator>
     );
 }
