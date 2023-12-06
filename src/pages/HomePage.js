@@ -109,6 +109,13 @@ export default function HomePage ({ navigation }) {
             {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
             {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
         ],
+        'Amount of Ingredients': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  }, 
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
+        ],
     };
 
     return (
