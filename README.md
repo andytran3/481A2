@@ -72,6 +72,7 @@ Before you begin, ensure you have the following installed on your system:
 - In the Login Page click the register button.
 - Fill out the required sections approrpriately.
 - Press okay on the confirmation pop-up.
+
 ![Registration](https://github.com/andytran3/481A2/assets/60755728/010a5f9b-7e1c-4f59-a6c8-889bf841e44a)
 
 ### Login
