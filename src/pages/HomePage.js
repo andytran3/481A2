@@ -6,7 +6,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomButtonRow from "../components/CustomButtonRow";
 import Tabs from "../components/Tabs";
 
-const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty }) => {
+const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty, color }) => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate(navigateTo)} style={[cardStyles.card, cardStyles.cardElevated]}>
         <View style={{ flex: 1 }}>
@@ -25,7 +25,7 @@ const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, 
               <Text style={cardStyles.customButtonText}>{time}</Text>
             </View>
             <View style={[cardStyles.iconContainer, { width: '30%' }]} >
-              <MaterialIcon name="gauge-low" size={25} color="green" />
+              <MaterialIcon name="gauge-low" size={25} color={color} />
               <Text style={cardStyles.customButtonText}>{difficulty}</Text>
             </View>
           </View>
@@ -49,61 +49,61 @@ export default function HomePage ({ navigation }) {
     const [starTwoRating, setStarTwoRating] = useState(0);
     const recipeData = {
         '': [
-            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
-            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',},
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', color: 'red' },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
         ],
 
         'Highest to Lowest Rated': [
-            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', },
-            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', color: 'red' },
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
         ],
         'Lowest to Highest Rated': [
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',},
-            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'},
         ],
         'Today': [
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
         ],
         'Past Week': [  
-            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
         ],
         'Past Month': [
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },  
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },  
         ],
         'Past Year': [
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  }, 
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  }, 
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
         ],
         'All Time': [
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/scallops1.jpeg'),title: 'Seared Scallops',rating: 4.7,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
-            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  },
-            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/scallops1.jpeg'),title: 'Seared Scallops',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
         ],
   };
 

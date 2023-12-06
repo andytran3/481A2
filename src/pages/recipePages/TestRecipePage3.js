@@ -71,12 +71,7 @@ export default function HomePage ({ navigation }) {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity underlayColor={'#f3f3f3'} onPress={() => navigation.navigate('MyAccount')}>
-                            <View style={{ position: 'absolute', paddingRight: 20, top: 35, alignItems: 'center', alignSelf: 'flex-end'}}>
-                                <MaterialIcon name="account-circle" size={25} color="#000000" />
-                                <Text style={{fontSize: 12.5}}>Account</Text>
-                            </View>
-                    </TouchableOpacity>
+                    
                 </View>
                 <View style={styles.fancyBox}>
                     <Text style={textStyles.nameHeader}>Italian Garlic Bread</Text>
@@ -98,18 +93,18 @@ export default function HomePage ({ navigation }) {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.buttonRow}>
-                        <View style={[styles.rowButtonContainer, {width: '35%'}]} >
-                            <Icon name="timer-outline" size={25} color="#ffffff" style={{top: 1.5}} />
-                            <Text style={styles.customButtonText}>2 Hours</Text>
+                    <View style={cardStyles.iconButtonRow}>
+                        <View style={[cardStyles.iconContainer, { width: '25%' }]} >
+                            <Icon name="star" size={25} color="#FFEA00" />
+                            <Text style={cardStyles.customButtonText}>4.5</Text>
                         </View>
-                        <View style={[styles.rowButtonContainer, {width: '25%'}]} >
-                            <Icon name="star-outline" size={25} color="#ffffff" />
-                            <Text style={styles.customButtonText}>4.5</Text>
+                        <View style={[cardStyles.iconContainer, { width: '35%' }]} >
+                            <Icon name="timer-outline" size={25} color="black" style={{ top: 1.5 }} />
+                            <Text style={cardStyles.customButtonText}>2 Hours</Text>
                         </View>
-                        <View style={[styles.rowButtonContainer, {width: '30%', backgroundColor: 'red'}]} >
-                            <MaterialIcon name="gauge-low" size={25} color="#ffffff" />
-                            <Text style={styles.customButtonText}>Hard</Text>
+                        <View style={[cardStyles.iconContainer, { width: '30%' }]} >
+                            <MaterialIcon name="gauge-low" size={25} color="red" />
+                            <Text style={cardStyles.customButton2Text}>Hard</Text>
                         </View>
                     </View>
                     <View style={cardStyles.descriptionBox}>
@@ -121,7 +116,7 @@ export default function HomePage ({ navigation }) {
                         
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Text style={textStyles.header}>Ingredients</Text>
-                            <TouchableOpacity onPress={toggleUnit} style={{alignSelf: 'center', backgroundColor: '#3B71F3', margin: 5, padding: 5, width: 'auto', height: 'auto'}}>
+                            <TouchableOpacity onPress={toggleUnit} style={{alignSelf: 'center', backgroundColor: '#3B71F3', margin: 5, padding: 5, width: 'auto', height: 'auto',borderRadius: 10}}>
                                 <View>
                                     <Text style={{color: 'white', fontWeight: 'bold'}}>{`Switch to ${unit === 'imperial' ? 'Metric' : 'Imperial'}`}</Text>
                                 </View>
@@ -158,28 +153,54 @@ export default function HomePage ({ navigation }) {
                     <LinearGradient colors={['#ffffff', '#d6faff', '#b0f4ff']} style={styles.linearGradient}>
                         <Text style={textStyles.header}>Fans Of This Recipe Also Liked:</Text>
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <View>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <View style={cardStyles.backgroundImage}>
-                                    <Image
-                                        source={require('../../res/bread2.png')}
-                                        style={{resizeMode: 'cover', width: 250, height: 300}}
-                                    />
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
+                                
+                                <Image
+                                    source={require('../../res/bread2.png')}
+                                    style={cardStyles.generalCard}/>
+                                <Text style={cardStyles.itemText}>English White Bread</Text>
+                                <View style={cardStyles.iconButtonRow}>
+                                <View style={[cardStyles.iconContainer, { width: '25%' }]} >
+                                    <Icon name="star" size={25} color="#FFEA00" />
+                                    <Text style={cardStyles.customButton2Text}>4.6</Text>
                                 </View>
-                            </TouchableOpacity>
-                            <Text style={cardStyles.itemText}>English White Bread</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <View style={cardStyles.backgroundImage}>
+                                <View style={[cardStyles.iconContainer, { width: '35%' }]} >
+                                    <Icon name="timer-outline" size={25} color="black" style={{ top: 1.5 }} />
+                                    <Text style={cardStyles.customButton2Text}>30 Min</Text>
+                                </View>
+                                <View style={[cardStyles.iconContainer, { width: '30%' }]} >
+                                    <MaterialIcon name="gauge-low" size={25} color="green" />
+                                    <Text style={cardStyles.customButton2Text}>Easy</Text>
+                                </View>
+                            </View>
+                       
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
+                               
                                     <Image
                                         source={require('../../res/bread1.jpg')}
-                                        style={{resizeMode: 'cover', width: 250, height: 300}}
+                                        style={cardStyles.generalCard}
                                     />
-                                </View>
+                                    <Text style={cardStyles.itemText}>Canadian White Bread</Text>
+                                    <View style={cardStyles.iconButtonRow}>
+                                        <View style={[cardStyles.iconContainer, { width: '25%' }]} >
+                                            <Icon name="star" size={25} color="#FFEA00" />
+                                            <Text style={cardStyles.customButton2Text}>3.9</Text>
+                                        </View>
+                                        <View style={[cardStyles.iconContainer, { width: '35%' }]} >
+                                            <Icon name="timer-outline" size={25} color="black" style={{ top: 1.5 }} />
+                                            <Text style={cardStyles.customButton2Text}>1 hour</Text>
+                                        </View>
+                                        <View style={[cardStyles.iconContainer, { width: '30%' }]} >
+                                            <MaterialIcon name="gauge-low" size={25} color="blue" />
+                                            <Text style={cardStyles.customButton2Text}>Med</Text>
+                                        </View>
+                                    </View>
+                              
+                                
                             </TouchableOpacity>
-                            <Text style={cardStyles.itemText}>Canadian White Bread</Text>
-                        </View>
+                        
                             <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                 <Text>Press Here</Text>
                             </TouchableOpacity>
@@ -203,10 +224,11 @@ export default function HomePage ({ navigation }) {
 
 const cardStyles = StyleSheet.create({
     itemText: {
+        marginTop: 10,
         fontSize: 20,
-        paddingHorizontal: 8,
         fontFamily: 'serif',
         alignSelf: 'center',
+        fontWeight: 'bold'
     },
     
     underName: {
@@ -219,11 +241,7 @@ const cardStyles = StyleSheet.create({
         padding: 8,
     },
 
-    backgroundImage: {
-        width: '100%',
-        height: 'auto',
-        position: 'absolute',
-    },
+   
 
     button: {
         width: '25%',
@@ -237,8 +255,9 @@ const cardStyles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%',
+        width: 250,
         height: 300,
+        margin: 8
     },
 
     scrollCard: {
@@ -247,12 +266,25 @@ const cardStyles = StyleSheet.create({
         justifyContent: 'center',
         width: 250,
         height: 300,
-        marginRight: 8,
-        marginBottom: 8
+        margin: 8,
+    },
+
+    generalCard:{
+        resizeMode: 'cover', 
+        width: 242, 
+        height: 210, 
+        marginTop: 1, 
+        marginLeft: 1, 
+        borderRadius: 20 
     },
 
     cardElevated: {
-        backgroundColor: 'green',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        borderColor: '#E0E0E0',
+        borderWidth: 2,
+        
+    
     },
 
     textBox: {
@@ -263,6 +295,49 @@ const cardStyles = StyleSheet.create({
         borderWidth: 1,
         margin: 8
     },
+
+    backgroundImage: {
+        width: '100%',
+        height: 'auto',
+        position: 'absolute',
+    },
+
+    iconContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: 10,
+        padding: 7,
+        marginVertical: 5,
+        alignItems: 'center',
+        borderRadius: 15,
+    },
+
+    customButtonText: {
+        fontWeight: 'bold',
+        color: 'black',
+        fontSize: 14,
+        marginLeft: -30,
+        fontFamily: 'serif',
+    },
+
+    customButton2Text: {
+        fontWeight: 'bold',
+        color: 'black',
+        fontSize: 14,
+        marginLeft: 10,
+        fontFamily: 'serif',
+    },
+
+    iconButtonRow: {
+        marginTop: -5,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        alignSelf: 'center'
+    },
+
+  
 });
 
 const styles = StyleSheet.create({
@@ -292,12 +367,12 @@ const styles = StyleSheet.create({
         padding: 9,
         marginVertical: 5,
         alignItems: 'center',
-        backgroundColor: '#3B71F3'
+        borderWidth: 2,
     },
 
     customButtonText: {
         fontWeight: 'bold',
-        color: 'white',
+        color: 'black',
         fontSize: 20,
     },
 

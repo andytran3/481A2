@@ -97,29 +97,8 @@ export default function TestEditRecipePage ({ navigation }) {
                     </View>
                 </View>
 
-                <View style={{backgroundColor: '#b3f5ff'}}>
-                    <LinearGradient colors={['#ffffff', '#d6faff', '#b0f4ff']} style={styles.linearGradient}>
-                        <Text style={textStyles.header}>Fans Of This Recipe Also Liked:</Text>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
-                                <Text>Press Here</Text>
-                            </TouchableOpacity>
-                        </ScrollView>
-                    </LinearGradient>
-                </View>
                 
+
             </ScrollView>
             
             

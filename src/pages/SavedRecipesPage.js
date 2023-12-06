@@ -15,7 +15,7 @@ export default function SavedRecipesPage ({ navigation }) {
         setHeartPressed(updatedHearts);
     };
 
-    const renderRecipeItem = (navigateTo, index, imageSource, title, rating, time, difficulty) => (
+    const renderRecipeItem = (navigateTo, index, imageSource, title, rating, time, difficulty, color) => (
         <TouchableOpacity
           key={index}
           onPress={() => navigation.navigate(navigateTo)}
@@ -60,7 +60,7 @@ export default function SavedRecipesPage ({ navigation }) {
               <Text style={cardStyles.customButtonText}>{time}</Text>
             </View>
             <View style={[cardStyles.iconContainer, { width: '30%' }]} >
-              <MaterialIcon name="gauge-low" size={25} color="green" />
+              <MaterialIcon name="gauge-low" size={25} color={color} />
               <Text style={cardStyles.customButtonText}>{difficulty}</Text>
             </View>
           </View>
@@ -74,9 +74,9 @@ export default function SavedRecipesPage ({ navigation }) {
           <View style={styles.container}>
             <View style={{ width: '100%' }}>
               <ScrollView>
-                {renderRecipeItem('TestRecipe', 0, require('../res/bread2.png'), 'English White Bread', rating[0], 30, 'Easy')}
-                {renderRecipeItem('TestRecipe2', 1, require('../res/bread1.jpg'), 'Canadian White Bread', rating[1], 30, 'Med')}
-                {renderRecipeItem('TestRecipe3', 2, require('../res/bread3.jpeg'), 'Italian Garlic Bread', rating[2], 30, 'Hard')}
+                {renderRecipeItem('TestRecipe', 0, require('../res/bread2.png'), 'English White Bread', rating[0], '30 Min', 'Easy', 'green')}
+                {renderRecipeItem('TestRecipe2', 1, require('../res/bread1.jpg'), 'Canadian White Bread', rating[1], '1 Hour', 'Med', 'blue')}
+                {renderRecipeItem('TestRecipe3', 2, require('../res/bread3.jpeg'), 'Italian Garlic Bread', rating[2], '2 Hours', 'Hard', 'red')}
                 {/* {renderRecipeItem(3, require('../res/bread2.png'), 'English White Bread', 4.6, 30, 'Easy')}
                 {renderRecipeItem(4, require('../res/bread2.png'), 'English White Bread')}
                 {renderRecipeItem(5, require('../res/bread2.png'), 'English White Bread')}

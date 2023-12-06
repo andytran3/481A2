@@ -2,6 +2,8 @@ import {Text, TextInput, View, StyleSheet, TouchableOpacity, ScrollView, Image} 
 
 import { React, useState } from "react";
 import CustomButtonRow from "../components/CustomButtonRow";
+import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function SearchPage ({ navigation }) {
     const [text, setText] = useState('');
@@ -17,31 +19,37 @@ export default function SearchPage ({ navigation }) {
     const [starOneRating, setStarOneRating] = useState(0);
     const [starTwoRating, setStarTwoRating] = useState(0);
 
-    const RecipeCard = ({ navigation, navigateTo, imageSource, title }) => {
+    const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty, color }) => {
         return (
-            <View>
-                <TouchableOpacity onPress={() => navigation.navigate(navigateTo)} style={[cardStyles.card, cardStyles.cardElevated]}>
-                    <View style={cardStyles.backgroundImage}>
-                        <Image
-                            source={imageSource}
-                            style={{resizeMode: 'cover', width: 187, height: 200}}
-                        />
-                    </View>
-                </TouchableOpacity>
-                <Text style={cardStyles.itemText}>{title}</Text>
+            <TouchableOpacity onPress={() => navigation.navigate(navigateTo)} style={[cardStyles.card, cardStyles.cardElevated]}>
+        <View style={{ flex: 1 }}>
+          <Image
+            source={imageSource}
+            style={{ resizeMode: 'cover', width: 182.5, height: 157.5, marginTop: -1, marginLeft: 0.5, borderRadius: 20 }}
+          />
+          <Text style={cardStyles.itemText}>{title}</Text>
+          <View style={cardStyles.iconButtonRow}>
+            <View style={[cardStyles.iconContainer, { width: '25%' }]} >
+              <Icon name="star" size={25} color="#FFEA00" />
+              <Text style={cardStyles.customButtonText}>{rating}</Text>
             </View>
+            <View style={[cardStyles.iconContainer, { width: '35%' }]} >
+              <Icon name="timer-outline" size={25} color="black" style={{ top: 1.5, marginRight: 4}} />
+              <Text style={cardStyles.customButtonText}>{time}</Text>
+            </View>
+            <View style={[cardStyles.iconContainer, { width: '30%' }]} >
+              <MaterialIcon name="gauge-low" size={25} color={color}/>
+              <Text style={cardStyles.customButtonText}>{difficulty}</Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
         );
     };
 
     return (
             <View style={styles.container}>
-                <Text style={{alignSelf: 'center',
-                    fontSize: 25,
-                    fontWeight: 'bold',
-                    fontFamily: 'serif',
-                    alignSelf: 'center'}}>
-                    What are you Cooking Today?
-                </Text>
+                
                 <View style={styles.row}>
                     <TextInput
                         style={styles.inputContainer}
@@ -104,12 +112,12 @@ export default function SearchPage ({ navigation }) {
                                     <Text style={cardStyles.headingText}>Recent Searches</Text>
                                     <ScrollView showsVerticalScrollIndicator={false} style={cardStyles.scrollContainer}>
                                         <View style={cardStyles.container}>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcake"/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chuncky Cookies"/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread"/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread"/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread"/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread"/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} color={'green'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'}color={'green'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}color={'green'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread"  rating={3.9} time={'1 hour'} difficulty={'Med'}color={'blue'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'}color={'red'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaron" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'} />
                                         </View>
                                     </ScrollView>
                                 </>
@@ -129,12 +137,20 @@ const cardStyles = StyleSheet.create({
         fontFamily: 'serif',
     },
 
+    itemText: {
+        marginTop: 7.5,
+        fontSize: 15,
+        fontFamily: 'serif',
+        alignSelf: 'center',
+        fontWeight: 'bold'
+    },
+
     container: {
-        padding: 4,
-        justifyContent: 'center',
-        flex: 1,
+        padding: 8,
+        flexDirection: 'row',
         flexWrap: 'wrap',
-        flexDirection: 'row'
+        justifyContent: 'space-between',
+        
     },
     
     scrollContainer: {
@@ -142,17 +158,47 @@ const cardStyles = StyleSheet.create({
     },
 
     card: {
-        // flex: 1,
-        
+        marginBottom: 5,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 200,
-        margin: 1
+        width: 187.5,
+        height: 225,
     },
 
     cardElevated: {
-        backgroundColor: 'green',
-        flexBasis: '49%',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        borderColor: '#E0E0E0',
+        borderWidth: 2,
+    },
+
+
+    iconContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: 10,
+        padding: 7,
+        marginVertical:0,
+        alignItems: 'center',
+        borderRadius: 15,
+    },
+
+    customButtonText: {
+        fontWeight: 'bold',
+        color: 'black',
+        fontSize: 10.5,
+        marginLeft: 10,
+        fontFamily: 'serif',
+    },
+
+    iconButtonRow: {
+        marginTop: -5,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        alignSelf: 'center',
+        marginLeft: 2,
     },
 
 
@@ -172,7 +218,8 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: '#3B71F3'
+        backgroundColor: '#3B71F3',
+        borderRadius: 10
     },
 
     rowButtonContainer: {
@@ -195,7 +242,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         backgroundColor: 'white',
         width: '79%',
-        borderRadius: 2,
+        borderRadius: 10,
         paddingHorizontal: 10,
         marginVertical: 5,
         alignSelf: 'center',

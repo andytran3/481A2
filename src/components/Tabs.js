@@ -12,7 +12,10 @@ import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
 import TestRecipePage from '../pages/recipePages/TestRecipePage';
 import TestRecipePage2 from '../pages/recipePages/TestRecipePage2';
 import TestRecipePage3 from '../pages/recipePages/TestRecipePage3';
+import TestEditRecipePage from '../pages/recipePages/TestEditRecipePage';
+import TestCreateRecipePage from '../pages/recipePages/TestCreateRecipePage'
 import MyAccountPage from '../pages/MyAccountPage';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -72,6 +75,26 @@ export default function Tabs ({ navigation }) {
                             }
                         }
                 }}/>
+                <Stack.Screen name='TestEditRecipe' component={TestEditRecipePage} options={{
+                    headerShown: false,
+                    tabBarLabel: 'TestEditRecipe',
+                        tabBarButton: (props) => {
+                            const MAP = {
+                                A: null,
+                                B: <TouchableOpacity {...props} />,
+                            }
+                        }
+                }}/>
+                <Stack.Screen name='TestCreateRecipe' component={TestCreateRecipePage} options={{
+                    headerShown: false,
+                    tabBarLabel: 'TestCreateRecipe',
+                        tabBarButton: (props) => {
+                            const MAP = {
+                                A: null,
+                                B: <TouchableOpacity {...props} />,
+                            }
+                        }
+                }}/>
                 <Stack.Screen name='MyAccount' component={MyAccountPage} options={{
                     tabBarLabel: 'MyAccount',
                         tabBarButton: (props) => {
@@ -101,7 +124,7 @@ export default function Tabs ({ navigation }) {
                 />
                 <Tab.Screen
                     name='CreateRecipe'
-                    component={MiddleButtonComponent} // Placeholder component or use a valid component
+                    component={MiddleButtonComponent}
                     options={{
                         tabBarButton: () => (
                             <TouchableOpacity onPress={() => navigation.navigate('TestCreateRecipe')}>
