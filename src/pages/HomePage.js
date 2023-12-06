@@ -33,6 +33,8 @@ const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, 
     );
 };
 
+
+
 export default function HomePage ({ navigation }) {
     const [popularModalVisible, setPopularModalVisible] = useState(false);
     const [timeModalVisible, setTimeModalVisible] = useState(false);
@@ -44,6 +46,65 @@ export default function HomePage ({ navigation }) {
     const [selectedOption, setSelectedOption] = useState('');
     const [starOneRating, setStarOneRating] = useState(0);
     const [starTwoRating, setStarTwoRating] = useState(0);
+    const recipeData = {
+        '': [
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',},
+        ],
+
+        'Highest to Lowest Rated': [
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', },
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
+        ],
+        'Lowest to Highest Rated': [
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',},
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',},
+        ],
+        'Today': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },
+        ],
+        'Past Week': [  
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',  },
+        ],
+        'Past Month': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },  
+        ],
+        'Past Year': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  }, 
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },
+        ],
+        'All Time': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/scallops1.jpeg'),title: 'Seared Scallops',rating: 4.7,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy',  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard',  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med',  },
+        ],
+  };
 
     return (
         <ScrollView>
@@ -73,34 +134,13 @@ export default function HomePage ({ navigation }) {
 
                 <View style={{ width: '100%', paddingHorizontal: 8 }}>
                     <Text style={cardStyles.headingText}>Recommended</Text>
-                        {selectedOption === 'Highest to Lowest Rated' ?
-                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'} />
-                            </ScrollView>
-                            : <>
-                            {selectedOption === 'Lowest to Highest Rated' ?
-                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} />
-                                </ScrollView>
-                                :
-                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} />
-                                </ScrollView>
-                            }</>
-                        }
-                        
+                    {recipeData[selectedOption] && (
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
+                        {recipeData[selectedOption].map((recipe, index) => (
+                            <RecipeCard key={index} {...recipe} />
+                        ))}
+                        </ScrollView>
+                    )}
                 </View>
 
                 <View style={{ width: '100%', paddingHorizontal: 8 }}>

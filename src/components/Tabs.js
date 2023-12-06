@@ -103,7 +103,6 @@ export default function Tabs ({ navigation }) {
                         )
                     }}
                 />
-                
             </Tab.Navigator>
     )
 }
