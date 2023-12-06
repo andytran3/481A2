@@ -26,7 +26,7 @@ const MiddleButtonComponent = () => {
 
 export default function Tabs ({ navigation }) {
     return (
-            <Tab.Navigator>
+            <Tab.Navigator backBehavior='history'>
                 <Tab.Screen
                     name='Good Day, Haroon'
                     component={HomePage}

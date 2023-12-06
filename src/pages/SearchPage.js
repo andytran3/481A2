@@ -91,7 +91,7 @@ export default function SearchPage ({ navigation }) {
                 />
                 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
-                    {(text === "bread" || text === "Bread") && searched === true && selectedOption !== 'Today' ?
+                    {(text === "bread" || text === "Bread") && searched === true && selectedOption === 'Today' ?
                             <>
                                 <Text style={cardStyles.headingText}>Results</Text>
                                 <ScrollView showsVerticalScrollIndicator={false} style={cardStyles.scrollContainer}>
@@ -103,7 +103,7 @@ export default function SearchPage ({ navigation }) {
                                 </ScrollView>
                             </>
                     : <>
-                    {(text === "bread" || text === "Bread") && searched === true && selectedOption === 'Today' ?
+                    {(text === "bread" || text === "Bread") && searched === true && selectedOption !== 'Today' ?
                     <>
                         <Text style={cardStyles.headingText}>Results</Text>
                         <ScrollView showsVerticalScrollIndicator={false} style={cardStyles.scrollContainer}>
