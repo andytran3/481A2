@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import CustomButtonRow from "../components/CustomButtonRow";
+import Tabs from "../components/Tabs";
 
 const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty, color }) => {
     return (
@@ -33,6 +34,8 @@ const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, 
     );
 };
 
+
+
 export default function HomePage ({ navigation }) {
     const [popularModalVisible, setPopularModalVisible] = useState(false);
     const [timeModalVisible, setTimeModalVisible] = useState(false);
@@ -44,9 +47,69 @@ export default function HomePage ({ navigation }) {
     const [selectedOption, setSelectedOption] = useState('');
     const [starOneRating, setStarOneRating] = useState(0);
     const [starTwoRating, setStarTwoRating] = useState(0);
+    const recipeData = {
+        '': [
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', color: 'red' },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+        ],
+
+        'Highest to Lowest Rated': [
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', color: 'red' },
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+        ],
+        'Lowest to Highest Rated': [
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'},
+        ],
+        'Today': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
+        ],
+        'Past Week': [  
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+        ],
+        'Past Month': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },  
+        ],
+        'Past Year': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  }, 
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
+        ],
+        'All Time': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/scallops1.jpeg'),title: 'Seared Scallops',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
+        ],
+  };
 
     return (
         <ScrollView>
+            
             <View style={styles.container}>
                 <CustomButtonRow
                     popularModalVisible={popularModalVisible}
@@ -73,62 +136,41 @@ export default function HomePage ({ navigation }) {
 
                 <View style={{ width: '100%', paddingHorizontal: 8 }}>
                     <Text style={cardStyles.headingText}>Recommended</Text>
-                        {selectedOption === 'Highest to Lowest Rated' ?
-                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} color={'red'}/>
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}color={'green'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} color={'green'}/>
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'}color={'green'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'}color={'blue'} />
-                            </ScrollView>
-                            : <>
-                            {selectedOption === 'Lowest to Highest Rated' ?
-                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'} color={'blue'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} color={'green'}/>
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'}color={'green'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}color={'green'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} />
-                                </ScrollView>
-                                :
-                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}color={'green'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'}color={'blue'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'} color={'red'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'}color={'green'} />
-                                    <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'} color={'green'}/>
-                                </ScrollView>
-                            }</>
-                        }
-                        
+                    {recipeData[selectedOption] && (
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
+                        {recipeData[selectedOption].map((recipe, index) => (
+                            <RecipeCard key={index} {...recipe} />
+                        ))}
+                        </ScrollView>
+                    )}
                 </View>
 
                 <View style={{ width: '100%', paddingHorizontal: 8 }}>
                     <Text style={cardStyles.headingText}>New Recipes</Text>
                     {selectedOption === 'Highest to Lowest Rated' ?
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'}color={'red'} />
-                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'}color={'red'} />
-                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'} color={'red'}/>
-                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaron" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'} />
-                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'} color={'red'}/>
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'}color={'red'}  />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'}color={'red'}  />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'} color={'red'} />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaron" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'}  />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'}color={'red'}  />
                         </ScrollView>
                         : <>
                         {selectedOption === 'Lowest to Highest Rated' ?
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macarons" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'}color={'red'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'}color={'red'}  />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macarons" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'}  />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'} color={'red'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'} color={'red'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'}color={'red'}  />
                             </ScrollView>
                             :
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macarons" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'}color={'red'} />
-                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'}color={'red'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'}color={'red'}  />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'}color={'red'}  />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macarons" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'}  />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'}color={'red'}  />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'} color={'red'} />
                             </ScrollView>
                         }</>
                     }
