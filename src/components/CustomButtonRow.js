@@ -19,10 +19,12 @@ export default function CustomButtonRow ({
     setStarTwoRating,
     timeModalVisible,
     setTimeModalVisible,
-    ingredientsModalVisible,
     setIngredientsModalVisible,
-    ingredients3ModalVisible,
+    ingredientsModalVisible,
     setIngredients3ModalVisible,
+    ingredients3ModalVisible,
+    setIngredients1ModalVisible,
+    ingredients1ModalVisible
  }) {
     return (
             <View style={styles.container}>
@@ -41,10 +43,12 @@ export default function CustomButtonRow ({
                     setStarTwoRating={setStarTwoRating}
                     timeModalVisible={timeModalVisible}
                     setTimeModalVisible={setTimeModalVisible}
-                    ingredientsModalVisible={ingredientsModalVisible}
                     setIngredientsModalVisible={setIngredientsModalVisible}
-                    ingredients3ModalVisible={ingredients3ModalVisible}
+                    ingredientsModalVisible={ingredientsModalVisible}
                     setIngredients3ModalVisible={setIngredients3ModalVisible}
+                    ingredients3ModalVisible={ingredients3ModalVisible}
+                    setIngredients1ModalVisible={setIngredients1ModalVisible}
+                    ingredients1ModalVisible={ingredients1ModalVisible}
                 />
                 <View style={styles.buttonRow}>
                     <View style={styles.filterContainer}>
