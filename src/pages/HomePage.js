@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import CustomButtonRow from "../components/CustomButtonRow";
+import Tabs from "../components/Tabs";
 
 const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty }) => {
     return (
@@ -108,6 +109,7 @@ export default function HomePage ({ navigation }) {
 
     return (
         <ScrollView>
+            
             <View style={styles.container}>
                 <CustomButtonRow
                     popularModalVisible={popularModalVisible}

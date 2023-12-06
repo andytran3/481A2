@@ -7,9 +7,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
+import TestRecipePage from '../pages/recipePages/TestRecipePage';
+import TestRecipePage2 from '../pages/recipePages/TestRecipePage2';
+import TestRecipePage3 from '../pages/recipePages/TestRecipePage3';
+import MyAccountPage from '../pages/MyAccountPage';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const MiddleButtonComponent = () => {
     return null
@@ -33,9 +39,48 @@ export default function Tabs ({ navigation }) {
                                     <Text>My Account</Text>
                                 </View>
                             </TouchableOpacity>
-                        )
+                        ),
                     }}
                 />
+                <Stack.Screen name='TestRecipe' component={TestRecipePage} options={{
+                    headerShown: false,
+                    tabBarLabel: 'TestRecipe',
+                        tabBarButton: (props) => {
+                            const MAP = {
+                                A: null,
+                                B: <TouchableOpacity {...props} />,
+                            }
+                        }
+                }}/>
+                <Stack.Screen name='TestRecipe2' component={TestRecipePage2} options={{
+                    headerShown: false,
+                    tabBarLabel: 'TestRecipe2',
+                        tabBarButton: (props) => {
+                            const MAP = {
+                                A: null,
+                                B: <TouchableOpacity {...props} />,
+                            }
+                        }
+                }}/>
+                <Stack.Screen name='TestRecipe3' component={TestRecipePage3} options={{
+                    headerShown: false,
+                    tabBarLabel: 'TestRecipe3',
+                        tabBarButton: (props) => {
+                            const MAP = {
+                                A: null,
+                                B: <TouchableOpacity {...props} />,
+                            }
+                        }
+                }}/>
+                <Stack.Screen name='MyAccount' component={MyAccountPage} options={{
+                    tabBarLabel: 'MyAccount',
+                        tabBarButton: (props) => {
+                            const MAP = {
+                                A: null,
+                                B: <TouchableOpacity {...props} />,
+                            }
+                        }
+                }}/>
                 <Tab.Screen
                     name='Search'
                     component={SearchPage}
