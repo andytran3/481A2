@@ -74,7 +74,7 @@ Before you begin, ensure you have the following installed on your system:
 - Press okay on the confirmation pop-up.
 <br/>
 
-![Registration](https://github.com/andytran3/481A2/assets/60755728/58ad5b5b-09be-4abb-8aef-b72f9f651c43)
+![Registration](https://github.com/andytran3/481A2/assets/60755728/58ad5b5b-09be-4abb-8aef-b72f9f651c43.gif)
 
 
 ### Login
