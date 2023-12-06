@@ -13,6 +13,10 @@ export default function SearchPage ({ navigation }) {
     const [ingredientsModalVisible, setIngredientsModalVisible] = useState(false);
     const [ingredients1ModalVisible, setIngredients1ModalVisible] = useState(false);
     const [ingredients3ModalVisible, setIngredients3ModalVisible] = useState(false);
+    const [activeFilter, setActiveFilter] = useState(null);
+    const handleApplyFilter = (filterName) => {
+        setActiveFilter(filterName);
+    };
     const [ratingOneModalVisible, setRatingOneModalVisible] = useState(false);
     const [ratingTwoModalVisible, setRatingTwoModalVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
@@ -82,21 +86,36 @@ export default function SearchPage ({ navigation }) {
                     ingredients3ModalVisible={ingredients3ModalVisible}
                     setIngredients1ModalVisible={setIngredients1ModalVisible}
                     ingredients1ModalVisible={ingredients1ModalVisible}
+                    onApplyFilter={handleApplyFilter}
+                    activeFilter={activeFilter}
                 />
                 
                 <View style={{width: '100%', paddingHorizontal: 8}}>
-                    {(text === "bread" || text === "Bread") && searched === true ?
+                    {(text === "bread" || text === "Bread") && searched === true && selectedOption !== 'Today' ?
                             <>
                                 <Text style={cardStyles.headingText}>Results</Text>
                                 <ScrollView showsVerticalScrollIndicator={false} style={cardStyles.scrollContainer}>
                                     <View style={cardStyles.container}>
-                                        <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread"/>
-                                        <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread"/>
-                                        <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread"/>
+                                        <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}color={'green'}/>
+                                        <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'}color={'blue'}/>
+                                        <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'}color={'red'}/>
                                     </View>
                                 </ScrollView>
                             </>
-                    : 
+                    : <>
+                    {(text === "bread" || text === "Bread") && searched === true && selectedOption === 'Today' ?
+                    <>
+                        <Text style={cardStyles.headingText}>Results</Text>
+                        <ScrollView showsVerticalScrollIndicator={false} style={cardStyles.scrollContainer}>
+                            <View style={cardStyles.container}>
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'}color={'red'}/>
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}color={'green'}/>
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread" rating={3.9} time={'1 hour'} difficulty={'Med'}color={'blue'}/>
+                                
+                            </View>
+                        </ScrollView>
+                    </>
+                        : 
                         <> 
                             {text != "bread" && text != "Bread" && text != '' && searched === true ?
                                 <>
@@ -123,7 +142,7 @@ export default function SearchPage ({ navigation }) {
                                 </>
                             }
                         </>
-                    }
+                    }</>}
                 </View>
             </View>
     );

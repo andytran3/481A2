@@ -1,77 +1,47 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal, TextInput, FlatList } from 'react-native';
 import { Calendar } from 'react-native-calendars';
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function MealPlanPage() {
     const [selectedDate, setSelectedDate] = useState('');
-    const [scheduledMeals, setScheduledMeals] = useState({});
-    const [currentMeal, setCurrentMeal] = useState(null);
-    const [selectedTime, setSelectedTime] = useState(new Date());
-    const [showTimePicker, setShowTimePicker] = useState(false);
-    const [savedRecipes, setSavedRecipes] = useState([
+    const [modalVisible, setModalVisible] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [scheduledMeals, setScheduledMeals] = useState({}); // Store scheduled meals for each date
+
+    const placeholderRecipes = [
         { id: '1', title: 'English White Bread' },
         { id: '2', title: 'Canadian White Bread' },
         { id: '3', title: 'Italian Garlic Bread' },
-        // ... other recipes
-    ]);
+        // Add more recipes as needed
+    ];
 
     const handleDayPress = (day) => {
         setSelectedDate(day.dateString);
     };
 
-    const openTimePicker = (recipe) => {
-        setCurrentMeal(recipe);
-        // If the recipe has already been scheduled for this day with a time, use that time
-        const existingMeal = scheduledMeals[selectedDate]?.find(meal => meal.id === recipe.id);
-        if (existingMeal) {
-            setSelectedTime(new Date(`1970/01/01 ${existingMeal.time}`));
-        } else {
-            setSelectedTime(new Date()); // Use current time for new meals
-        }
-        setShowTimePicker(true);
+    const scheduleRecipe = (recipe) => {
+        const updatedMeals = scheduledMeals[selectedDate] ? [...scheduledMeals[selectedDate], recipe] : [recipe];
+        setScheduledMeals({ ...scheduledMeals, [selectedDate]: updatedMeals });
+        setModalVisible(false); // Close the modal after selecting a recipe
     };
 
-    const onTimeChange = (event, selectedTime) => {
-        setShowTimePicker(Platform.OS === 'ios');
-        if (selectedTime) {
-            setSelectedTime(selectedTime);
-            const mealWithTime = {...currentMeal, time: selectedTime.toLocaleTimeString()};
-            // Update or add the meal with the selected time
-            const updatedMeals = scheduledMeals[selectedDate] ? 
-                scheduledMeals[selectedDate].filter(meal => meal.id !== currentMeal.id).concat(mealWithTime) : 
-                [mealWithTime];
-            setScheduledMeals({
-                ...scheduledMeals,
-                [selectedDate]: updatedMeals
-            });
-            setCurrentMeal(null);
-            // window.location.reload(false);
-        }
-    };
+    const renderRecipeItem = ({ item }) => (
+        <View style={styles.recipeItem}>
+            <Text>{item.title}</Text>
+            <TouchableOpacity style={styles.selectButton} onPress={() => scheduleRecipe(item)}>
+                <Text style={styles.selectButtonText}>Select</Text>
+            </TouchableOpacity>
+        </View>
+    );
 
-    const removeScheduledMeal = (date, recipeId) => {
-        setScheduledMeals({
-            ...scheduledMeals,
-            [date]: scheduledMeals[date].filter(recipe => recipe.id !== recipeId)
-        });
-    };
     const renderScheduledMeals = () => {
-        return scheduledMeals[selectedDate] ? (
-            <View style={styles.scheduledMeals}>
-                {scheduledMeals[selectedDate].map(meal => (
-                    <View key={meal.id} style={styles.mealItemContainer}>
-                        <Text style={styles.mealItem}>{meal.title} at {meal.time}</Text>
-                        <TouchableOpacity
-                            style={styles.removeButton}
-                            onPress={() => removeScheduledMeal(selectedDate, meal.id)}
-                        >
-                            <Text style={styles.removeButtonText}>Remove</Text>
-                        </TouchableOpacity>
-                    </View>
-                ))}
+        const meals = scheduledMeals[selectedDate] || [];
+        return meals.map(meal => (
+            <View key={meal.id} style={styles.mealItemContainer}>
+                <Text style={styles.mealItem}>{meal.title}</Text>
+                {/* Add more details or remove button if needed */}
             </View>
-        ) : <Text style={styles.noMealsText}>No meals scheduled for this day.</Text>;
+        ));
     };
 
     return (
@@ -84,40 +54,187 @@ export default function MealPlanPage() {
                 }}
             />
 
-            <Text style={styles.subHeader}>Select a Recipe for {selectedDate}</Text>
-            <FlatList
-                data={savedRecipes}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <View style={styles.recipeContainer}>
-                        <Text style={styles.recipeText}>{item.title}</Text>
-                        <TouchableOpacity
-                            style={styles.timeButton}
-                            onPress={() => openTimePicker(item)}
-                        >
-                            <Text style={styles.timeButtonText}>Set Time</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-            />
+            <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => setModalVisible(true)}
+            >
+                <Text style={styles.addButtonText}>Add Recipe</Text>
+            </TouchableOpacity>
 
-{showTimePicker && (
-                <DateTimePicker
-                    value={selectedTime}
-                    mode="time"
-                    is24Hour={true}
-                    display="default"
-                    onChange={onTimeChange}
-                />
-            )}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.modalView}>
+                    <TextInput
+                        style={styles.searchBar}
+                        onChangeText={setSearchQuery}
+                        value={searchQuery}
+                        placeholder="Search Recipes"
+                    />
+                    <FlatList
+                        data={placeholderRecipes.filter(recipe =>
+                            recipe.title.toLowerCase().includes(searchQuery.toLowerCase())
+                        )}
+                        renderItem={renderRecipeItem}
+                        keyExtractor={item => item.id}
+                    />
+                    <TouchableOpacity
+                        style={styles.closeButton}
+                        onPress={() => setModalVisible(!modalVisible)}
+                    >
+                        <Text style={styles.closeButtonText}>Close</Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
 
-            <Text style={styles.subHeader}>Scheduled Meals for {selectedDate}</Text>
-            {renderScheduledMeals()}
+            <View style={styles.scheduledMealsContainer}>
+                <Text style={styles.subHeader}>Scheduled Meals for {selectedDate}</Text>
+                {renderScheduledMeals()}
+            </View>
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
+    // ... existing styles ...
+    selectButton: {
+        padding: 5,
+        backgroundColor: 'blue',
+        borderRadius: 5,
+        marginLeft: 10,
+    },
+    selectButtonText: {
+        color: '#fff',
+    },
+    scheduledMealsContainer: {
+        marginTop: 20,
+    },
+    mealItemContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 5,
+        marginVertical: 5,
+    },
+    mealItem: {
+        flex: 1,
+    },
+
+
+    container: {
+        flex: 1,
+        padding: 10,
+    },
+    header: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    addButton: {
+        padding: 10,
+        backgroundColor: 'green',
+        borderRadius: 5,
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    addButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    searchBar: {
+        marginBottom: 20,
+        width: '80%',
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 10,
+    },
+    recipeItem: {
+        padding: 10,
+        marginVertical: 8,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 5,
+    },
+    closeButton: {
+        marginTop: 20,
+        backgroundColor: '#2196F3',
+        borderRadius: 5,
+        padding: 10,
+    },
+    closeButtonText: {
+        color: 'white',
+    },
+
+
+    container: {
+        flex: 1,
+        padding: 10,
+    },
+    header: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    addButton: {
+        padding: 10,
+        backgroundColor: 'green',
+        borderRadius: 5,
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    addButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    container: {
+        flex: 1,
+        padding: 10,
+    },
+    header: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    addButton: {
+        padding: 10,
+        backgroundColor: 'green',
+        borderRadius: 5,
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    addButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+
+
     container: {
         flex: 1,
         padding: 10,

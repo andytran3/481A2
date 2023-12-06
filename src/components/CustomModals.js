@@ -46,7 +46,6 @@ export default function CustomModal({
     const [inputText, setInputText] = useState('');
     const [includeButtons, setIncludeButtons] = useState([]);
     const [excludeButtons, setExcludeButtons] = useState([]);
-    
 
     const handleStarOneChange = (rating) => {
         if (rating >= starTwoRating) {
@@ -195,14 +194,20 @@ export default function CustomModal({
                         onPress={() => setSelectedOption('Set Range')}
                       />
                       <TouchableOpacity style={styles.applyButton} onPress={() => 
-                      {if (selectedOption === 'Set Range') {
-                      setRatingTwoModalVisible(!ratingTwoModalVisible); setRatingOneModalVisible(!ratingOneModalVisible)}}}>
+                      {
+                        if (selectedOption === 'Set Range') {
+                          setRatingTwoModalVisible(!ratingTwoModalVisible);
+                          setRatingOneModalVisible(!ratingOneModalVisible);
+                        } else {
+                          setRatingOneModalVisible(!ratingOneModalVisible);
+                        }
+                      }}>
                                 <Text style={styles.applyButtonText} >
                                     Apply
                                 </Text>
                       </TouchableOpacity>     
-                      <TouchableOpacity style={styles.applyButton}>
-                                  <Text style={styles.applyButtonText} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
+                      <TouchableOpacity style={styles.applyButton} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
+                                  <Text style={styles.applyButtonText} >
                                       Cancel</Text>
                       </TouchableOpacity>  
                     </View>
@@ -236,12 +241,12 @@ export default function CustomModal({
                   
                     />
 
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setRatingTwoModalVisible(!ratingTwoModalVisible)}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => setRatingTwoModalVisible(!ratingTwoModalVisible)}>
+                                <Text style={styles.applyButtonText} >
                                     Apply</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setRatingTwoModalVisible(!ratingTwoModalVisible)}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => setRatingTwoModalVisible(!ratingTwoModalVisible)}>
+                                <Text style={styles.applyButtonText} >
                                     Cancel</Text>
                     </TouchableOpacity>
                     </View>
@@ -290,8 +295,8 @@ export default function CustomModal({
                                   Apply
                               </Text>
                     </TouchableOpacity>     
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setTimeModalVisible(!timeModalVisible)}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => setTimeModalVisible(!timeModalVisible)}>
+                                <Text style={styles.applyButtonText} >
                                     Cancel</Text>
                     </TouchableOpacity>  
                   
@@ -338,8 +343,8 @@ export default function CustomModal({
                                   Apply
                               </Text>
                     </TouchableOpacity>     
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setIngredientsModalVisible(!ingredientsModalVisible)}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => setIngredientsModalVisible(!ingredientsModalVisible)}>
+                                <Text style={styles.applyButtonText} >
                                     Cancel</Text>
                     </TouchableOpacity>  
                   
@@ -387,8 +392,8 @@ export default function CustomModal({
                                   Apply
                               </Text>
                     </TouchableOpacity>     
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setIngredients3ModalVisible(!ingredients3ModalVisible)}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => setIngredients3ModalVisible(!ingredients3ModalVisible)}>
+                                <Text style={styles.applyButtonText} >
                                     Cancel</Text>
                     </TouchableOpacity>  
                   
@@ -487,24 +492,19 @@ export default function CustomModal({
                    
 
                     <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(false)}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => setIngredients1ModalVisible(false)}>
+                                <Text style={styles.applyButtonText} >
                                     Apply</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setIngredients1ModalVisible(false)}>
+                    <TouchableOpacity style={styles.applyButton} onPress={() => setIngredients1ModalVisible(false)}>
+                                <Text style={styles.applyButtonText} >
                                     Cancel</Text>
                     </TouchableOpacity>
                     </View>
                       </View>
                     </View>
                   </View>
-                  
-  
-    </Modal>
-
-
-
+          </Modal>
         </View>
     );
 }

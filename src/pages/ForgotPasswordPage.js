@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
+import { Alert } from 'react-native';
+
 
 import React from 'react';
 
@@ -7,9 +9,17 @@ export default function ForgotPasswordPage({ navigation }) {
   const [email, setEmail] = useState('');
 
   const _handlePressRequestPassword = () => {
-    navigation.navigate("Login")
     console.log('Request Password Button Pressed');
-  }
+    Alert.alert(
+      "Password Reset",
+      "Your password reset link has been sent to your email",
+      [
+        { text: "OK", onPress: () => navigation.navigate("Login") }
+      ],
+      { cancelable: false }
+    );
+}
+
 
   function CustomInput({ value, setValue, placeholder, secureTextEntry, boardType, maxLength }) {
     return (
@@ -37,20 +47,26 @@ export default function ForgotPasswordPage({ navigation }) {
 
   return (
     <View style={MainContainerStyle.container}>
+      <Text style={MainContainerStyle.title}>Password Recovery</Text>
       <CustomInput
-            placeholder='Email'
-            value={email}
-            setValue={setEmail}
-        />
-        <CustomButton
-            title='Request Password'
-            onPress={_handlePressRequestPassword}
-        />
+        placeholder='Email'
+        value={email}
+        setValue={setEmail}
+      />
+      <CustomButton
+        title='Request Password'
+        onPress={_handlePressRequestPassword}
+      />
     </View>
   );
 }
-
 const CustomTextInputStyle = StyleSheet.create({
+
+  title: {
+    fontSize: 30, 
+    fontWeight: 'bold', 
+    marginBottom: 30, 
+  },
   container: {
     backgroundColor: 'white',
     width: '90%',
@@ -130,4 +146,3 @@ const MainContainerStyle = StyleSheet.create({
     alignItems: 'stretch'
   }
 });
-

@@ -24,8 +24,14 @@ export default function CustomButtonRow ({
     setIngredients3ModalVisible,
     ingredients3ModalVisible,
     setIngredients1ModalVisible,
-    ingredients1ModalVisible
+    ingredients1ModalVisible,
+    activeFilter,
+    onApplyFilter,
  }) {
+    const buttonStyle = (filterName) => (
+        activeFilter === filterName ? styles.activeButton : styles.rowButtonContainer
+    );
+
     return (
             <View style={styles.container}>
                 <CustomModal
@@ -56,36 +62,58 @@ export default function CustomButtonRow ({
                     </View>
                     
                     <TouchableOpacity
-                        onPress={() => setPopularModalVisible(true)} 
-                        underlayColor={'#3b50f3'}
-                        style={styles.rowButtonContainer} >
-                        <View>
-                            <Text style={styles.customButtonText}>Popular</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                    onPress={() => setTimeModalVisible(true)} 
-                    underlayColor={'#3b50f3'} 
-                    style={styles.rowButtonContainer}>
-                        <Text style={styles.customButtonText}>Time</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                    onPress={() => setIngredientsModalVisible(true)}
-                    underlayColor={'#3b50f3'} 
-                    style={styles.rowButtonContainer} >
-                        <Text style={styles.customButtonText}>Ingredients</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                    onPress={() => setRatingOneModalVisible(true)}
-                    underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
-                        <Text style={styles.customButtonText}>Ratings</Text>
-                    </TouchableOpacity>
+                    onPress={() => {
+                        setPopularModalVisible(true);
+                        onApplyFilter('Popular');
+                    }}
+                    style={buttonStyle('Popular')}>
+                    <Text style={styles.customButtonText}>Popular</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    onPress={() => {
+                        setTimeModalVisible(true);
+                        onApplyFilter('Time');
+                    }} 
+                    style={buttonStyle('Time')}>
+                    <Text style={styles.customButtonText}>Time</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => {
+                        setIngredientsModalVisible(true);
+                        onApplyFilter('Ingredients');
+                    }}
+                    style={buttonStyle('Ingredients')}>
+                    <Text style={styles.customButtonText}>Ingredients</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => {
+                        setRatingOneModalVisible(true);
+                        onApplyFilter('Ratings');
+                    }}
+                    style={buttonStyle('Ratings')}>
+                    <Text style={styles.customButtonText}>Ratings</Text>
+                </TouchableOpacity>
                 </View>
             </View>
     );
 }
 
 const styles = StyleSheet.create({
+    activeButton: {
+        width: '22.5%',
+        padding: 5,
+        marginVertical: 8,
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: '#4CAF50',  
+        borderRadius: 50,
+        borderColor: '#2E7D32', 
+        borderWidth: 1,
+    },
+
+
     container: {
         flex: 1,
         backgroundColor: '#f3f3f3',
@@ -148,6 +176,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '90%',
       },
-
-      
   });
