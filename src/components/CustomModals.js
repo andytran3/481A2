@@ -178,34 +178,33 @@ export default function CustomModal({
                 <View style={styles.popularContainer}>
                   <View style={styles.ratingContentBackground}>
                     <View style={styles.ratingContent}>
-                    <Text style={styles.modalTitle}>Sort Ratings By:</Text>
-                    <RadioButton
-                              label="Highest to Lowest Rated"
-                              selected={selectedOption === 'Highest to Lowest Rated'}
-                              onPress={() => setSelectedOption('Highest to Lowest Rated')}
-                            /> 
-                    <RadioButton
-                      label="Lowest to Highest Rated"
-                      selected={selectedOption === 'Lowest to Highest Rated'}
-                      onPress={() => setSelectedOption('Lowest to Highest Rated')}
-                    />
-                    <RadioButton
-                      label="Set Range"
-                      selected={selectedOption === 'Set Range'}
-                      onPress={() => setSelectedOption('Set Range')}
-                    />
-                    <TouchableOpacity style={styles.applyButton} onPress={() => 
-                    {if (selectedOption === 'Set Range') {
-                    setRatingTwoModalVisible(!ratingTwoModalVisible); setRatingOneModalVisible(!ratingOneModalVisible)}}}>
-                              <Text style={styles.applyButtonText} >
-                                  Apply
-                              </Text>
-                    </TouchableOpacity>     
-                    <TouchableOpacity style={styles.applyButton}>
-                                <Text style={styles.applyButtonText} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
-                                    Cancel</Text>
-                    </TouchableOpacity>  
-                  
+                      <Text style={styles.modalTitle}>Sort Ratings By:</Text>
+                      <RadioButton
+                                label="Highest to Lowest Rated"
+                                selected={selectedOption === 'Highest to Lowest Rated'}
+                                onPress={() => setSelectedOption('Highest to Lowest Rated')}
+                              /> 
+                      <RadioButton
+                        label="Lowest to Highest Rated"
+                        selected={selectedOption === 'Lowest to Highest Rated'}
+                        onPress={() => setSelectedOption('Lowest to Highest Rated')}
+                      />
+                      <RadioButton
+                        label="Set Range"
+                        selected={selectedOption === 'Set Range'}
+                        onPress={() => setSelectedOption('Set Range')}
+                      />
+                      <TouchableOpacity style={styles.applyButton} onPress={() => 
+                      {if (selectedOption === 'Set Range') {
+                      setRatingTwoModalVisible(!ratingTwoModalVisible); setRatingOneModalVisible(!ratingOneModalVisible)}}}>
+                                <Text style={styles.applyButtonText} >
+                                    Apply
+                                </Text>
+                      </TouchableOpacity>     
+                      <TouchableOpacity style={styles.applyButton}>
+                                  <Text style={styles.applyButtonText} onPress={() => setRatingOneModalVisible(!ratingOneModalVisible)}>
+                                      Cancel</Text>
+                      </TouchableOpacity>  
                     </View>
                   </View>
                 </View>

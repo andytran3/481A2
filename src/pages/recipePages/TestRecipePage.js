@@ -13,7 +13,18 @@ export default function HomePage ({ navigation }) {
     const [rating, setRating] = useState(0);
     const [heartPressed, setHeartPressed] = useState(false);
     const [editPressed, setEditPressed] = useState(false);
-    const [unit, setUnit] = useState('imperial'); // Initial unit is imperial
+    const [unit, setUnit] = useState('imperial');
+    const [pressed, setPressed] = useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+    ])
     const [ingredients, setIngredients] = useState([
         { state: false, name: 'warm water', quantity: 480, unit: 'ml', imperialQuantity: 2, imperialUnit: 'cups' },
         { state: false, name: 'active dry yeast', quantity: 18.93, unit: 'g', imperialQuantity: 1, imperialUnit: 'tablespoons' },
@@ -28,7 +39,13 @@ export default function HomePage ({ navigation }) {
         ingredients[index].state = !ingredients[index].state;
         setChanged(!changed);
         console.log('Checkbox Button Pressed' + `${index}` + '' + ingredients[0].state);
-      }
+    }
+
+    const _handlePressText = (index) => {
+        pressed[index] = !pressed[index];
+        setChanged(!changed);
+        console.log('Text Pressed' + `${index}` + '' + pressed[index]);
+    }
     
     const toggleUnit = () => {
         setUnit(unit === 'imperial' ? 'metric' : 'imperial');
@@ -101,7 +118,6 @@ export default function HomePage ({ navigation }) {
                     </View>
                     
                     <View style={cardStyles.ingredientsBox}>
-                        
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Text style={textStyles.header}>Ingredients</Text>
                             <TouchableOpacity onPress={toggleUnit} style={{alignSelf: 'center', backgroundColor: '#3B71F3', margin: 5, padding: 5, width: 'auto', height: 'auto'}}>
@@ -125,26 +141,16 @@ export default function HomePage ({ navigation }) {
                         ))}
                     </View>
 
-                    {/* <View style={cardStyles.ingredientsBox}>
-                        <Text style={textStyles.header}>Ingredients</Text>
-                        <Text style={textStyles.paragraphs}>2 Cups Warm Water</Text>
-                        <Text style={textStyles.paragraphs}>2. Active Dry yeast: Instant or rapid rise yeast can be substituted, following my adaption notes in the recipe card.</Text>
-                        <Text style={textStyles.paragraphs}>3. Granulated sugar or honey: the sugar is used to “feed” the yeast and tenderize the bread.</Text>
-                        <Text style={textStyles.paragraphs}>4. Salt: to enhance flavor</Text>
-                        <Text style={textStyles.paragraphs}>5. Oil: Vegetable or canola oil, or melted butter could be substituted</Text>
-                        <Text style={textStyles.paragraphs}>6. Flour: Bread Flour or All-Purpose Flour can both be used with no changes to the recipe. The exact amount of flour used will vary depending on different factors (altitude/humidity etc.). What matters is the texture of the dough. It should be smooth and pull away from the sides of the bowl. It’s important not to add too much flour or your bread will be dense. The dough should be just slightly sticky when touched with a clean finger.</Text>
-                    </View> */}
-
                     <View style={cardStyles.instructionsBox}>
                         <Text style={textStyles.header}>Instructions</Text>
-                        <Text style={textStyles.paragraphs}>1. Proof the yeast: In a large bowl or stand mixer add the yeast, water and a pinch of the sugar or honey. Allow to rest for 5-10 minutes until foaming and bubbly. (This is called “proofing” the yeast, to make sure it is active. If it doesn’t foam, the yeast is no good, and you need to start over with fresh yeast).</Text>
-                        <Text style={textStyles.paragraphs}>2. Prepare the dough: Add remaining sugar or honey, salt, oil, and 3 cups of flour. Mix to combine. Add another cup of flour and mix to combine. With the mixer running add more flour, ½ cup at a time, until the dough begins to pull away from the sides of the bowl.</Text>
-                        <Text style={textStyles.paragraphs}>3. Knead the dough: Mix the dough for 5 minutes on medium speed (or knead with your hands on a lightly floured surface, for 5-8 minutes). The dough should be smooth and elastic, and slightly stick to a clean finger, but not be overly sticky.</Text>
-                        <Text style={textStyles.paragraphs}>4. First Rise: Grease a large bowl with oil or cooking spray and place the dough inside. Cover with a dish towel or plastic wrap and allow to rise in a warm place* until doubled in size (about 1 ½ hours).</Text>
-                        <Text style={textStyles.paragraphs}>5. Punch the dough down really well to remove air bubbles.</Text>
-                        <Text style={textStyles.paragraphs}>6. Divide into two equal portions. Shape each ball into long logs and place into greased loaf pans.</Text>
-                        <Text style={textStyles.paragraphs}>7. Second rise: Spray two pieces of plastic wrap with cooking spray and lay them gently over the pans. Allow dough to rise again for about 45 minutes to one hour, or until risen 1 inch above the loaf pans.</Text>
-                        <Text style={textStyles.paragraphs}>8. Bake: Adjust oven racks to lower/middle position. Preheat the oven to 350 F. Bake bread for about 30-33 minutes, or until golden brown on top. Give the top of a loaf a gentle tap; it should sound hollow.</Text>
+                        <Text onPress={() => _handlePressText(0)} style={[textStyles.paragraphs, pressed[0] === true ? {textDecorationLine: 'line-through'} : {}]}>1. Proof the yeast: In a large bowl or stand mixer add the yeast, water and a pinch of the sugar or honey. Allow to rest for 5-10 minutes until foaming and bubbly. (This is called “proofing” the yeast, to make sure it is active. If it doesn’t foam, the yeast is no good, and you need to start over with fresh yeast).</Text>
+                        <Text onPress={() => _handlePressText(1)} style={[textStyles.paragraphs, pressed[1] === true ? {textDecorationLine: 'line-through'} : {}]}>2. Prepare the dough: Add remaining sugar or honey, salt, oil, and 3 cups of flour. Mix to combine. Add another cup of flour and mix to combine. With the mixer running add more flour, ½ cup at a time, until the dough begins to pull away from the sides of the bowl.</Text>
+                        <Text onPress={() => _handlePressText(2)} style={[textStyles.paragraphs, pressed[2] === true ? {textDecorationLine: 'line-through'} : {}]}>3. Knead the dough: Mix the dough for 5 minutes on medium speed (or knead with your hands on a lightly floured surface, for 5-8 minutes). The dough should be smooth and elastic, and slightly stick to a clean finger, but not be overly sticky.</Text>
+                        <Text onPress={() => _handlePressText(3)} style={[textStyles.paragraphs, pressed[3] === true ? {textDecorationLine: 'line-through'} : {}]}>4. First Rise: Grease a large bowl with oil or cooking spray and place the dough inside. Cover with a dish towel or plastic wrap and allow to rise in a warm place* until doubled in size (about 1 ½ hours).</Text>
+                        <Text onPress={() => _handlePressText(4)} style={[textStyles.paragraphs, pressed[4] === true ? {textDecorationLine: 'line-through'} : {}]}>5. Punch the dough down really well to remove air bubbles.</Text>
+                        <Text onPress={() => _handlePressText(5)} style={[textStyles.paragraphs, pressed[5] === true ? {textDecorationLine: 'line-through'} : {}]}>6. Divide into two equal portions. Shape each ball into long logs and place into greased loaf pans.</Text>
+                        <Text onPress={() => _handlePressText(6)} style={[textStyles.paragraphs, pressed[6] === true ? {textDecorationLine: 'line-through'} : {}]}>7. Second rise: Spray two pieces of plastic wrap with cooking spray and lay them gently over the pans. Allow dough to rise again for about 45 minutes to one hour, or until risen 1 inch above the loaf pans.</Text>
+                        <Text onPress={() => _handlePressText(7)} style={[textStyles.paragraphs, pressed[7] === true ? {textDecorationLine: 'line-through'} : {}]}>8. Bake: Adjust oven racks to lower/middle position. Preheat the oven to 350 F. Bake bread for about 30-33 minutes, or until golden brown on top. Give the top of a loaf a gentle tap; it should sound hollow.</Text>
                     </View>
                 </View>
 
