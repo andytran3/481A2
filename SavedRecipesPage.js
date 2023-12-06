@@ -8,14 +8,32 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 export default function SavedRecipesPage ({ navigation }) {
     const [rating] = useState([4.6, 3.9, 5.0]);
     const [heartPressed, setHeartPressed] = useState(new Array(8).fill(true));
+    const [removedCardIndices, setRemovedCardIndices] = useState([]);
 
     const updateHeartPressed = (index) => {
+      const updatedHearts = [...heartPressed];
+      updatedHearts[index] = !updatedHearts[index];
+  
+      if (!updatedHearts[index]) {
+        setRemovedCardIndices([...removedCardIndices, index]);
+      }
+  
+      setHeartPressed(updatedHearts);
+    };
+  
+    const undoRemove = () => {
+      if (removedCardIndices.length > 0) {
+        const lastRemovedIndex = removedCardIndices.pop();
         const updatedHearts = [...heartPressed];
-        updatedHearts[index] = !updatedHearts[index];
+        updatedHearts[lastRemovedIndex] = true;
+        
         setHeartPressed(updatedHearts);
+        setRemovedCardIndices([...removedCardIndices]);
+      }
     };
 
     const renderRecipeItem = (navigateTo, index, imageSource, title, rating, time, difficulty, color) => (
+      heartPressed[index] && (
         <TouchableOpacity
           key={index}
           onPress={() => navigation.navigate(navigateTo)}
@@ -66,7 +84,8 @@ export default function SavedRecipesPage ({ navigation }) {
           </View>
           </View>
         </TouchableOpacity>
-      );
+      )
+    );
     
 
       return (
@@ -84,6 +103,11 @@ export default function SavedRecipesPage ({ navigation }) {
                 {renderRecipeItem(7, require('../res/bread2.png'), 'English White Bread')}
                 {renderRecipeItem(8, require('../res/bread2.png'), 'English White Bread')} */}
               </ScrollView>
+              {removedCardIndices.length > 0 && (
+            <TouchableOpacity onPress={undoRemove} style={styles.undoButton}>
+              <Text style={styles.undoButtonText}>Undo</Text>
+            </TouchableOpacity>
+          )}
             </View>
           </View>
         </ScrollView>
@@ -158,4 +182,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    undoButton: {
+      backgroundColor: 'gray',
+      padding: 10,
+      borderRadius: 5,
+      alignSelf: 'center',
+      marginTop: 10,
+    },
+  
+    undoButtonText: {
+      color: 'white',
+      fontWeight: 'bold',
+    },
+
 });
