@@ -68,4 +68,6 @@ Before you begin, ensure you have the following installed on your system:
     npx react-native run-android
     ```
 ## Functionality
+#### Registration
+![Registration](https://github.com/andytran3/481A2/assets/60755728/010a5f9b-7e1c-4f59-a6c8-889bf841e44a)
 
