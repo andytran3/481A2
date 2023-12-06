@@ -1,136 +1,187 @@
-import React, { useState } from 'react';
-import {Text, TextInput, View, StyleSheet, TouchableHighlight, ScrollView, Alert} from "react-native";
-import Slider from '@react-native-community/slider';
+import {Text, View, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
+import { React, useState } from "react";
+import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function HomePage () {
-    const [text, onChangeText] = React.useState('');
-    const [timeValue, setTimeValue] = useState(0);
-    const [ingredientsValue, setIngredientsValue] = useState(1);
-    const [ratingValue, setRatingValue] = useState(1);
+import CustomButtonRow from "../components/CustomButtonRow";
+import Tabs from "../components/Tabs";
 
-    const handleButtonPress = (buttonName) => {
-        switch(buttonName) {
-            case 'Popular':
-                Alert.alert(
-                    "Sort by",
-                    "Choose an option",
-                    [
-                        { text: "Most Popular", onPress: () => console.log("Most Popular selected") },
-                        { text: "Least Popular", onPress: () => console.log("Least Popular selected") }
-                    ]
-                );
-                break;
-            case 'Time':
-                Alert.alert(
-                    "Choose Time",
-                    <Slider
-                        maximumValue={5}
-                        minimumValue={0}
-                        step={0.5}
-                        value={timeValue}
-                        onValueChange={(value) => setTimeValue(value)}
-                    />
-                );
-                break;
-            case 'Ingredients':
-                Alert.alert(
-                    "Choose Ingredients",
-                    <Slider
-                        maximumValue={20}
-                        minimumValue={1}
-                        step={1}
-                        value={ingredientsValue}
-                        onValueChange={(value) => setIngredientsValue(value)}
-                    />
-                );
-                break;
-            case 'Ratings':
-                Alert.alert(
-                    "Choose Ratings",
-                    <Slider
-                        maximumValue={5}
-                        minimumValue={1}
-                        step={1}
-                        value={ratingValue}
-                        onValueChange={(value) => setRatingValue(value)}
-                    />
-                );
-                break;
-            default:
-                break;
-        }
-    }
+const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty, color }) => {
+    return (
+        <TouchableOpacity onPress={() => navigation.navigate(navigateTo)} style={[cardStyles.card, cardStyles.cardElevated]}>
+        <View style={{ flex: 1 }}>
+          <Image
+            source={imageSource}
+            style={{ resizeMode: 'cover', width: 242, height: 210, marginTop: 2, marginLeft: 2, borderRadius: 20 }}
+          />
+          <Text style={cardStyles.itemText}>{title}</Text>
+          <View style={cardStyles.iconButtonRow}>
+            <View style={[cardStyles.iconContainer, { width: '25%' }]} >
+              <Icon name="star" size={25} color="#FFEA00" />
+              <Text style={cardStyles.customButtonText}>{rating}</Text>
+            </View>
+            <View style={[cardStyles.iconContainer, { width: '35%' }]} >
+              <Icon name="timer-outline" size={25} color="black" style={{ top: 1.5 }} />
+              <Text style={cardStyles.customButtonText}>{time}</Text>
+            </View>
+            <View style={[cardStyles.iconContainer, { width: '30%' }]} >
+              <MaterialIcon name="gauge-low" size={25} color={color} />
+              <Text style={cardStyles.customButtonText}>{difficulty}</Text>
+            </View>
+          </View>
+          
+        </View>
+      </TouchableOpacity>
+    );
+};
+
+
+
+export default function HomePage ({ navigation }) {
+    const [popularModalVisible, setPopularModalVisible] = useState(false);
+    const [timeModalVisible, setTimeModalVisible] = useState(false);
+    const [ingredientsModalVisible, setIngredientsModalVisible] = useState(false);
+    const [ingredients1ModalVisible, setIngredients1ModalVisible] = useState(false);
+    const [ingredients3ModalVisible, setIngredients3ModalVisible] = useState(false);
+    const [activeFilter, setActiveFilter] = useState(null);
+    const handleApplyFilter = (filterName) => {
+        setActiveFilter(filterName);
+    };
+    const [ratingOneModalVisible, setRatingOneModalVisible] = useState(false);
+    const [ratingTwoModalVisible, setRatingTwoModalVisible] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('');
+    const [starOneRating, setStarOneRating] = useState(0);
+    const [starTwoRating, setStarTwoRating] = useState(0);
+    
+    const recipeData = {
+        '': [
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', color: 'red' },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+        ],
+
+        'Highest to Lowest Rated': [
+            {navigation, navigateTo: 'TestRecipe3', imageSource: require('../res/bread3.jpeg'), title: 'Italian Garlic Bread', rating: 5, time: '2 hours', difficulty: 'Hard', color: 'red' },
+            {navigation, navigateTo: 'TestRecipe', imageSource: require('../res/bread2.png'), title: 'English White Bread', rating: 4.6, time: '30 min', difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+        ],
+        'Lowest to Highest Rated': [
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'},
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'},
+        ],
+        'Today': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
+        ],
+        'Past Week': [  
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'},
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+        ],
+        'Past Month': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cookie1.jpeg'),title: 'Chunky Cookies',rating: 4.4,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },  
+        ],
+        'Past Year': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/bread2.png'),title: 'English White Bread',rating: 4.6,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  }, 
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
+        ],
+        'All Time': [
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/scallops1.jpeg'),title: 'Seared Scallops',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/curry1.jpeg'),title: 'Chickpea Curry',rating: 4.7,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe',imageSource: require('../res/cupcake1.jpeg'),title: 'Gala Cupcakes',rating: 4.2,time: '30 min',difficulty: 'Easy', color: 'green'  },
+            {navigation,navigateTo: 'TestRecipe3',imageSource: require('../res/bread3.jpeg'),title: 'Italian Garlic Bread',rating: 5,time: '2 hours',difficulty: 'Hard', color: 'red'  },
+            {navigation,navigateTo: 'TestRecipe2',imageSource: require('../res/bread1.jpg'),title: 'Canadian White Bread',rating: 3.9,time: '1 hour',difficulty: 'Med', color: 'blue'  },
+        ],
+  };
 
     return (
         <ScrollView>
+            
             <View style={styles.container}>
-                <Text>
-                    Hello Haroon!
-                </Text>
-                <View style={styles.row}>
-                    <TextInput
-                        style={styles.inputContainer}
-                        placeholder="Search"
-                        onChangeText={onChangeText}
-                        value={text}
-                    />
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.customButtonContainer} >
-                        <Text style={styles.customButtonText}>Search</Text>
-                    </TouchableHighlight>
-                </View>
+                <CustomButtonRow
+                    popularModalVisible={popularModalVisible}
+                    setPopularModalVisible={setPopularModalVisible}
+                    ratingOneModalVisible={ratingOneModalVisible}
+                    setRatingOneModalVisible={setRatingOneModalVisible}
+                    ratingTwoModalVisible={ratingTwoModalVisible}
+                    setRatingTwoModalVisible={setRatingTwoModalVisible}
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                    starOneRating={starOneRating}
+                    setStarOneRating={setStarOneRating}
+                    starTwoRating={starTwoRating}
+                    setStarTwoRating={setStarTwoRating}
+                    timeModalVisible={timeModalVisible}
+                    setTimeModalVisible={setTimeModalVisible}
+                    setIngredientsModalVisible={setIngredientsModalVisible}
+                    ingredientsModalVisible={ingredientsModalVisible}
+                    setIngredients3ModalVisible={setIngredients3ModalVisible}
+                    ingredients3ModalVisible={ingredients3ModalVisible}
+                    setIngredients1ModalVisible={setIngredients1ModalVisible}
+                    ingredients1ModalVisible={ingredients1ModalVisible}
+                    onApplyFilter={handleApplyFilter}
+                    activeFilter={activeFilter}
+                />
 
-                <View style={styles.buttonRow}>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} onPress={() => handleButtonPress('Popular')}>
-                        <Text style={styles.customButtonText}>Popular</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} onPress={() => handleButtonPress('Time')}>
-                        <Text style={styles.customButtonText}>Time</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} onPress={() => handleButtonPress('Ingredients')}>
-                        <Text style={styles.customButtonText}>Ingredients</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={'#3b50f3'} style={styles.rowButtonContainer} onPress={() => handleButtonPress('Ratings')}>
-                        <Text style={styles.customButtonText}>Ratings</Text>
-                    </TouchableHighlight>
-                </View>
-
-                <View style={{width: '100%', paddingHorizontal: 8}}>
+                <View style={{ width: '100%', paddingHorizontal: 8 }}>
                     <Text style={cardStyles.headingText}>Recommended</Text>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                    </ScrollView>
+                    {recipeData[selectedOption] && (
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
+                        {recipeData[selectedOption].map((recipe, index) => (
+                            <RecipeCard key={index} {...recipe} />
+                        ))}
+                        </ScrollView>
+                    )}
                 </View>
 
-                <View style={{width: '100%', paddingHorizontal: 8}}>
+                <View style={{ width: '100%', paddingHorizontal: 8 }}>
                     <Text style={cardStyles.headingText}>New Recipes</Text>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                        <View style={[cardStyles.card, cardStyles.cardElevated]}>
-                            <Text>Press Here</Text>
-                        </View>
-                    </ScrollView>
+                    {selectedOption === 'Highest to Lowest Rated' ?
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaron" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'} />
+                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'} />
+                        </ScrollView>
+                        : <>
+                        {selectedOption === 'Lowest to Highest Rated' ?
+                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macarons" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'} />
+                            </ScrollView>
+                            :
+                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={cardStyles.container}>
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts1.jpeg')} title="Glazed Donuts" rating={4.2} time={'2 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons2.jpeg')} title="Simple Macarons" rating={3.5} time={'1 Hour'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macarons" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/tart1.jpeg')} title="Mixed Berry Tart" rating={5} time={'30 min'} difficulty={'Hard'} />
+                                <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/donuts2.jpeg')} title="Hot Chocolate Bomb" rating={4} time={'4 Hours'} difficulty={'Hard'} />
+                            </ScrollView>
+                        }</>
+                    }
                 </View>
             </View>
         </ScrollView>
@@ -138,33 +189,62 @@ export default function HomePage () {
 }
 
 
-
 const cardStyles = StyleSheet.create({
     headingText: {
         fontSize: 24,
         fontWeight: 'bold',
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
+        fontFamily: 'serif',
     },
-
+    itemText: {
+        marginTop: 10,
+        fontSize: 20,
+        fontFamily: 'serif',
+        alignSelf: 'center',
+        fontWeight: 'bold',
+    },
     container: {
         padding: 8,
     },
-
     card: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         width: 250,
         height: 300,
-        margin: 8
+        margin: 8,
     },
-
     cardElevated: {
-        backgroundColor: 'green',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        borderColor: '#E0E0E0',
+        borderWidth: 2,
     },
-
-
-})
+    iconContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: 10,
+        padding: 7,
+        marginVertical: 5,
+        alignItems: 'center',
+        borderRadius: 15,
+    },
+    customButtonText: {
+        fontWeight: 'bold',
+        color: 'black',
+        fontSize: 14,
+        marginLeft: 10,
+        fontFamily: 'serif',
+    },
+    iconButtonRow: {
+        marginTop: -5,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        alignSelf: 'center',
+    },
+});
 
 const styles = StyleSheet.create({
     container: {
@@ -173,30 +253,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
     customButtonContainer: {
         width: '19%',
         padding: 10,
         marginVertical: 5,
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: '#3B71F3'
+        backgroundColor: '#3B71F3',
     },
-
     rowButtonContainer: {
         width: '24%',
-        padding: 9,
-        marginVertical: 5,
+        padding: 5,
+        marginVertical: 8,
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: '#3B71F3'
+        backgroundColor: 'white',
+        borderRadius: 50,
+        borderColor: '#708090',
+        borderWidth: 1,
     },
-
+    activeFilterButton: {
+        backgroundColor: '#4CAF50', // Green color for active filter
+        borderColor: '#2E7D32', // Darker green border
+    },
+    inactiveFilterButton: {
+        backgroundColor: '#f3f3f3', // Light gray for inactive filter
+        borderColor: '#c1c1c1', // Gray border
+    },
     customButtonText: {
-        fontWeight: 'bold',
-        color: 'white'
+        color: 'black',
     },
-
     inputContainer: {
         backgroundColor: 'white',
         width: '79%',
@@ -204,20 +290,20 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginVertical: 5,
         alignSelf: 'center',
-        height: 40
-      },
-
-      row: {
+        height: 40,
+    },
+    row: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         width: '90%',
-      },
-
-      buttonRow: {
+    },
+    buttonRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         width: '90%',
-      },
-  });
+    },
+});
+
+export { styles, cardStyles };
