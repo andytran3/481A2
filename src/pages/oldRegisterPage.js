@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
-import { Alert } from 'react-native';
-
 
 import React from 'react';
 
@@ -13,19 +11,9 @@ export default function RegisterPage({ navigation }) {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const _handlePressComplete = () => {
-
-    Alert.alert(
-      "Registration Successful",
-      "Your account has been registered.",
-      [
-        { text: "OK", onPress: () => navigation.navigate("Login") }
-      ],
-      { cancelable: false }
-    );
-
-    console.log('Complete Registration Button Pressed');
-}
-
+      navigation.navigate("Login")
+      console.log('Complete Registsration Button Pressed');
+  }
 
   const _handlePressTermsOfService = () => {
       console.log('Terms Of Service Text Pressed');
@@ -58,49 +46,53 @@ export default function RegisterPage({ navigation }) {
       </TouchableOpacity>
     ) : null;
   }
-  
+
+  function CustomInputHalf({ value1, setValue1, placeholder1, value2, setValue2, placeholder2 }) {
+    return(
+      <View style={CustomTextInputStyle.halfContainer}>
+        <TextInput
+          style={CustomTextInputStyle.halfInput}
+          placeholder={placeholder1}
+          value={value1}
+          onChangeText={setValue1}
+        />
+        <TextInput
+          style={CustomTextInputStyle.halfInput}
+          placeholder={placeholder2}
+          value={value2}
+          onChangeText={setValue2}
+        />
+      </View>
+    );
+  }
+
   return (
     <View style={MainContainerStyle.container}>
-        <View style={CustomTextInputStyle.halfContainer}>
-          <TextInput
-            style={CustomTextInputStyle.halfInput}
-            placeholder={'First Name'}
-            value={firstName}
-            onChangeText={setFirstName}
-          />
-          <TextInput
-            style={CustomTextInputStyle.halfInput}
-            placeholder={'Last Name'}
-            value={lastName}
-            onChangeText={setLastName}
-          />
-        </View>
-        <View style={CustomTextInputStyle.container}>
-          <TextInput
-              style={CustomTextInputStyle.input}
-              placeholder='Email'
-              value={email}
-              onChangeText={setEmail}
-          />
-        </View>
-        <View style={CustomTextInputStyle.container}>
-          <TextInput
-              style={CustomTextInputStyle.input}
-              placeholder='Password'
-              secureTextEntry={true}
-              value={password}
-              onChangeText={setPassword}
-          />
-        </View>
-        <View style={CustomTextInputStyle.container}>
-          <TextInput
-              style={CustomTextInputStyle.input}
-              placeholder='Confirm Password'
-              secureTextEntry={true}
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-          />
-        </View>
+        <CustomInputHalf
+          placeholder1='First Name'
+          value1={firstName}
+          setValue1={setFirstName}
+          placeholder2='Last Name'
+          value2={lastName}
+          setValue2={setLastName}
+        />
+        <CustomInput
+            placeholder='Email'
+            value={email}
+            setValue={setEmail}
+        />
+        <CustomInput
+            placeholder='Password'
+            value={password}
+            setValue={setPassword}
+            secureTextEntry={true}
+        />
+        <CustomInput
+            placeholder='Confirm Password'
+            value={confirmPassword}
+            setValue={setConfirmPassword}
+            secureTextEntry={true}
+        />
         <CustomButton
             title='Complete Registration'
             onPress={_handlePressComplete}

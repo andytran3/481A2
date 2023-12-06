@@ -23,7 +23,8 @@
     "react-native-calendars": "^1.1302.0",
     "react-native-star-rating-widget": "^1.7.3",
     "react-native-vector-icons": "^10.0.2",
-    "roll-picker-native": "^1.0.3"
+    "roll-picker-native": "^1.0.3",
+    "expo-updates": "~0.18.17"
   },
   "private": true
 }
