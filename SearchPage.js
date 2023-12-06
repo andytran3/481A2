@@ -19,7 +19,7 @@ export default function SearchPage ({ navigation }) {
     const [starOneRating, setStarOneRating] = useState(0);
     const [starTwoRating, setStarTwoRating] = useState(0);
 
-    const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty }) => {
+    const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty, color }) => {
         return (
             <TouchableOpacity onPress={() => navigation.navigate(navigateTo)} style={[cardStyles.card, cardStyles.cardElevated]}>
         <View style={{ flex: 1 }}>
@@ -38,7 +38,7 @@ export default function SearchPage ({ navigation }) {
               <Text style={cardStyles.customButtonText}>{time}</Text>
             </View>
             <View style={[cardStyles.iconContainer, { width: '30%' }]} >
-              <MaterialIcon name="gauge-low" size={25} color="green" />
+              <MaterialIcon name="gauge-low" size={25} color={color}/>
               <Text style={cardStyles.customButtonText}>{difficulty}</Text>
             </View>
           </View>
@@ -112,12 +112,12 @@ export default function SearchPage ({ navigation }) {
                                     <Text style={cardStyles.headingText}>Recent Searches</Text>
                                     <ScrollView showsVerticalScrollIndicator={false} style={cardStyles.scrollContainer}>
                                         <View style={cardStyles.container}>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'}/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'}/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread"  rating={3.9} time={'1 hour'} difficulty={'Med'}/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'}/>
-                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaron" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'} />
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cupcake1.jpeg')} title="Gala Cupcakes" rating={4.2} time={'30 min'} difficulty={'Easy'} color={'green'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/cookie1.jpeg')} title="Chunky Cookies" rating={4.4} time={'30 min'} difficulty={'Easy'}color={'green'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/bread2.png')} title="English White Bread" rating={4.6} time={'30 min'} difficulty={'Easy'}color={'green'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe2'} imageSource={require('../res/bread1.jpg')} title="Canadian White Bread"  rating={3.9} time={'1 hour'} difficulty={'Med'}color={'blue'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe3'} imageSource={require('../res/bread3.jpeg')} title="Italian Garlic Bread" rating={5} time={'2 hours'} difficulty={'Hard'}color={'red'}/>
+                                            <RecipeCard navigation={navigation} navigateTo={'TestRecipe'} imageSource={require('../res/macaroons1.jpeg')} title="Monster Macaron" rating={3.8} time={'1.5 Hours'} difficulty={'Hard'}color={'red'} />
                                         </View>
                                     </ScrollView>
                                 </>
