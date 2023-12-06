@@ -3,7 +3,7 @@ import { React, useState } from "react";
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import CustomModal from "../components/CustomModals";
+import CustomButtonRow from "../components/CustomButtonRow";
 
 const RecipeCard = ({ navigation, navigateTo, imageSource, title, rating, time, difficulty }) => {
     return (
@@ -47,7 +47,7 @@ export default function HomePage ({ navigation }) {
     return (
         <ScrollView>
             <View style={styles.container}>
-                <CustomModal
+                <CustomButtonRow
                     popularModalVisible={popularModalVisible}
                     setPopularModalVisible={setPopularModalVisible}
                     ratingOneModalVisible={ratingOneModalVisible}
@@ -67,33 +67,6 @@ export default function HomePage ({ navigation }) {
                     ingredients3ModalVisible={ingredients3ModalVisible}
                     setIngredients3ModalVisible={setIngredients3ModalVisible}
                 />
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity
-                        onPress={() => setPopularModalVisible(true)} 
-                        underlayColor={'#3b50f3'}
-                        style={styles.rowButtonContainer} >
-                        <View>
-                            <Text style={styles.customButtonText}>Popular</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                    onPress={() => setTimeModalVisible(true)} 
-                    underlayColor={'#3b50f3'} 
-                    style={styles.rowButtonContainer}>
-                        <Text style={styles.customButtonText}>Time</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                    onPress={() => setIngredientsModalVisible(true)}
-                    underlayColor={'#3b50f3'} 
-                    style={styles.rowButtonContainer} >
-                        <Text style={styles.customButtonText}>Ingredients</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                    onPress={() => setRatingOneModalVisible(true)}
-                    underlayColor={'#3b50f3'} style={styles.rowButtonContainer} >
-                        <Text style={styles.customButtonText}>Ratings</Text>
-                    </TouchableOpacity>
-                </View>
 
                 <View style={{ width: '100%', paddingHorizontal: 8 }}>
                     <Text style={cardStyles.headingText}>Recommended</Text>

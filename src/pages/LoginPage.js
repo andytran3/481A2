@@ -1,55 +1,165 @@
-import React, { useState } from 'react';
-import { Button, TextInput, View, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
-export default function LoginPage ({ navigation }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+import React from 'react';
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log(`Username: ${username}, Password: ${password}`);
-    // Navigate to the home page after successful login
-    navigation.navigate('NavBar');
-  };
+export default function Login({ navigation }) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+  const _handlePressLogin = () => {
+    navigation.navigate("NavBar")
+    console.log('Login Button Pressed');
+  }
+
+  const _handlePressRegister = () => {
+    navigation.navigate("Register")
+    console.log('Register Button Pressed');
+  }
+
+  const _handlePressForgot = () => {
+    navigation.navigate("Forgot")
+    console.log('Forgot Password Text Pressed');
+  }
+
+  function CustomInput({ value, setValue, placeholder, secureTextEntry, boardType, maxLength }) {
+    return (
+      <View style={CustomTextInputStyle.container}>
+        <TextInput
+          style={CustomTextInputStyle.input}
+          value={value}
+          onChangeText={setValue}
+          placeholder={placeholder}
+          secureTextEntry={secureTextEntry}
+          keyboardType={boardType}
+          maxLength={maxLength}
+      />
+      </View>
+    );
+  }
+
+  function CustomButton({ title, onPress, enabled=true }) {
+    return enabled ? (
+      <TouchableOpacity disabled={!enabled}  underlayColor={'#3b50f3'} style={CustomButtonStyle.container} onPress={onPress} >
+          <Text style={CustomButtonStyle.text}>{title}</Text>
+      </TouchableOpacity>
+    ) : null;
+  }
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        value={username}
-        onChangeText={setUsername}
-        placeholder={'Username'}
-        style={styles.input}
-      />
-      <TextInput
-        value={password}
-        onChangeText={setPassword}
-        placeholder={'Password'}
-        secureTextEntry={true}
-        style={styles.input}
-      />
-      <Button
-        title={'Login'}
-        onPress={handleLogin}
-        style={styles.button}
-      />
+    <View style={MainContainerStyle.container}>
+        <CustomInput
+            placeholder='Email'
+            value={email}
+            setValue={setEmail}
+        />
+        <CustomInput
+            placeholder='Password'
+            value={password}
+            setValue={setPassword}
+            secureTextEntry={true}
+        />
+        <CustomButton
+            title='Login'
+            onPress={_handlePressLogin}
+        />
+        <CustomButton
+            title='Register'
+            onPress={_handlePressRegister}
+        />
+        <TouchableOpacity onPress={_handlePressForgot}>
+            <Text style={styles.textButton}>
+                Forgot Password?
+            </Text>
+        </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
+  textButton: {
+    marginTop: 10,
+    marginBottom: 20,
+  }
+});
+
+const CustomTextInputStyle = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
+    backgroundColor: 'white',
+    width: '90%',
+    borderRadius: 2,
+    paddingHorizontal: 10,
+    marginVertical: 5,
+    alignSelf: 'center'
   },
+
+  halfContainer: {
+    flexDirection: 'row'
+  },
+  
+  halfInput: {
+    height: 40,
+    width: '44%',
+    margin: '1%',
+    borderRadius: 2,
+    paddingHorizontal: 10,
+    backgroundColor: 'white',
+  },
+
   input: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingLeft: 8,
   },
-  button: {
-    marginTop: 12,
+});
+
+const CustomButtonStyle = StyleSheet.create({
+  container: {
+    width: '90%',
+    padding: 15,
+    borderRadius: 2,
+    marginVertical: 5,
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#3B71F3'
   },
+
+  productContainer: {
+    width: '90%',
+    padding: 15,
+    borderRadius: 2,
+    marginVertical: 5,
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#919191'
+  },
+
+  text: {
+    fontWeight: 'bold',
+    color: 'white'
+  }
+});
+
+const MainContainerStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f3f3f3',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  containerScroll: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+
+  row: {
+    // backgroundColor: '#f3f3f3',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    opacity: 0.5,
+  },
+
+  scroll: {
+    flex: 1,
+    alignItems: 'stretch'
+  }
 });
