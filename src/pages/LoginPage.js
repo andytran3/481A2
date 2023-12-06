@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 
 import React from 'react';
 
@@ -48,6 +48,10 @@ export default function Login({ navigation }) {
 
   return (
     <View style={MainContainerStyle.container}>
+
+      <Image 
+      style={styles.logo}
+      source={require('../res/mealmaster.png')}/>
         <CustomInput
             placeholder='Email'
             value={email}
@@ -80,6 +84,12 @@ const styles = StyleSheet.create({
   textButton: {
     marginTop: 10,
     marginBottom: 20,
+  },
+
+  logo: {
+    width: 225,
+    height: 225,
+    marginBottom: 50,
   }
 });
 
@@ -141,7 +151,7 @@ const CustomButtonStyle = StyleSheet.create({
 const MainContainerStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f3f3f3',
+    backgroundColor: '#37474f',
     alignItems: 'center',
     justifyContent: 'center',
   },
