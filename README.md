@@ -73,7 +73,8 @@ Before you begin, ensure you have the following installed on your system:
 - Fill out the required sections approrpriately.
 - Press okay on the confirmation pop-up.
 <br/>
-![Registration](https://github.com/andytran3/481A2/assets/60755728/010a5f9b-7e1c-4f59-a6c8-889bf841e44a)
+![Registration](https://github.com/andytran3/481A2/assets/60755728/58ad5b5b-09be-4abb-8aef-b72f9f651c43)
+
 
 ### Login
 - In the Login Page enter the appropriately registered information.
