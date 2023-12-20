@@ -60,7 +60,7 @@ export default function HomePage ({ navigation }) {
             <ScrollView>
                 <View style={cardStyles.backgroundImage}>
                     <Image
-                        source={require('../../res/bread1.jpg')}
+                        source={require('../../res/bread1.jpeg')}
                         style={{resizeMode: 'cover', width: 450, height: 300}}
                     />
                 </View>
@@ -156,7 +156,7 @@ export default function HomePage ({ navigation }) {
                             <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                 
                                     <Image
-                                        source={require('../../res/bread2.png')}
+                                        source={require('../../res/bread2.jpeg')}
                                         style={cardStyles.generalCard}/>
                                     <Text style={cardStyles.itemText}>English White Bread</Text>
                                     <View style={cardStyles.iconButtonRow}>

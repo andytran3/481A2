@@ -156,7 +156,7 @@ export default function HomePage ({ navigation }) {
                         <TouchableOpacity onPress={() => navigation.navigate('TestRecipe')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                 
                                 <Image
-                                    source={require('../../res/bread2.png')}
+                                    source={require('../../res/bread2.jpeg')}
                                     style={cardStyles.generalCard}/>
                                 <Text style={cardStyles.itemText}>English White Bread</Text>
                                 <View style={cardStyles.iconButtonRow}>
@@ -179,7 +179,7 @@ export default function HomePage ({ navigation }) {
                         <TouchableOpacity onPress={() => navigation.navigate('TestRecipe2')} style={[cardStyles.scrollCard, cardStyles.cardElevated]}>
                                
                                     <Image
-                                        source={require('../../res/bread1.jpg')}
+                                        source={require('../../res/bread1.jpeg')}
                                         style={cardStyles.generalCard}
                                     />
                                     <Text style={cardStyles.itemText}>Canadian White Bread</Text>

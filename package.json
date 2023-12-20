@@ -14,17 +14,17 @@
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
-    "expo": "~49.0.15",
+    "expo": "^49.0.21",
     "expo-checkbox": "~2.4.0",
     "expo-image-picker": "~14.3.2",
     "expo-linear-gradient": "~12.3.0",
+    "expo-updates": "~0.18.18",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-calendars": "^1.1302.0",
     "react-native-star-rating-widget": "^1.7.3",
     "react-native-vector-icons": "^10.0.2",
-    "roll-picker-native": "^1.0.3",
-    "expo-updates": "~0.18.17"
+    "roll-picker-native": "^1.0.3"
   },
   "private": true
 }

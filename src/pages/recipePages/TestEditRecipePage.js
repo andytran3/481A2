@@ -18,7 +18,7 @@ export default function TestEditRecipePage ({ navigation }) {
             <ScrollView>
                 <View style={cardStyles.backgroundImage}>
                     <Image
-                        source={require('../../res/bread2.png')}
+                        source={require('../../res/bread2.jpeg')}
                         style={{resizeMode: 'contain', width: 450, height: 300}}
                     />
                 </View>
